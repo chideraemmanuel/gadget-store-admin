@@ -22,13 +22,14 @@ import { Button } from '@/components/ui/button';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import { Plus, Search } from 'lucide-react';
+import ProductsShowcase from '@/container/productsShowcase/ProductsShowcase';
 
 interface Props {}
 
 const ProductsPage: FC<Props> = () => {
   return (
     <>
-      <div className="flex md:flex-row flex-col gap-3 items-center md:justify-between px-4 py-5">
+      <div className="flex md:flex-row flex-col gap-3 items-center md:justify-between px-4 py-5 sticky top-20 z-10 bg-white">
         <div className="flex items-center md:justify-start justify-stretch md:w-auto w-full gap-2">
           <div className="relative flex-1">
             <Search className="absolute top-1/2 translate-y-[-50%] left-2 text-gray-500" />
@@ -50,7 +51,7 @@ const ProductsPage: FC<Props> = () => {
         </div>
 
         <Dialog>
-          <DialogTrigger>
+          <DialogTrigger asChild>
             <Button className="w-full md:w-auto flex items-center gap-1">
               <Plus />
               <span>Add product</span>
@@ -75,7 +76,8 @@ const ProductsPage: FC<Props> = () => {
           </DialogContent>
         </Dialog>
       </div>
-      <span>Products Page!</span>
+      {/* showcase */}
+      <ProductsShowcase />
     </>
   );
 };

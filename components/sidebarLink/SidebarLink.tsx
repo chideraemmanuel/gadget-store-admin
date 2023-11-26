@@ -27,8 +27,8 @@ const SidebarLink: FC<Props> = ({ href, text, icon }) => {
       // )}
       className={`flex items-center gap-2 py-4 px-5 rounded-sm transition ${
         pathname === `${href}`
-          ? 'bg-sky-500 text-white'
-          : 'text-gray-400 hover:bg-sky-200'
+          ? 'bg-slate-900 text-white'
+          : 'text-gray-400 hover:bg-slate-300 hover:text-slate-700'
       }`}
     >
       {icon}

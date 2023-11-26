@@ -27,7 +27,7 @@ interface Props {}
 
 const DashboardHeader: FC<Props> = () => {
   return (
-    <div className="py-6 px-4 border-b-[2px] border-gray-200 flex items-center justify-between">
+    <div className="py-6 px-4 border-b-[2px] border-gray-200 flex items-center justify-between sticky top-0 z-10 backdrop-blur-lg bg-white bg-opacity-80">
       <Sheet>
         <SheetTrigger className="block md:hidden">
           <MenuIcon />
