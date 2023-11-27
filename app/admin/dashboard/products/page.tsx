@@ -23,6 +23,7 @@ import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import { Plus, Search } from 'lucide-react';
 import ProductsShowcase from '@/container/productsShowcase/ProductsShowcase';
+import AddProductForm from '@/container/addProductForm/AddProductForm';
 
 interface Props {}
 
@@ -57,22 +58,26 @@ const ProductsPage: FC<Props> = () => {
               <span>Add product</span>
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="">
             <DialogHeader>
-              <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-              <DialogDescription>
+              <DialogTitle>Fill in product details</DialogTitle>
+              {/* <DialogDescription>
                 This action cannot be undone. This will permanently delete your
                 account and remove your data from our servers.
-              </DialogDescription>
+              </DialogDescription> */}
             </DialogHeader>
 
-            <DialogFooter className="sm:justify-start">
+            <div>
+              <AddProductForm />
+            </div>
+
+            {/* <DialogFooter className="sm:justify-start">
               <DialogClose asChild>
                 <Button type="button" variant="secondary">
                   Close
                 </Button>
               </DialogClose>
-            </DialogFooter>
+            </DialogFooter> */}
           </DialogContent>
         </Dialog>
       </div>
