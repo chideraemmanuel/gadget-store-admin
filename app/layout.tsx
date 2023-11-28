@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import ReduxProvider from '@/redux/ReduxProvider';
+import ReactQueryProvider from '@/lib/decorators/ReactQueryProvider';
+import StyledComponentsThemeProvider from '@/lib/decorators/StylesComponentsThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,9 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ReduxProvider>
-        <body className={inter.className}>{children}</body>
-      </ReduxProvider>
+      <ReactQueryProvider>
+        <StyledComponentsThemeProvider>
+          <ReduxProvider>
+            <body className={inter.className}>{children}</body>
+          </ReduxProvider>
+        </StyledComponentsThemeProvider>
+      </ReactQueryProvider>
     </html>
   );
 }
