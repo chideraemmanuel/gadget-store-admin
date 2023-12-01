@@ -4,6 +4,7 @@ import './globals.css';
 import ReduxProvider from '@/redux/ReduxProvider';
 import ReactQueryProvider from '@/lib/decorators/ReactQueryProvider';
 import StyledComponentsThemeProvider from '@/lib/decorators/StylesComponentsThemeProvider';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,10 @@ export default function RootLayout({
       <ReactQueryProvider>
         <StyledComponentsThemeProvider>
           <ReduxProvider>
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className}>
+              <Toaster />
+              {children}
+            </body>
           </ReduxProvider>
         </StyledComponentsThemeProvider>
       </ReactQueryProvider>

@@ -60,7 +60,17 @@ export interface FormData {
 const AddProductForm: FC<Props> = () => {
   const { data: categories, isError, isLoading } = useGetCategories();
 
-  const form = useForm<FormData>({ defaultValues: { featured: false } });
+  // const schema = z
+  //   .object({
+  //     category: z.string({ required_error: 'Category is required' }).optional(),
+  //   })
+  //   .passthrough();
+
+  const form = useForm<FormData>({
+    defaultValues: { featured: false },
+    // resolver: zodResolver(schema),
+  });
+
   const {
     register,
     control,
@@ -68,9 +78,6 @@ const AddProductForm: FC<Props> = () => {
     handleSubmit,
     watch,
   } = form;
-
-  // const checkboxState = watch('featured');
-  // console.log(checkboxState);
 
   const onSubmit = (formData: FormData) => {
     console.log(formData);
