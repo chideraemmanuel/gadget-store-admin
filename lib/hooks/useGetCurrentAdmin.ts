@@ -9,7 +9,7 @@ const getCurrentAdmin = async () => {
 
 const useGetCurrentAdmin = () => {
   return useQuery('get current admin', getCurrentAdmin, {
-    enabled: false,
+    // enabled: false,
     retry: false,
   });
 };

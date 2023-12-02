@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/logo/Logo';
 import { useForm } from 'react-hook-form';
-import useAdminLogin from '@/lib/hooks/useAdminLogin';
+import { useAdminLogin } from '@/lib/hooks/useAdminAuth';
 import { useRouter } from 'next/navigation';
 
 interface Props {}
@@ -34,7 +34,7 @@ const AdminLoginPage: FC<Props> = () => {
 
   const router = useRouter();
 
-  const { mutate: login, isSuccess, isError } = useAdminLogin();
+  const { mutate: login, isSuccess, isError, isLoading } = useAdminLogin();
 
   //   useEffect(() => {
   //     if (isSuccess) {
@@ -97,7 +97,9 @@ const AdminLoginPage: FC<Props> = () => {
               </span>
             </div>
 
-            <Button>Login</Button>
+            <Button disabled={isLoading}>
+              {isLoading ? 'Logging in..' : 'Login'}
+            </Button>
           </form>
         </CardContent>
       </Card>

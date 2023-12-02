@@ -1,3 +1,5 @@
+'use client';
+
 import Logo from '@/components/logo/Logo';
 import { Menu, MenuIcon } from 'lucide-react';
 import { FC } from 'react';
@@ -22,10 +24,21 @@ import {
 
 import SidebarLink from '@/components/sidebarLink/SidebarLink';
 import DashboardNavLinks from '../dashboardNavLinks/DashboardNavLinks';
+import { useAdminLogout } from '@/lib/hooks/useAdminAuth';
 
 interface Props {}
 
 const DashboardHeader: FC<Props> = () => {
+  const { refetch: logout, isLoading } = useAdminLogout();
+
+  if (isLoading) {
+    return (
+      <>
+        <span>Is Logging Out...</span>
+      </>
+    );
+  }
+
   return (
     <div className="py-6 px-4 border-b-[2px] border-gray-200 flex items-center justify-between sticky top-0 z-10 backdrop-blur-lg bg-white bg-opacity-80">
       <Sheet>
@@ -69,9 +82,9 @@ const DashboardHeader: FC<Props> = () => {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          {/* <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuItem>Team</DropdownMenuItem> */}
+          <DropdownMenuItem onClick={() => logout()}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

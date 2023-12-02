@@ -1,7 +1,7 @@
 import axios from '@/config/axios';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from 'react-query';
-import { useToast } from '@/components/ui/use-toast';
+import { toast, useToast } from '@/components/ui/use-toast';
 
 // const loginAdmin = async ({ queryKey }: { queryKey: any }) => {
 //   console.log(queryKey);
@@ -27,7 +27,7 @@ const loginAdmin = async (credentials: { email: string; password: string }) => {
   return response.data;
 };
 
-const useAdminLogin = () => {
+export const useAdminLogin = () => {
   const router = useRouter();
   const { toast } = useToast();
 
@@ -51,4 +51,40 @@ const useAdminLogin = () => {
   });
 };
 
-export default useAdminLogin;
+const logoutAdmin = async () => {
+  const response = await axios.get('/auth/admin/logout', {
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+export const useAdminLogout = () => {
+  const router = useRouter();
+
+  return useQuery(
+    {
+      queryKey: 'logout admin',
+      queryFn: logoutAdmin,
+      enabled: false,
+      retry: false,
+      onSuccess: (data) => {
+        console.log(data);
+        router.replace('/admin/auth/login');
+
+        toast({
+          description: 'Logout Successful',
+        });
+      },
+      onError: (error: any) => {
+        console.log(error);
+
+        toast({
+          description: 'Logout Failed',
+          variant: 'destructive',
+        });
+      },
+    }
+    // { enabled: false }
+  );
+};
