@@ -2,6 +2,8 @@ import axios from '@/config/axios';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from 'react-query';
 import { toast, useToast } from '@/components/ui/use-toast';
+import { useDispatch } from 'react-redux';
+import { setAdmin } from '@/redux/slices/authSlice';
 
 // const loginAdmin = async ({ queryKey }: { queryKey: any }) => {
 //   console.log(queryKey);
@@ -29,22 +31,28 @@ const loginAdmin = async (credentials: { email: string; password: string }) => {
 
 export const useAdminLogin = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { toast } = useToast();
 
   return useMutation(loginAdmin, {
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
 
       toast({
         description: 'Login Successful!',
       });
+
       router.replace('/admin/dashboard');
     },
     onError: (error: any) => {
       // console.log('error', error);
 
       toast({
-        description: `${error?.response?.data?.error}`,
+        description: `${
+          error?.response?.data?.error ||
+          error?.message ||
+          'Something went wrong'
+        }`,
         variant: 'destructive',
       });
     },
@@ -61,6 +69,7 @@ const logoutAdmin = async () => {
 
 export const useAdminLogout = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   return useQuery(
     {
@@ -69,7 +78,8 @@ export const useAdminLogout = () => {
       enabled: false,
       retry: false,
       onSuccess: (data) => {
-        console.log(data);
+        // console.log(data);
+        dispatch(setAdmin(null));
         router.replace('/admin/auth/login');
 
         toast({

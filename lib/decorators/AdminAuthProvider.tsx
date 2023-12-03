@@ -22,14 +22,14 @@ const AdminAuthProvider: FC<Props> = ({ children }) => {
   const { data, isLoading, isFetching, error, isError, isSuccess, refetch } =
     useGetCurrentAdmin();
 
-  useEffect(() => {
-    dispatch(setAdmin(data));
-  }, [data]);
+  // useEffect(() => {
+  //   dispatch(setAdmin(data));
+  // }, [data]);
 
-  if (isError) {
-    router.replace('/admin/auth/login');
-    return;
-  }
+  // if (isError) {
+  //   router.replace('/admin/auth/login');
+  //   return;
+  // }
 
   if (isLoading || splashScreenActive) {
     return (
@@ -40,6 +40,7 @@ const AdminAuthProvider: FC<Props> = ({ children }) => {
   }
 
   return <>{isSuccess && !isLoading && data && children}</>;
+  // return <>{children}</>;
 };
 
 export default AdminAuthProvider;

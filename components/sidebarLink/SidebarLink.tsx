@@ -10,30 +10,44 @@ interface Props {
   href: string;
   text: string;
   icon: React.ReactNode;
+  SheetClose?: any;
 }
 
-const SidebarLink: FC<Props> = ({ href, text, icon }) => {
+const SidebarLink: FC<Props> = ({ href, text, icon, SheetClose }) => {
   const pathname = usePathname();
 
   // console.log(pathname);
 
   return (
-    <Link
-      href={href}
-      // className={cn(
-      //   `py-4 px-5 block rounded-sm ${
-      //     pathname === '/admin/dashboard' ? 'bg-sky-500' : 'bg-red-300'
-      //   }`
-      // )}
-      className={`flex items-center gap-2 py-4 px-5 rounded-sm transition ${
-        pathname === `${href}`
-          ? 'bg-slate-900 text-white'
-          : 'text-gray-400 hover:bg-slate-300 hover:text-slate-700'
-      }`}
-    >
-      {icon}
-      <span>{text}</span>
-    </Link>
+    <>
+      {SheetClose ? (
+        <SheetClose asChild>
+          <Link
+            href={href}
+            className={`flex items-center gap-2 py-4 px-5 rounded-sm transition ${
+              pathname === `${href}`
+                ? 'bg-slate-900 text-white'
+                : 'text-gray-400 hover:bg-slate-300 hover:text-slate-700'
+            }`}
+          >
+            {icon}
+            <span>{text}</span>
+          </Link>
+        </SheetClose>
+      ) : (
+        <Link
+          href={href}
+          className={`flex items-center gap-2 py-4 px-5 rounded-sm transition ${
+            pathname === `${href}`
+              ? 'bg-slate-900 text-white'
+              : 'text-gray-400 hover:bg-slate-300 hover:text-slate-700'
+          }`}
+        >
+          {icon}
+          <span>{text}</span>
+        </Link>
+      )}
+    </>
   );
 };
 

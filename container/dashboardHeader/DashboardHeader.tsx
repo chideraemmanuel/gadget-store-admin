@@ -11,6 +11,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from '@/components/ui/sheet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -57,7 +58,7 @@ const DashboardHeader: FC<Props> = () => {
           </SheetHeader>
 
           <div className="bg-blue- h-full">
-            <DashboardNavLinks />
+            <DashboardNavLinks SheetClose={SheetClose} />
           </div>
         </SheetContent>
       </Sheet>
