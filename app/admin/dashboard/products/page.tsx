@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 import {
   Select,
@@ -24,10 +26,19 @@ import Link from 'next/link';
 import { Plus, Search } from 'lucide-react';
 import ProductsShowcase from '@/container/productsShowcase/ProductsShowcase';
 import AddProductForm from '@/container/addProductForm/AddProductForm';
+import { useGetProducts } from '@/lib/hooks/useProduct';
 
 interface Props {}
 
 const ProductsPage: FC<Props> = () => {
+  const {
+    data: products,
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+  } = useGetProducts();
+
   return (
     <>
       <div className="flex md:flex-row flex-col gap-3 items-center md:justify-between px-4 py-5 sticky top-20 z-10 bg-white">
@@ -82,7 +93,11 @@ const ProductsPage: FC<Props> = () => {
         </Dialog>
       </div>
       {/* showcase */}
-      <ProductsShowcase />
+      <ProductsShowcase
+        products={products}
+        isLoading={isLoading}
+        isError={isError}
+      />
     </>
   );
 };

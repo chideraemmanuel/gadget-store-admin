@@ -1,21 +1,67 @@
+'use client';
+
 import ProductCard from '@/components/productCard/ProductCard';
 import { FC } from 'react';
 import phone from '@/assets/phone.png';
+import { ProductsReturnTypes, useGetProducts } from '@/lib/hooks/useProduct';
 
-interface Props {}
+interface Props {
+  products?: ProductsReturnTypes[];
+  isLoading?: boolean;
+  isError?: boolean;
+}
 
-const ProductsShowcase: FC<Props> = () => {
+const ProductsShowcase: FC<Props> = ({ products, isLoading, isError }) => {
+  // const {
+  //   data: products,
+  //   isLoading,
+  //   isError,
+  //   isSuccess,
+  //   error,
+  // } = useGetProducts();
+
+  // console.log(error);
+
   return (
-    <div className="px-4 grid md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))]  grid-cols-[repeat(auto-fill,_minmax(165px,_1fr))] gap-4">
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((card, index) => (
-        <ProductCard
-          key={index}
-          imageSrc={phone.src}
-          name="Iphone 13 Pro"
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum dolor suscipit perferendis illo tempora impedit nostrum consectetur iste soluta delectus? Modi cupiditate, ea excepturi nesciunt officia cumque sed eum tempora."
-        />
-      ))}
-    </div>
+    <>
+      {isLoading && (
+        <div className="w-full h-[75vh] flex items-center justify-center">
+          Loading...
+        </div>
+      )}
+
+      {isError && (
+        <div className="w-full h-[75vh] flex items-center justify-center">
+          An error occured while fetching products
+        </div>
+      )}
+
+      {products?.length === 0 && (
+        <div className="w-full h-[75vh] flex items-center justify-center">
+          No products to display.
+        </div>
+      )}
+
+      {products && (
+        <div className="px-4 grid md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))]  grid-cols-[repeat(auto-fill,_minmax(165px,_1fr))] gap-4">
+          {products?.map((product, index) => (
+            <ProductCard
+              key={product._id}
+              // imageSrc={product.product_image}
+              // name={product.product_name}
+              product_name={product.product_name}
+              product_image={product.product_image}
+              description={product.description}
+              price={product.price}
+              // brand={product.brand}
+              // category={product.category}
+              featured={product.featured}
+              // count_in_stock={product.count_in_stock}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
