@@ -27,6 +27,7 @@ import { Plus, Search } from 'lucide-react';
 import ProductsShowcase from '@/container/productsShowcase/ProductsShowcase';
 import AddProductForm from '@/container/addProductForm/AddProductForm';
 import { useGetProducts } from '@/lib/hooks/useProduct';
+import ProductsTable from '@/container/productsTable/ProductsTable';
 
 interface Props {}
 
@@ -93,11 +94,12 @@ const ProductsPage: FC<Props> = () => {
         </Dialog>
       </div>
       {/* showcase */}
-      <ProductsShowcase
+      {/* <ProductsShowcase
         products={products}
         isLoading={isLoading}
         isError={isError}
-      />
+      /> */}
+      <ProductsTable data={products} isLoading={isLoading} isError={isError} />
     </>
   );
 };

@@ -191,7 +191,11 @@ const AddProductForm: FC<Props> = () => {
                       <SelectContent>
                         {categories &&
                           categories.map((category) => (
-                            <SelectItem key={category._id} value={category._id}>
+                            <SelectItem
+                              key={category._id}
+                              value={category._id}
+                              className="capitalize"
+                            >
                               {category.name}
                             </SelectItem>
                           ))}
