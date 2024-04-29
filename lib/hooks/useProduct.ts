@@ -1,3 +1,4 @@
+import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { useMutation, useQuery } from 'react-query';
 
@@ -25,9 +26,26 @@ const addProduct = async (product: FormData) => {
 };
 
 export const useAddProduct = () => {
+  const { toast } = useToast();
+
   return useMutation(addProduct, {
     onSuccess: (data) => {
       console.log(data);
+      toast({
+        description: 'Product Added Successfully!',
+      });
+    },
+    onError: (error: any) => {
+      // console.log('error', error);
+
+      toast({
+        description: `${
+          error?.response?.data?.error ||
+          error?.message ||
+          'Something went wrong'
+        }`,
+        variant: 'destructive',
+      });
     },
   });
 };

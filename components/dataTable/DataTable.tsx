@@ -1,9 +1,14 @@
 'use client';
 
+import { useState } from 'react';
+
 import {
   ColumnDef,
+  ColumnFiltersState,
+  Table as TanstackTable,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -20,18 +25,29 @@ interface DataTableProps<TData, TValue> {
   emptyTableMessage?: string;
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  table?: TanstackTable<TData>;
 }
 
 export function DataTable<TData, TValue>({
   emptyTableMessage,
   columns,
   data,
+  table: tableProp,
 }: DataTableProps<TData, TValue>) {
-  const table = useReactTable({
+  // const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
+  const componentTable = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    // onColumnFiltersChange: setColumnFilters,
+    // getFilteredRowModel: getFilteredRowModel(),
+    // state: {
+    //   columnFilters,
+    // },
   });
+
+  const table = tableProp ?? componentTable;
 
   return (
     <div className="rounded-md border">

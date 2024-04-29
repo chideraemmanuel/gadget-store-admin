@@ -51,6 +51,7 @@ const AdminLoginPage: FC<Props> = () => {
     <div className="flex justify-center items-center h-full bg-gray-200">
       <Card className="w-[min(500px,_90%)]">
         <CardHeader className="flex flex-col gap-2 text-center">
+          {/* TODO: make logo lik unnclickable when logging in! */}
           <div className="mx-auto mb-2">
             <Logo />
           </div>
@@ -76,6 +77,7 @@ const AdminLoginPage: FC<Props> = () => {
                   // pattern:
                 })}
                 className={`${errors.email?.message && 'border-red-700'}`}
+                disabled={isLoading}
               />
               <span className="text-xs text-red-700">
                 {errors.email?.message}
@@ -91,6 +93,7 @@ const AdminLoginPage: FC<Props> = () => {
                   required: 'Please enter a password',
                 })}
                 className={`${errors.password?.message && 'border-red-700'}`}
+                disabled={isLoading}
               />
               <span className="text-xs text-red-700">
                 {errors.password?.message}
@@ -98,7 +101,8 @@ const AdminLoginPage: FC<Props> = () => {
             </div>
 
             <Button disabled={isLoading}>
-              {isLoading ? 'Logging in..' : 'Login'}
+              {/* {isLoading ? 'Logging in..' : 'Login'} */}
+              Login
             </Button>
           </form>
         </CardContent>

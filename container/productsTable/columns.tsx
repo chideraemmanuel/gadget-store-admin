@@ -11,8 +11,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Product = {
   _id: string;
   product_name: string;
@@ -25,7 +23,7 @@ export type Product = {
   featured: boolean;
 };
 
-export const columns: ColumnDef<Product>[] = [
+export const productsColumns: ColumnDef<Product>[] = [
   //   {
   //     accessorKey: 'status',
   //     header: 'Status',

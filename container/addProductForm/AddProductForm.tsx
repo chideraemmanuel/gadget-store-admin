@@ -275,10 +275,14 @@ const AddProductForm: FC<Props> = () => {
           />
 
           <DialogFooter className="sm:justify-start">
-            <Button>Add Product</Button>
+            <Button disabled={isAddingProduct}>Add Product</Button>
 
             <DialogClose asChild>
-              <Button type="button" variant="secondary">
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={isAddingProduct}
+              >
                 Cancel
               </Button>
             </DialogClose>
