@@ -1,5 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
+import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from 'react-query';
 
 interface FormData {
@@ -27,13 +28,17 @@ const addProduct = async (product: FormData) => {
 
 export const useAddProduct = () => {
   const { toast } = useToast();
+  const router = useRouter();
 
   return useMutation(addProduct, {
     onSuccess: (data) => {
       console.log(data);
+
       toast({
         description: 'Product Added Successfully!',
       });
+
+      router.replace('/admin/dashboard/products');
     },
     onError: (error: any) => {
       // console.log('error', error);

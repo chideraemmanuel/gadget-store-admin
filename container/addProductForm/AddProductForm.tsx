@@ -25,7 +25,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
-import { DialogClose, DialogFooter } from '@/components/ui/dialog';
+// import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import useGetCategories from '@/lib/hooks/useGetCategories';
 import SelectField from '@/components/selectField/SelectField';
@@ -102,9 +102,10 @@ const AddProductForm: FC<Props> = () => {
         >
           <DevTool control={control} />
           <div className="flex gap-2">
-            <div>
+            <div className="w-full">
               <Label htmlFor="product_name">Product Name</Label>
               <Input
+                disabled={isAddingProduct}
                 placeholder="Enter product name"
                 id="product_name"
                 {...register('product_name', {
@@ -119,9 +120,10 @@ const AddProductForm: FC<Props> = () => {
               </span>
             </div>
 
-            <div>
+            <div className="w-full">
               <Label htmlFor="brand">Product Brand</Label>
               <Input
+                disabled={isAddingProduct}
                 placeholder="Enter product brand"
                 id="brand"
                 {...register('brand', {
@@ -138,6 +140,7 @@ const AddProductForm: FC<Props> = () => {
           <div>
             <Label htmlFor="description">Product Description</Label>
             <Textarea
+              disabled={isAddingProduct}
               placeholder="Enter product description"
               id="description"
               {...register('description', {
@@ -153,9 +156,10 @@ const AddProductForm: FC<Props> = () => {
           </div>
 
           <div className="flex gap-2">
-            <div>
+            <div className="w-full">
               <Label htmlFor="price">Price</Label>
               <Input
+                disabled={isAddingProduct}
                 type="number"
                 id="price"
                 step={'any'}
@@ -172,9 +176,11 @@ const AddProductForm: FC<Props> = () => {
               </span>
             </div>
 
-            <div className="flex-1">
+            {/* <div className="flex-1"> */}
+            <div className="w-full">
               <Label htmlFor="category">Product Category</Label>
               <FormField
+                disabled={isAddingProduct}
                 control={control}
                 name="category"
                 render={({ field }) => (
@@ -212,6 +218,7 @@ const AddProductForm: FC<Props> = () => {
             <div className="flex-1">
               <Label htmlFor="main_image">Product Image</Label>
               <Input
+                disabled={isAddingProduct}
                 type="file"
                 id="product_image"
                 {...register('product_image', {
@@ -239,6 +246,7 @@ const AddProductForm: FC<Props> = () => {
             <div className="flex-1">
               <Label htmlFor="count_in_stock">Count in Stock</Label>
               <Input
+                disabled={isAddingProduct}
                 type="number"
                 id="count_in_stock"
                 {...register('count_in_stock', {
@@ -258,6 +266,7 @@ const AddProductForm: FC<Props> = () => {
           </div>
 
           <FormField
+            disabled={isAddingProduct}
             control={form.control}
             name="featured"
             render={({ field }) => (
@@ -273,8 +282,9 @@ const AddProductForm: FC<Props> = () => {
               </FormItem>
             )}
           />
+          <Button disabled={isAddingProduct}>Add Product</Button>
 
-          <DialogFooter className="sm:justify-start">
+          {/* <DialogFooter className="sm:justify-start">
             <Button disabled={isAddingProduct}>Add Product</Button>
 
             <DialogClose asChild>
@@ -286,7 +296,7 @@ const AddProductForm: FC<Props> = () => {
                 Cancel
               </Button>
             </DialogClose>
-          </DialogFooter>
+          </DialogFooter> */}
         </form>
       </Form>
     </>

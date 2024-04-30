@@ -35,6 +35,7 @@ import {
   getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import Link from 'next/link';
 
 interface Props {
   data?: ProductsReturnTypes[];
@@ -111,35 +112,12 @@ const ProductsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
           </Select>
         </div>
 
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="w-full md:w-auto flex items-center gap-1">
-              <Plus />
-              <span>Add product</span>
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="">
-            <DialogHeader>
-              <DialogTitle>Fill in product details</DialogTitle>
-              {/* <DialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </DialogDescription> */}
-            </DialogHeader>
-
-            <div>
-              <AddProductForm />
-            </div>
-
-            {/* <DialogFooter className="sm:justify-start">
-              <DialogClose asChild>
-                <Button type="button" variant="secondary">
-                  Close
-                </Button>
-              </DialogClose>
-            </DialogFooter> */}
-          </DialogContent>
-        </Dialog>
+        <Button asChild className="w-full md:w-auto flex items-center gap-1">
+          <Link href="/admin/dashboard/products/add">
+            <Plus />
+            <span>Add product</span>
+          </Link>
+        </Button>
       </div>
 
       <div className="container mx-auto py-10">
@@ -174,4 +152,5 @@ const ProductsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
 
 export default ProductsTable;
 
-// TODO: add table skeletons!
+// TODO: close dialog after adding product!
+// TODO: add pagination to data table / product table!
