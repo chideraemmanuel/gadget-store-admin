@@ -61,7 +61,7 @@ export interface ProductsReturnTypes {
   brand: string;
   description: string;
   price: number;
-  category: string;
+  category: { _id: string; name: string };
   product_image: string;
   count_in_stock: number;
   featured: boolean;
@@ -92,5 +92,89 @@ export const useGetProducts = (filters?: FiltersTypes) => {
     queryFn: getProducts,
     retry: false,
     // retry: 3,
+  });
+};
+
+const getProduct = async ({ queryKey }: { queryKey: any[] }) => {
+  const productId = queryKey[1];
+
+  console.log('product id from get product hook', productId);
+
+  const response = await axios.get<ProductsReturnTypes>(
+    `/products/${productId}`
+  );
+
+  console.log('response from get product hook', response);
+
+  return response.data;
+};
+
+export const useGetProduct = (productId: string) => {
+  return useQuery(['get product', productId], getProduct, {
+    retry: false,
+    onError: (error: any) => {
+      console.log('error from get product hook', error);
+    },
+  });
+};
+
+export interface ProductUpdateTypes {
+  product_name?: string;
+  brand?: string;
+  description?: string;
+  price?: number;
+  category?: string;
+  product_image?: File;
+  count_in_stock?: number;
+  featured?: boolean;
+}
+
+const updateProduct = async ({
+  productId,
+  updates,
+}: {
+  productId: string;
+  updates: ProductUpdateTypes;
+}) => {
+  console.log('product id from update product hook', productId);
+  console.log('updates from update product hook', updates);
+
+  const response = await axios.put<ProductsReturnTypes>(
+    `/products/${productId}`,
+    updates,
+    { withCredentials: true }
+  );
+
+  console.log('response from update product hook', response);
+
+  return response.data;
+};
+
+export const useUpdateProduct = () => {
+  const { toast } = useToast();
+  const router = useRouter();
+
+  return useMutation(updateProduct, {
+    onSuccess: (data) => {
+      console.log(data);
+
+      toast({
+        description: 'Product Updated Successfully!',
+      });
+
+      router.replace('/admin/dashboard/products');
+    },
+    onError: (error: any) => {
+      console.log(error);
+
+      toast({
+        description: `${
+          error?.response?.data?.error ||
+          error?.message ||
+          'Something went wrong'
+        }`,
+        variant: 'destructive',
+      });
+    },
   });
 };

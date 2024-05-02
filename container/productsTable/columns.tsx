@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useRouter } from 'next/navigation';
 
 export type Product = {
   _id: string;
@@ -17,7 +18,7 @@ export type Product = {
   brand: string;
   description: string;
   price: number;
-  category: string;
+  category: { _id: string; name: string };
   product_image: string;
   count_in_stock: number;
   featured: boolean;
@@ -75,6 +76,8 @@ export const productsColumns: ColumnDef<Product>[] = [
     cell: ({ row }) => {
       const { _id } = row.original;
 
+      const router = useRouter();
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -84,14 +87,20 @@ export const productsColumns: ColumnDef<Product>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            {/* <DropdownMenuLabel>Actions</DropdownMenuLabel> */}
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(_id)}
             >
               Copy Product ID
             </DropdownMenuItem>
             {/* <DropdownMenuSeparator /> */}
-            <DropdownMenuItem>Update Product</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                router.push(`/admin/dashboard/products/update/${_id}`)
+              }
+            >
+              Update Product
+            </DropdownMenuItem>
             <DropdownMenuItem>Delete Product</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

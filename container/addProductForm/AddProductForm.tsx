@@ -65,7 +65,7 @@ const AddProductForm: FC<Props> = () => {
     mutate: addProduct,
     data: addedProduct,
     isLoading: isAddingProduct,
-    isError: isErrorAddungProduct,
+    isError: isErrorAddingProduct,
     isSuccess: isSuccessAddingProduct,
   } = useAddProduct();
 
