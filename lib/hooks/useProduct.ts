@@ -1,5 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from 'react-query';
 
@@ -158,6 +159,8 @@ export const useUpdateProduct = () => {
     onSuccess: (data) => {
       console.log(data);
 
+      revalidatePath('/admin/dashboard/products/update/[productId]', 'page');
+
       toast({
         description: 'Product Updated Successfully!',
       });
@@ -167,6 +170,38 @@ export const useUpdateProduct = () => {
     onError: (error: any) => {
       console.log(error);
 
+      toast({
+        description: `${
+          error?.response?.data?.error ||
+          error?.message ||
+          'Something went wrong'
+        }`,
+        variant: 'destructive',
+      });
+    },
+  });
+};
+
+const deleteProduct = async (productId: string) => {
+  const response = await axios.delete(`/products/${productId}`, {
+    withCredentials: true,
+  });
+
+  console.log('response from update product hook', response);
+
+  return response.data;
+};
+
+export const useDeleteProduct = () => {
+  const { toast } = useToast();
+
+  return useMutation(deleteProduct, {
+    onSuccess: (data) => {
+      toast({
+        description: 'Product Deleted Successfully!',
+      });
+    },
+    onError: (error: any) => {
       toast({
         description: `${
           error?.response?.data?.error ||
