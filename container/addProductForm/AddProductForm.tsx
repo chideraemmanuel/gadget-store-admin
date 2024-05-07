@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { useAddProduct } from '@/lib/hooks/useProduct';
 import ProductNameInput from './components/ProductNameInput';
-import BrandInput from './components/BrandInput';
+import BrandInput from './components/ProductBrandInput';
 import ProductDescriptionInput from './components/ProductDescriptionInput';
 import ProductPriceInput from './components/ProductPriceInput';
 import ProductCategoryInput from './components/ProductCategoryInput';

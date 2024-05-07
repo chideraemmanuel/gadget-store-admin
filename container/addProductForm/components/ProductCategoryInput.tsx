@@ -17,6 +17,7 @@ interface Props {
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;
   disabled: boolean;
+  defaultValue?: string;
 }
 
 const ProductCategoryInput: FC<Props> = ({
@@ -24,6 +25,7 @@ const ProductCategoryInput: FC<Props> = ({
   register,
   errors,
   disabled,
+  defaultValue,
 }) => {
   const {
     data: categories,
@@ -68,19 +70,20 @@ const ProductCategoryInput: FC<Props> = ({
               /> */}
       <Select
         onValueChange={(value) => form.setValue('category', value)}
-        defaultValue={form.getValues('category')}
+        defaultValue={defaultValue || form.getValues('category')}
       >
         <SelectTrigger
           {...register('category', {
-            required: 'Category is required',
+            required: 'Product category is required',
           })}
           id="category"
           className={cn(
             errors.category?.message && 'border-red-700',
-            'capitalize',
+            // 'capitalize',
 
             // 'w-[200px] justify-between',
             // 'w-full justify-between',
+            form.getValues('category') && 'capitalize',
             !form.getValues('category') && 'text-muted-foreground'
           )}
         >

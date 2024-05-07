@@ -59,7 +59,12 @@ export const useAddProduct = () => {
 export interface ProductsReturnTypes {
   _id: string;
   product_name: string;
-  brand: string;
+  // brand: string;
+  brand: {
+    _id: string;
+    name: string;
+    brand_logo: string;
+  };
   description: string;
   price: number;
   category: { _id: string; name: string };

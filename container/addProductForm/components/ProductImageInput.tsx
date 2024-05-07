@@ -19,7 +19,7 @@ const ProductImageInput: FC<Props> = ({ register, errors, disabled }) => {
         type="file"
         id="product_image"
         {...register('product_image', {
-          required: 'Product Image is required',
+          required: 'Product image is required',
         })}
         className={`${errors.product_image?.message && 'border-red-700'}`}
       />

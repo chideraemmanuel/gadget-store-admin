@@ -8,19 +8,26 @@ interface Props {
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;
   disabled: boolean;
+  defaultValue?: number;
 }
 
-const ProductCountInput: FC<Props> = ({ register, errors, disabled }) => {
+const ProductCountInput: FC<Props> = ({
+  register,
+  errors,
+  disabled,
+  defaultValue,
+}) => {
   return (
     <>
       <Label htmlFor="count_in_stock">Count in Stock</Label>
       <Input
+        defaultValue={defaultValue}
         disabled={disabled}
         type="number"
         id="count_in_stock"
         {...register('count_in_stock', {
           valueAsNumber: true,
-          required: 'Add product price',
+          required: 'Product count is required',
           validate: (value) =>
             value > 0 || 'Count in stock cannot be less than 1',
         })}

@@ -8,18 +8,25 @@ interface Props {
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;
   disabled: boolean;
+  defaultValue?: string;
 }
 
-const ProductDescriptionInput: FC<Props> = ({ register, errors, disabled }) => {
+const ProductDescriptionInput: FC<Props> = ({
+  register,
+  errors,
+  disabled,
+  defaultValue,
+}) => {
   return (
     <>
       <Label htmlFor="description">Product Description</Label>
       <Textarea
+        defaultValue={defaultValue}
         disabled={disabled}
         placeholder="Enter product description"
         id="description"
         {...register('description', {
-          required: 'Product Description is required',
+          required: 'Product description is required',
         })}
         className={`resize-none ${
           errors.description?.message && 'border-red-700'

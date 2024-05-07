@@ -37,6 +37,12 @@ import {
   useAddProduct,
   useUpdateProduct,
 } from '@/lib/hooks/useProduct';
+import ProductNameInput from '../addProductForm/components/ProductNameInput';
+import ProductDescriptionInput from '../addProductForm/components/ProductDescriptionInput';
+import ProductPriceInput from '../addProductForm/components/ProductPriceInput';
+import ProductCountInput from '../addProductForm/components/ProductCountInput';
+import ProductCategoryInput from '../addProductForm/components/ProductCategoryInput';
+import ProductBrandInput from '../addProductForm/components/ProductBrandInput';
 
 interface Props {
   product: ProductsReturnTypes;
@@ -132,7 +138,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
 
     if (
       watchedFormFields.product_name !== product_name ||
-      watchedFormFields.brand !== brand ||
+      watchedFormFields.brand !== brand._id ||
       watchedFormFields.description !== description ||
       watchedFormFields.price !== price ||
       watchedFormFields.count_in_stock !== count_in_stock ||
@@ -179,7 +185,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
       updates.product_name = formValues.product_name;
     }
 
-    if (formValues.brand !== brand) {
+    if (formValues.brand !== brand._id) {
       updates.brand = formValues.brand;
     }
 
@@ -231,142 +237,52 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
           <DevTool control={control} />
           <div className="flex gap-2">
             <div className="w-full">
-              <Label htmlFor="product_name">Product Name</Label>
-              <Input
-                defaultValue={product_name}
+              <ProductNameInput
+                register={register}
+                errors={errors}
                 disabled={isUpdatingProduct}
-                placeholder="Enter product name"
-                id="product_name"
-                {...register('product_name', {
-                  required: 'Product Name is required',
-                })}
-                className={`${
-                  errors.product_name?.message && 'border-red-700'
-                }`}
+                defaultValue={product_name}
               />
-              <span className="text-xs text-red-700">
-                {errors.product_name?.message}
-              </span>
             </div>
 
             <div className="w-full">
-              <Label htmlFor="brand">Product Brand</Label>
-              <Input
-                defaultValue={brand}
+              <ProductBrandInput
+                form={form}
+                register={register}
+                errors={errors}
                 disabled={isUpdatingProduct}
-                placeholder="Enter product brand"
-                id="brand"
-                {...register('brand', {
-                  required: 'Product Brand is required',
-                })}
-                className={`${errors.brand?.message && 'border-red-700'}`}
+                defaultValue={brand._id}
               />
-              <span className="text-xs text-red-700">
-                {errors.brand?.message}
-              </span>
             </div>
           </div>
 
           <div>
-            <Label htmlFor="description">Product Description</Label>
-            <Textarea
-              defaultValue={description}
+            <ProductDescriptionInput
+              register={register}
+              errors={errors}
               disabled={isUpdatingProduct}
-              placeholder="Enter product description"
-              id="description"
-              {...register('description', {
-                required: 'Product Description is required',
-              })}
-              className={`resize-none ${
-                errors.description?.message && 'border-red-700'
-              }`}
+              defaultValue={description}
             />
-            <span className="text-xs text-red-700">
-              {errors.description?.message}
-            </span>
           </div>
 
           <div className="flex gap-2">
             <div className="w-full">
-              <Label htmlFor="price">Price</Label>
-              <Input
-                defaultValue={price}
+              <ProductPriceInput
+                register={register}
+                errors={errors}
                 disabled={isUpdatingProduct}
-                type="number"
-                id="price"
-                step={'any'}
-                {...register('price', {
-                  valueAsNumber: true,
-                  required: 'Add product price',
-                  validate: (value) =>
-                    value > 0 || 'Price cannot be less than $1',
-                })}
-                className={`${errors.price?.message && 'border-red-700'}`}
+                defaultValue={price}
               />
-              <span className="text-xs text-red-700">
-                {errors.price?.message}
-              </span>
             </div>
 
             {/* <div className="flex-1"> */}
             <div className="w-full">
-              <Label htmlFor="category">Product Category</Label>
-              <FormField
+              <ProductCategoryInput
+                form={form}
+                register={register}
+                errors={errors}
                 disabled={isUpdatingProduct}
-                control={control}
-                name="category"
-                render={({ field }) => {
-                  // field.value = category._id;
-
-                  // console.log('field value', field.value);
-
-                  return (
-                    <FormItem>
-                      <Select
-                        // onValueChange={field.onChange}
-                        onValueChange={(value) => {
-                          /*
-                           Handle change manually using useState (because defaultValue does not actually set field.value to category._id, but it displays the corresponding category name on the component??)
-                          
-                           Did this because, on component render, the appropriate category name is selected on this component(thanks to defaultValue), but the actual field value is not set, thereby making the return value of hasFormChanged() true, which is wrong!
-                          */
-
-                          // field.onChange(); // doesn't do anything :D
-                          // field.value = value; // doesn't do aything either :D
-
-                          form.setValue('category', value);
-
-                          setSelectedCategory(value);
-                        }}
-                        // defaultValue={field.value}
-                        defaultValue={category._id}
-                      >
-                        <FormControl>
-                          <SelectTrigger
-                            id="category"
-                            className="capitalize"
-                            disabled={isUpdatingProduct}
-                          >
-                            <SelectValue placeholder="Select a category" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {categories &&
-                            categories.map((category) => (
-                              <SelectItem
-                                key={category._id}
-                                value={category._id}
-                                className="capitalize"
-                              >
-                                {category.name}
-                              </SelectItem>
-                            ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
+                defaultValue={category._id}
               />
             </div>
           </div>
@@ -391,25 +307,12 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
             </div>
 
             <div className="flex-1">
-              <Label htmlFor="count_in_stock">Count in Stock</Label>
-              <Input
-                defaultValue={count_in_stock}
+              <ProductCountInput
+                register={register}
+                errors={errors}
                 disabled={isUpdatingProduct}
-                type="number"
-                id="count_in_stock"
-                {...register('count_in_stock', {
-                  valueAsNumber: true,
-                  required: 'Add product price',
-                  validate: (value) =>
-                    value > 0 || 'Count in stock cannot be less than 1',
-                })}
-                className={`${
-                  errors.count_in_stock?.message && 'border-red-700'
-                }`}
+                defaultValue={count_in_stock}
               />
-              <span className="text-xs text-red-700">
-                {errors.count_in_stock?.message}
-              </span>
             </div>
           </div>
 
