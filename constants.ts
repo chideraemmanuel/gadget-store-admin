@@ -12,6 +12,16 @@ export const DASHBOARD_NAVIGATION_LINKS = [
     icon: ShoppingBagIcon,
   },
   {
+    title: 'Categories',
+    href: '/dashboard/categories',
+    icon: ActivityIcon,
+  },
+  {
+    title: 'Billboards',
+    href: '/dashboard/billboards',
+    icon: ActivityIcon,
+  },
+  {
     title: 'Orders',
     href: '/dashboard/orders',
     icon: ShoppingBagIcon,

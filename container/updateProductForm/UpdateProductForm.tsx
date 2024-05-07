@@ -127,8 +127,8 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
     //   featured: `${typeof isProductFeatured} - ${typeof featured}`,
     // });
 
-    // console.log('watched category', watchedFormFields.category);
-    // console.log('selected category', selectedCategory);
+    console.log('watched category', watchedFormFields.category);
+    console.log('selected category', selectedCategory);
 
     if (
       watchedFormFields.product_name !== product_name ||
@@ -331,8 +331,10 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
                            Did this because, on component render, the appropriate category name is selected on this component(thanks to defaultValue), but the actual field value is not set, thereby making the return value of hasFormChanged() true, which is wrong!
                           */
 
-                          field.onChange(); // doesn't do anything :D
-                          field.value = value; // doesn't do aything either :D
+                          // field.onChange(); // doesn't do anything :D
+                          // field.value = value; // doesn't do aything either :D
+
+                          form.setValue('category', value);
 
                           setSelectedCategory(value);
                         }}

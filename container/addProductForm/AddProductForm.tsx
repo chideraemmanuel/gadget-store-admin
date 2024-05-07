@@ -1,50 +1,25 @@
 'use client';
 
-import { FC, FormEvent, useRef, useState } from 'react';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { FC } from 'react';
+import { Form } from '@/components/ui/form';
+
 import * as z from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
-import { Textarea } from '@/components/ui/textarea';
-import useGetCategories from '@/lib/hooks/useGetCategories';
-import SelectField from '@/components/selectField/SelectField';
 import { useAddProduct } from '@/lib/hooks/useProduct';
+import ProductNameInput from './components/ProductNameInput';
+import BrandInput from './components/BrandInput';
+import ProductDescriptionInput from './components/ProductDescriptionInput';
+import ProductPriceInput from './components/ProductPriceInput';
+import ProductCategoryInput from './components/ProductCategoryInput';
+import ProductImageInput from './components/ProductImageInput';
+import ProductCountInput from './components/ProductCountInput';
+import ProductFeaturedInput from './components/ProductFeaturedInput';
 
 interface Props {}
-
-const dummy = [
-  {
-    title: 'John Doe',
-    value: 'John Doe',
-    // icon: <FiUser />,
-  },
-  {
-    title: 'Jane Doe',
-    value: 'Jane Doe',
-    // icon: <FiUserPlus />,
-  },
-];
 
 export interface FormDataTypes {
   product_name: string;
@@ -58,9 +33,6 @@ export interface FormDataTypes {
 }
 
 const AddProductForm: FC<Props> = () => {
-  const formRef = useRef();
-  const { data: categories, isError, isLoading } = useGetCategories();
-
   const {
     mutate: addProduct,
     data: addedProduct,
@@ -83,12 +55,13 @@ const AddProductForm: FC<Props> = () => {
   } = form;
 
   const onSubmit: SubmitHandler<FormDataTypes> = async (data, e) => {
-    addProduct({
-      ...data,
-      product_image: data.product_image[0],
-      // other_images: Object.values(data.other_images),
-      // other_images: data.other_images[0],
-    });
+    console.log('submitted data', data);
+    // addProduct({
+    //   ...data,
+    //   product_image: data.product_image[0],
+    //   // other_images: Object.values(data.other_images),
+    //   // other_images: data.other_images[0],
+    // });
   };
 
   return (
@@ -103,134 +76,57 @@ const AddProductForm: FC<Props> = () => {
           <DevTool control={control} />
           <div className="flex gap-2">
             <div className="w-full">
-              <Label htmlFor="product_name">Product Name</Label>
-              <Input
+              <ProductNameInput
+                register={register}
+                errors={errors}
                 disabled={isAddingProduct}
-                placeholder="Enter product name"
-                id="product_name"
-                {...register('product_name', {
-                  required: 'Product Name is required',
-                })}
-                className={`${
-                  errors.product_name?.message && 'border-red-700'
-                }`}
               />
-              <span className="text-xs text-red-700">
-                {errors.product_name?.message}
-              </span>
             </div>
 
             <div className="w-full">
-              <Label htmlFor="brand">Product Brand</Label>
-              <Input
+              <BrandInput
+                form={form}
+                register={register}
+                errors={errors}
                 disabled={isAddingProduct}
-                placeholder="Enter product brand"
-                id="brand"
-                {...register('brand', {
-                  required: 'Product Brand is required',
-                })}
-                className={`${errors.brand?.message && 'border-red-700'}`}
               />
-              <span className="text-xs text-red-700">
-                {errors.brand?.message}
-              </span>
             </div>
           </div>
 
           <div>
-            <Label htmlFor="description">Product Description</Label>
-            <Textarea
+            <ProductDescriptionInput
+              register={register}
+              errors={errors}
               disabled={isAddingProduct}
-              placeholder="Enter product description"
-              id="description"
-              {...register('description', {
-                required: 'Product Description is required',
-              })}
-              className={`resize-none ${
-                errors.description?.message && 'border-red-700'
-              }`}
             />
-            <span className="text-xs text-red-700">
-              {errors.description?.message}
-            </span>
           </div>
 
           <div className="flex gap-2">
             <div className="w-full">
-              <Label htmlFor="price">Price</Label>
-              <Input
+              <ProductPriceInput
+                register={register}
+                errors={errors}
                 disabled={isAddingProduct}
-                type="number"
-                id="price"
-                step={'any'}
-                {...register('price', {
-                  valueAsNumber: true,
-                  required: 'Add product price',
-                  validate: (value) =>
-                    value > 0 || 'Price cannot be less than $1',
-                })}
-                className={`${errors.price?.message && 'border-red-700'}`}
               />
-              <span className="text-xs text-red-700">
-                {errors.price?.message}
-              </span>
             </div>
 
-            {/* <div className="flex-1"> */}
             <div className="w-full">
-              <Label htmlFor="category">Product Category</Label>
-              <FormField
+              <ProductCategoryInput
+                form={form}
+                register={register}
+                errors={errors}
                 disabled={isAddingProduct}
-                control={control}
-                name="category"
-                render={({ field }) => (
-                  <FormItem>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger id="category">
-                          <SelectValue placeholder="Select a category" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {categories &&
-                          categories.map((category) => (
-                            <SelectItem
-                              key={category._id}
-                              value={category._id}
-                              className="capitalize"
-                            >
-                              {category.name}
-                            </SelectItem>
-                          ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
               />
             </div>
           </div>
 
           <div className="flex gap-2">
             <div className="flex-1">
-              <Label htmlFor="main_image">Product Image</Label>
-              <Input
+              <ProductImageInput
+                register={register}
+                errors={errors}
                 disabled={isAddingProduct}
-                type="file"
-                id="product_image"
-                {...register('product_image', {
-                  required: 'Product Image is required',
-                })}
-                className={`${
-                  errors.product_image?.message && 'border-red-700'
-                }`}
               />
-              <span className="text-xs text-red-700">
-                {errors.product_image?.message}
-              </span>
             </div>
 
             {/* <div>
@@ -244,59 +140,22 @@ const AddProductForm: FC<Props> = () => {
             </div> */}
 
             <div className="flex-1">
-              <Label htmlFor="count_in_stock">Count in Stock</Label>
-              <Input
+              <ProductCountInput
+                register={register}
+                errors={errors}
                 disabled={isAddingProduct}
-                type="number"
-                id="count_in_stock"
-                {...register('count_in_stock', {
-                  valueAsNumber: true,
-                  required: 'Add product price',
-                  validate: (value) =>
-                    value > 0 || 'Count in stock cannot be less than 1',
-                })}
-                className={`${
-                  errors.count_in_stock?.message && 'border-red-700'
-                }`}
               />
-              <span className="text-xs text-red-700">
-                {errors.count_in_stock?.message}
-              </span>
             </div>
           </div>
 
-          <FormField
+          <ProductFeaturedInput
+            form={form}
+            register={register}
+            errors={errors}
             disabled={isAddingProduct}
-            control={form.control}
-            name="featured"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-start self-start space-x-3 space-y-0 rounded-md border p-4">
-                <FormLabel className="">Featured product</FormLabel>
-                <FormControl className="">
-                  <Checkbox
-                    className=""
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
           />
+
           <Button disabled={isAddingProduct}>Add Product</Button>
-
-          {/* <DialogFooter className="sm:justify-start">
-            <Button disabled={isAddingProduct}>Add Product</Button>
-
-            <DialogClose asChild>
-              <Button
-                type="button"
-                variant="secondary"
-                disabled={isAddingProduct}
-              >
-                Cancel
-              </Button>
-            </DialogClose>
-          </DialogFooter> */}
         </form>
       </Form>
     </>
