@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
 import { FormDataTypes } from '../AddProductForm';
 import useGetCategories from '@/lib/hooks/useGetCategories';
@@ -32,6 +32,12 @@ const ProductCategoryInput: FC<Props> = ({
     isError: isErrorFetchingCategories,
     isLoading: isFetchingCategories,
   } = useGetCategories();
+
+  useEffect(() => {
+    if (defaultValue) {
+      form.setValue('category', defaultValue);
+    }
+  }, [defaultValue]);
 
   return (
     <>
@@ -83,26 +89,37 @@ const ProductCategoryInput: FC<Props> = ({
 
             // 'w-[200px] justify-between',
             // 'w-full justify-between',
-            form.getValues('category') && 'capitalize',
-            !form.getValues('category') && 'text-muted-foreground'
+            (form.getValues('category') || defaultValue) && 'capitalize',
+            (!form.getValues('category') || !defaultValue) &&
+              'text-muted-foreground'
           )}
         >
           <SelectValue placeholder="Select a category" />
         </SelectTrigger>
         <SelectContent>
           {categories &&
-            categories.map((category) => (
-              <SelectItem
-                key={category._id}
-                value={category._id}
-                className="capitalize"
-                onSelect={() => {
-                  form.setValue('category', category._id);
-                }}
-              >
-                {category.name}
-              </SelectItem>
-            ))}
+            categories
+              .sort((a, b) => {
+                if (a.name < b.name) {
+                  return -1;
+                }
+                if (a.name > b.name) {
+                  return 1;
+                }
+                return 0;
+              })
+              .map((category) => (
+                <SelectItem
+                  key={category._id}
+                  value={category._id}
+                  className="capitalize"
+                  onSelect={() => {
+                    form.setValue('category', category._id);
+                  }}
+                >
+                  {category.name}
+                </SelectItem>
+              ))}
         </SelectContent>
       </Select>
 

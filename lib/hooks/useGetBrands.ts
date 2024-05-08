@@ -20,5 +20,6 @@ export const useGetBrands = () => {
   return useQuery({
     queryKey: ['get brands'],
     queryFn: getBrands,
+    retry: false,
   });
 };

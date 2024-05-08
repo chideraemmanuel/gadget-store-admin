@@ -133,8 +133,8 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
     //   featured: `${typeof isProductFeatured} - ${typeof featured}`,
     // });
 
-    console.log('watched category', watchedFormFields.category);
-    console.log('selected category', selectedCategory);
+    // console.log('watched category', watchedFormFields.category);
+    // console.log('selected category', selectedCategory);
 
     if (
       watchedFormFields.product_name !== product_name ||
@@ -142,8 +142,8 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
       watchedFormFields.description !== description ||
       watchedFormFields.price !== price ||
       watchedFormFields.count_in_stock !== count_in_stock ||
-      // watchedFormFields.category !== category._id
-      selectedCategory !== category._id ||
+      watchedFormFields.category !== category._id ||
+      // selectedCategory !== category._id ||
       isProductFeatured !== featured
     ) {
       console.log('form changed');

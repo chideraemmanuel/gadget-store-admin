@@ -26,8 +26,9 @@ const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
     isLoading: isFetchingCategories,
   } = useGetCategories();
 
-  console.log(isErrorFetchingCategories);
-  console.log(isErrorFetchingProduct);
+  // console.log(isErrorFetchingCategories);
+  // console.log(isErrorFetchingProduct);
+  console.log('[PRODUCT]', product);
 
   return (
     <>

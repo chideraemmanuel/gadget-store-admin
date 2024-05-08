@@ -55,13 +55,13 @@ const AddProductForm: FC<Props> = () => {
   } = form;
 
   const onSubmit: SubmitHandler<FormDataTypes> = async (data, e) => {
-    console.log('submitted data', data);
-    // addProduct({
-    //   ...data,
-    //   product_image: data.product_image[0],
-    //   // other_images: Object.values(data.other_images),
-    //   // other_images: data.other_images[0],
-    // });
+    // console.log('submitted data', data);
+    addProduct({
+      ...data,
+      product_image: data.product_image[0],
+      // other_images: Object.values(data.other_images),
+      // other_images: data.other_images[0],
+    });
   };
 
   return (

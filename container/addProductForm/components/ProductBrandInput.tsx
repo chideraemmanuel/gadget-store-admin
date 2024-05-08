@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
 import { FormDataTypes } from '../AddProductForm';
 import { Label } from '@/components/ui/label';
@@ -33,6 +33,14 @@ const BrandInput: FC<Props> = ({
     isLoading: isFetchingBrands,
   } = useGetBrands();
 
+  useEffect(() => {
+    if (defaultValue) {
+      form.setValue('brand', defaultValue);
+    }
+  }, [defaultValue]);
+
+  console.log('brand def value', defaultValue);
+
   return (
     <>
       <Label htmlFor="brand">Brand</Label>
@@ -51,8 +59,9 @@ const BrandInput: FC<Props> = ({
 
             // 'w-[200px] justify-between',
             // 'w-full justify-between',
-            form.getValues('brand') && 'capitalize',
-            !form.getValues('brand') && 'text-muted-foreground'
+            (form.getValues('brand') || defaultValue) && 'capitalize',
+            (!form.getValues('brand') || !defaultValue) &&
+              'text-muted-foreground'
           )}
         >
           <SelectValue placeholder="Select a brand" />
