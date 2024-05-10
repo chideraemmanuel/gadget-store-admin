@@ -10,10 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { BrandsReturnTypes } from '@/lib/hooks/useBrands';
+import { BrandReturnTypes } from '@/lib/hooks/useBrands';
 
 interface Props {
-  brands: BrandsReturnTypes[];
+  brands: BrandReturnTypes[];
   form: UseFormReturn<FormDataTypes, any, undefined>;
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;

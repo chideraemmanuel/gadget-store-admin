@@ -3,10 +3,10 @@
 import ProductCard from '@/components/productCard/ProductCard';
 import { FC } from 'react';
 import phone from '@/assets/phone.png';
-import { ProductsReturnTypes, useGetProducts } from '@/lib/hooks/useProduct';
+import { ProductReturnTypes, useGetProducts } from '@/lib/hooks/useProduct';
 
 interface Props {
-  products?: ProductsReturnTypes[];
+  products?: ProductReturnTypes[];
   isLoading?: boolean;
   isError?: boolean;
 }

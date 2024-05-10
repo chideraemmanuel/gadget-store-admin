@@ -1,14 +1,14 @@
 import axios from '@/config/axios';
 import { useQuery } from 'react-query';
 
-export interface BrandsReturnTypes {
+export interface BrandReturnTypes {
   _id: string;
   name: string;
   brand_logo: string;
 }
 
 const getBrands = async () => {
-  const response = await axios.get<BrandsReturnTypes[]>('/brands');
+  const response = await axios.get<BrandReturnTypes[]>('/brands');
 
   console.log('response from get brands hook', response);
 

@@ -22,7 +22,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useRouter } from 'next/navigation';
-import { ProductsReturnTypes, useDeleteProduct } from '@/lib/hooks/useProduct';
+import { ProductReturnTypes, useDeleteProduct } from '@/lib/hooks/useProduct';
 import { useState } from 'react';
 import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
 
@@ -119,7 +119,7 @@ export const categoriesColumns: ColumnDef<CategoryReturnTypes>[] = [
   },
 ];
 
-export const categoriesSkeletonColumns: ColumnDef<ProductsReturnTypes>[] = [
+export const categoriesSkeletonColumns: ColumnDef<ProductReturnTypes>[] = [
   {
     accessorKey: 'name',
     header: 'Category name',

@@ -19,11 +19,11 @@ import ProductImageInput from './components/ProductImageInput';
 import ProductCountInput from './components/ProductCountInput';
 import ProductFeaturedInput from './components/ProductFeaturedInput';
 import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
-import { BrandsReturnTypes } from '@/lib/hooks/useBrands';
+import { BrandReturnTypes } from '@/lib/hooks/useBrands';
 
 interface Props {
   categories: CategoryReturnTypes[];
-  brands: BrandsReturnTypes[];
+  brands: BrandReturnTypes[];
 }
 
 export interface FormDataTypes {

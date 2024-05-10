@@ -1,6 +1,6 @@
 import { DataTable } from '@/components/dataTable/DataTable';
 import { FC, useState } from 'react';
-import { ProductsReturnTypes } from '@/lib/hooks/useProduct';
+import { ProductReturnTypes } from '@/lib/hooks/useProduct';
 import { DataTableSkeleton } from '@/components/dataTableSkeleton/DataTableSkeleton';
 
 import {

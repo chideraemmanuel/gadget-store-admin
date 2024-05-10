@@ -1,6 +1,6 @@
 import { DataTable } from '@/components/dataTable/DataTable';
 import { FC, useState } from 'react';
-import { ProductsReturnTypes } from '@/lib/hooks/useProduct';
+import { ProductReturnTypes } from '@/lib/hooks/useProduct';
 import { productsSkeletonColumns, productsColumns } from './columns';
 import { DataTableSkeleton } from '@/components/dataTableSkeleton/DataTableSkeleton';
 
@@ -38,7 +38,7 @@ import {
 import Link from 'next/link';
 
 interface Props {
-  data?: ProductsReturnTypes[];
+  data?: ProductReturnTypes[];
   isLoading?: boolean;
   isError?: boolean;
 }

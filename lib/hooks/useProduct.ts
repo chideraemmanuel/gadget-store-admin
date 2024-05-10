@@ -56,7 +56,7 @@ export const useAddProduct = () => {
   });
 };
 
-export interface ProductsReturnTypes {
+export interface ProductReturnTypes {
   _id: string;
   product_name: string;
   // brand: string;
@@ -88,7 +88,7 @@ const getProducts = async ({ queryKey }: { queryKey: any[] }) => {
   console.log('query key', queryKey);
   console.log('filters', filters);
 
-  const response = await axios.get<ProductsReturnTypes[]>('/products', {
+  const response = await axios.get<ProductReturnTypes[]>('/products', {
     params: filters,
   });
 
@@ -116,7 +116,7 @@ const getProduct = async ({ queryKey }: { queryKey: any[] }) => {
 
   console.log('product id from get product hook', productId);
 
-  const response = await axios.get<ProductsReturnTypes>(
+  const response = await axios.get<ProductReturnTypes>(
     `/products/${productId}`
   );
 
@@ -155,7 +155,7 @@ const updateProduct = async ({
   console.log('product id from update product hook', productId);
   console.log('updates from update product hook', updates);
 
-  const response = await axios.put<ProductsReturnTypes>(
+  const response = await axios.put<ProductReturnTypes>(
     `/products/${productId}`,
     updates,
     { withCredentials: true }

@@ -30,7 +30,7 @@ import { Textarea } from '@/components/ui/textarea';
 import SelectField from '@/components/selectField/SelectField';
 import {
   ProductUpdateTypes,
-  ProductsReturnTypes,
+  ProductReturnTypes,
   useAddProduct,
   useUpdateProduct,
 } from '@/lib/hooks/useProduct';
@@ -41,12 +41,12 @@ import ProductCountInput from '../addProductForm/components/ProductCountInput';
 import ProductCategoryInput from '../addProductForm/components/ProductCategoryInput';
 import ProductBrandInput from '../addProductForm/components/ProductBrandInput';
 import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
-import { BrandsReturnTypes } from '@/lib/hooks/useBrands';
+import { BrandReturnTypes } from '@/lib/hooks/useBrands';
 
 interface Props {
-  product: ProductsReturnTypes;
+  product: ProductReturnTypes;
   categories: CategoryReturnTypes[];
-  brands: BrandsReturnTypes[];
+  brands: BrandReturnTypes[];
 }
 
 export interface FormDataTypes {

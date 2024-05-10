@@ -22,7 +22,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useRouter } from 'next/navigation';
-import { ProductsReturnTypes, useDeleteProduct } from '@/lib/hooks/useProduct';
+import { ProductReturnTypes, useDeleteProduct } from '@/lib/hooks/useProduct';
 import { useState } from 'react';
 
 // export type Product = {
@@ -42,7 +42,7 @@ import { useState } from 'react';
 //   featured: boolean;
 // };
 
-export const productsColumns: ColumnDef<ProductsReturnTypes>[] = [
+export const productsColumns: ColumnDef<ProductReturnTypes>[] = [
   //   {
   //     accessorKey: 'status',
   //     header: 'Status',
@@ -191,7 +191,7 @@ export const productsColumns: ColumnDef<ProductsReturnTypes>[] = [
   },
 ];
 
-export const productsSkeletonColumns: ColumnDef<ProductsReturnTypes>[] = [
+export const productsSkeletonColumns: ColumnDef<ProductReturnTypes>[] = [
   {
     accessorKey: 'product_image',
     header: 'Product Image',

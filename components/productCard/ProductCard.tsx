@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '../ui/button';
-import { ProductsReturnTypes } from '@/lib/hooks/useProduct';
+import { ProductReturnTypes } from '@/lib/hooks/useProduct';
 
 interface Props {
   // imageSrc: string;
