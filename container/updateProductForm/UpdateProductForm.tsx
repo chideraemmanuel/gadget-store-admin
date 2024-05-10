@@ -27,9 +27,6 @@ import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
-import useGetCategories, {
-  CategoryReturnTypes,
-} from '@/lib/hooks/useGetCategories';
 import SelectField from '@/components/selectField/SelectField';
 import {
   ProductUpdateTypes,
@@ -43,24 +40,14 @@ import ProductPriceInput from '../addProductForm/components/ProductPriceInput';
 import ProductCountInput from '../addProductForm/components/ProductCountInput';
 import ProductCategoryInput from '../addProductForm/components/ProductCategoryInput';
 import ProductBrandInput from '../addProductForm/components/ProductBrandInput';
+import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
+import { BrandsReturnTypes } from '@/lib/hooks/useBrands';
 
 interface Props {
   product: ProductsReturnTypes;
   categories: CategoryReturnTypes[];
+  brands: BrandsReturnTypes[];
 }
-
-const dummy = [
-  {
-    title: 'John Doe',
-    value: 'John Doe',
-    // icon: <FiUser />,
-  },
-  {
-    title: 'Jane Doe',
-    value: 'Jane Doe',
-    // icon: <FiUserPlus />,
-  },
-];
 
 export interface FormDataTypes {
   product_name: string;
@@ -73,7 +60,7 @@ export interface FormDataTypes {
   featured: boolean;
 }
 
-const UpdateProductForm: FC<Props> = ({ product, categories }) => {
+const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
   const {
     product_name,
     brand,
@@ -247,6 +234,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
 
             <div className="w-full">
               <ProductBrandInput
+                brands={brands}
                 form={form}
                 register={register}
                 errors={errors}
@@ -278,6 +266,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories }) => {
             {/* <div className="flex-1"> */}
             <div className="w-full">
               <ProductCategoryInput
+                categories={categories}
                 form={form}
                 register={register}
                 errors={errors}

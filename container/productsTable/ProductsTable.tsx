@@ -98,9 +98,8 @@ const ProductsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
             />
           </div>
 
-          <Select>
+          {/* <Select>
             <SelectTrigger className="flex-1">
-              {/* <SelectTrigger className="w-[180px] flex-1"> */}
               <SelectValue placeholder="Filter Products" />
             </SelectTrigger>
             <SelectContent>
@@ -109,7 +108,7 @@ const ProductsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
                 Featured Products
               </SelectItem>
             </SelectContent>
-          </Select>
+          </Select> */}
         </div>
 
         <Button asChild className="w-full md:w-auto flex items-center gap-1">

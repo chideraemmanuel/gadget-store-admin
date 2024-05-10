@@ -10,9 +10,10 @@ import { cn } from '@/lib/utils';
 import { FC, useEffect } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
 import { FormDataTypes } from '../AddProductForm';
-import useGetCategories from '@/lib/hooks/useGetCategories';
+import { CategoryReturnTypes, useGetCategories } from '@/lib/hooks/useCategory';
 
 interface Props {
+  categories: CategoryReturnTypes[];
   form: UseFormReturn<FormDataTypes, any, undefined>;
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;
@@ -21,17 +22,18 @@ interface Props {
 }
 
 const ProductCategoryInput: FC<Props> = ({
+  categories,
   form,
   register,
   errors,
   disabled,
   defaultValue,
 }) => {
-  const {
-    data: categories,
-    isError: isErrorFetchingCategories,
-    isLoading: isFetchingCategories,
-  } = useGetCategories();
+  // const {
+  //   data: categories,
+  //   isError: isErrorFetchingCategories,
+  //   isLoading: isFetchingCategories,
+  // } = useGetCategories();
 
   useEffect(() => {
     if (defaultValue) {
@@ -79,6 +81,7 @@ const ProductCategoryInput: FC<Props> = ({
         defaultValue={defaultValue || form.getValues('category')}
       >
         <SelectTrigger
+          disabled={disabled}
           {...register('category', {
             required: 'Product category is required',
           })}

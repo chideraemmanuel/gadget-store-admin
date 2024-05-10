@@ -67,7 +67,17 @@ export interface ProductsReturnTypes {
   };
   description: string;
   price: number;
-  category: { _id: string; name: string };
+  category: {
+    _id: string;
+    name: string;
+    billboard: {
+      _id: string;
+      name: string;
+      head_text: string;
+      paragraph?: string;
+      billboard_image: string;
+    };
+  };
   product_image: string;
   count_in_stock: number;
   featured: boolean;
@@ -164,7 +174,8 @@ export const useUpdateProduct = () => {
     onSuccess: (data) => {
       console.log(data);
 
-      revalidatePath('/admin/dashboard/products/update/[productId]', 'page');
+      // revalidatePath('/admin/dashboard/products/update/[productId]', 'page');
+      // TODO: make revalidatePath work
 
       toast({
         description: 'Product Updated Successfully!',

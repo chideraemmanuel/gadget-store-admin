@@ -1,7 +1,8 @@
 'use client';
 
 import UpdateProductForm from '@/container/updateProductForm/UpdateProductForm';
-import useGetCategories from '@/lib/hooks/useGetCategories';
+import { useGetBrands } from '@/lib/hooks/useBrands';
+import { useGetCategories } from '@/lib/hooks/useCategory';
 import { useGetProduct } from '@/lib/hooks/useProduct';
 import { FC } from 'react';
 
@@ -26,6 +27,12 @@ const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
     isLoading: isFetchingCategories,
   } = useGetCategories();
 
+  const {
+    data: brands,
+    isError: isErrorFetchingBrands,
+    isLoading: isFetchingBrands,
+  } = useGetBrands();
+
   // console.log(isErrorFetchingCategories);
   // console.log(isErrorFetchingProduct);
   console.log('[PRODUCT]', product);
@@ -37,14 +44,20 @@ const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
           Update Product
         </h3>
 
-        {(isFetchingProduct ?? isFetchingCategories) && <span>Loading...</span>}
-
-        {(isErrorFetchingProduct ?? isErrorFetchingCategories) && (
-          <span>An error occured</span>
+        {(isFetchingProduct ?? isFetchingCategories ?? isFetchingBrands) && (
+          <span>Loading...</span>
         )}
 
-        {product && categories && (
-          <UpdateProductForm product={product} categories={categories} />
+        {(isErrorFetchingProduct ??
+          isErrorFetchingCategories ??
+          isErrorFetchingBrands) && <span>An error occured</span>}
+
+        {product && categories && brands && (
+          <UpdateProductForm
+            product={product}
+            categories={categories}
+            brands={brands}
+          />
         )}
       </div>
     </>

@@ -22,22 +22,27 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useRouter } from 'next/navigation';
-import { useDeleteProduct } from '@/lib/hooks/useProduct';
+import { ProductsReturnTypes, useDeleteProduct } from '@/lib/hooks/useProduct';
 import { useState } from 'react';
 
-export type Product = {
-  _id: string;
-  product_name: string;
-  brand: string;
-  description: string;
-  price: number;
-  category: { _id: string; name: string };
-  product_image: string;
-  count_in_stock: number;
-  featured: boolean;
-};
+// export type Product = {
+//   _id: string;
+//   product_name: string;
+//   // brand: string;
+//   brand: {
+//     _id: string;
+//     name: string;
+//     brand_logo: string;
+//   };
+//   description: string;
+//   price: number;
+//   category: { _id: string; name: string };
+//   product_image: string;
+//   count_in_stock: number;
+//   featured: boolean;
+// };
 
-export const productsColumns: ColumnDef<Product>[] = [
+export const productsColumns: ColumnDef<ProductsReturnTypes>[] = [
   //   {
   //     accessorKey: 'status',
   //     header: 'Status',
@@ -64,6 +69,17 @@ export const productsColumns: ColumnDef<Product>[] = [
   {
     accessorKey: 'product_name',
     header: 'Product',
+  },
+  {
+    accessorKey: 'price',
+    header: 'Price ($)',
+    // cell: ({ row }) => {
+    //   return (
+    //     <div className="">
+    //       $
+    //     </div>
+    //   )
+    // }
   },
   {
     accessorKey: 'count_in_stock',
@@ -175,7 +191,7 @@ export const productsColumns: ColumnDef<Product>[] = [
   },
 ];
 
-export const productsSkeletonColumns: ColumnDef<Product>[] = [
+export const productsSkeletonColumns: ColumnDef<ProductsReturnTypes>[] = [
   {
     accessorKey: 'product_image',
     header: 'Product Image',

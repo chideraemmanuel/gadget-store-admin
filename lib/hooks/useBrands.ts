@@ -1,7 +1,7 @@
 import axios from '@/config/axios';
 import { useQuery } from 'react-query';
 
-interface BrandsReturnTypes {
+export interface BrandsReturnTypes {
   _id: string;
   name: string;
   brand_logo: string;

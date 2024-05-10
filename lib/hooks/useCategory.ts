@@ -2,8 +2,15 @@ import { useQuery } from 'react-query';
 import axios from '@/config/axios';
 
 export interface CategoryReturnTypes {
-  name: string;
   _id: string;
+  name: string;
+  billboard: {
+    _id: string;
+    name: string;
+    head_text: string;
+    paragraph?: string;
+    billboard_image: string;
+  };
 }
 
 const getCategories = async () => {
@@ -13,7 +20,7 @@ const getCategories = async () => {
   return response.data;
 };
 
-const useGetCategories = () => {
+export const useGetCategories = () => {
   return useQuery('get categories', getCategories, {
     retry: false,
     onError: (error: any) => {
@@ -21,5 +28,3 @@ const useGetCategories = () => {
     },
   });
 };
-
-export default useGetCategories;

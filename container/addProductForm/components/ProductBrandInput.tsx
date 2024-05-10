@@ -3,7 +3,6 @@ import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
 import { FormDataTypes } from '../AddProductForm';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { useGetBrands } from '@/lib/hooks/useGetBrands';
 import {
   Select,
   SelectContent,
@@ -11,8 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { BrandsReturnTypes } from '@/lib/hooks/useBrands';
 
 interface Props {
+  brands: BrandsReturnTypes[];
   form: UseFormReturn<FormDataTypes, any, undefined>;
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;
@@ -21,17 +22,18 @@ interface Props {
 }
 
 const BrandInput: FC<Props> = ({
+  brands,
   form,
   register,
   errors,
   disabled,
   defaultValue,
 }) => {
-  const {
-    data: brands,
-    isError: isErrorFetchingBrands,
-    isLoading: isFetchingBrands,
-  } = useGetBrands();
+  // const {
+  //   data: brands,
+  //   isError: isErrorFetchingBrands,
+  //   isLoading: isFetchingBrands,
+  // } = useGetBrands();
 
   useEffect(() => {
     if (defaultValue) {
@@ -49,6 +51,7 @@ const BrandInput: FC<Props> = ({
         defaultValue={defaultValue || form.getValues('brand')}
       >
         <SelectTrigger
+          disabled={disabled}
           {...register('brand', {
             required: 'Product brand is required',
           })}

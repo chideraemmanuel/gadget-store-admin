@@ -11,15 +11,20 @@ import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { useAddProduct } from '@/lib/hooks/useProduct';
 import ProductNameInput from './components/ProductNameInput';
-import BrandInput from './components/ProductBrandInput';
+import ProductBrandInput from './components/ProductBrandInput';
 import ProductDescriptionInput from './components/ProductDescriptionInput';
 import ProductPriceInput from './components/ProductPriceInput';
 import ProductCategoryInput from './components/ProductCategoryInput';
 import ProductImageInput from './components/ProductImageInput';
 import ProductCountInput from './components/ProductCountInput';
 import ProductFeaturedInput from './components/ProductFeaturedInput';
+import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
+import { BrandsReturnTypes } from '@/lib/hooks/useBrands';
 
-interface Props {}
+interface Props {
+  categories: CategoryReturnTypes[];
+  brands: BrandsReturnTypes[];
+}
 
 export interface FormDataTypes {
   product_name: string;
@@ -32,7 +37,7 @@ export interface FormDataTypes {
   featured: boolean;
 }
 
-const AddProductForm: FC<Props> = () => {
+const AddProductForm: FC<Props> = ({ categories, brands }) => {
   const {
     mutate: addProduct,
     data: addedProduct,
@@ -84,7 +89,8 @@ const AddProductForm: FC<Props> = () => {
             </div>
 
             <div className="w-full">
-              <BrandInput
+              <ProductBrandInput
+                brands={brands}
                 form={form}
                 register={register}
                 errors={errors}
@@ -112,6 +118,7 @@ const AddProductForm: FC<Props> = () => {
 
             <div className="w-full">
               <ProductCategoryInput
+                categories={categories}
                 form={form}
                 register={register}
                 errors={errors}
