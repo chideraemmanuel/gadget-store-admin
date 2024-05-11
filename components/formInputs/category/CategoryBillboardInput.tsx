@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { FC, useEffect } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
 import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
-import { CategoryFormDataTypes } from '../AddCategoryForm';
+import { CategoryFormDataTypes } from '../../../container/addCategoryForm/AddCategoryForm';
 
 interface Props {
   billboards: BillboardReturnTypes[];

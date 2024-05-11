@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
-import { FormDataTypes } from '../AddProductForm';
+import { FormDataTypes } from '../../../container/addProductForm/AddProductForm';
 import {
   FormControl,
   FormField,

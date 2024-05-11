@@ -4,8 +4,8 @@ import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
 import { DevTool } from '@hookform/devtools';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import CategoryNameInput from './components/CategoryNameInput';
-import CategoryBillboardInput from './components/CategoryBillboardInput';
+import CategoryNameInput from '../../components/formInputs/category/CategoryNameInput';
+import CategoryBillboardInput from '../../components/formInputs/category/CategoryBillboardInput';
 import { useAddCategory } from '@/lib/hooks/useCategory';
 
 interface Props {
@@ -36,6 +36,7 @@ const AddCategoryForm: FC<Props> = ({ billboards }) => {
 
   const onSubmit: SubmitHandler<CategoryFormDataTypes> = async (data, e) => {
     console.log('submitted data', data);
+    // TODO: finish this function
   };
 
   return (

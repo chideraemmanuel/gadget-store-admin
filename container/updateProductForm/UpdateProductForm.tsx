@@ -34,12 +34,12 @@ import {
   useAddProduct,
   useUpdateProduct,
 } from '@/lib/hooks/useProduct';
-import ProductNameInput from '../addProductForm/components/ProductNameInput';
-import ProductDescriptionInput from '../addProductForm/components/ProductDescriptionInput';
-import ProductPriceInput from '../addProductForm/components/ProductPriceInput';
-import ProductCountInput from '../addProductForm/components/ProductCountInput';
-import ProductCategoryInput from '../addProductForm/components/ProductCategoryInput';
-import ProductBrandInput from '../addProductForm/components/ProductBrandInput';
+import ProductNameInput from '../../components/formInputs/product/ProductNameInput';
+import ProductDescriptionInput from '../../components/formInputs/product/ProductDescriptionInput';
+import ProductPriceInput from '../../components/formInputs/product/ProductPriceInput';
+import ProductCountInput from '../../components/formInputs/product/ProductCountInput';
+import ProductCategoryInput from '../../components/formInputs/product/ProductCategoryInput';
+import ProductBrandInput from '../../components/formInputs/product/ProductBrandInput';
 import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
 import { BrandReturnTypes } from '@/lib/hooks/useBrands';
 
@@ -188,8 +188,8 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
       updates.featured = isProductFeatured;
     }
 
-    if (selectedCategory !== category._id) {
-      updates.category = selectedCategory;
+    if (formValues.category !== category._id) {
+      updates.category = formValues.category;
     }
 
     if (formValues.count_in_stock !== count_in_stock) {

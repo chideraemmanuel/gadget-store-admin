@@ -157,8 +157,8 @@ const updateProduct = async ({
 
   const response = await axios.put<ProductReturnTypes>(
     `/products/${productId}`,
-    updates,
-    { withCredentials: true }
+    updates
+    // { withCredentials: true }
   );
 
   console.log('response from update product hook', response);
