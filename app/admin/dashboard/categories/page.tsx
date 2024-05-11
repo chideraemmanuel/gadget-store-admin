@@ -1,6 +1,6 @@
 'use client';
 
-import CategoriesTable from '@/container/categoriesTable/CategoriesTable';
+import CategoriesTable from '@/container/tables/categoriesTable/CategoriesTable';
 import { useGetCategories } from '@/lib/hooks/useCategory';
 import { FC } from 'react';
 

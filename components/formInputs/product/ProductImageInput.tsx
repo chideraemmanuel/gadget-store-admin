@@ -2,7 +2,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { FormDataTypes } from '../../../container/addProductForm/AddProductForm';
+import { FormDataTypes } from '../../../container/forms/products/addProductForm/AddProductForm';
 
 interface Props {
   register: UseFormRegister<FormDataTypes>;
@@ -13,7 +13,7 @@ interface Props {
 const ProductImageInput: FC<Props> = ({ register, errors, disabled }) => {
   return (
     <>
-      <Label htmlFor="main_image">Product Image</Label>
+      <Label htmlFor="product_image">Product Image</Label>
       <Input
         disabled={disabled}
         type="file"

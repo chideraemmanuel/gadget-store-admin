@@ -18,11 +18,15 @@ interface FormData {
 const addProduct = async (product: FormData) => {
   console.log('product', product);
 
-  const response = await axios.post('/products', product, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  const response = await axios.post<ProductReturnTypes[]>(
+    '/products',
+    product,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
 
   return response.data;
 };
@@ -200,10 +204,10 @@ export const useUpdateProduct = () => {
 
 const deleteProduct = async (productId: string) => {
   const response = await axios.delete(`/products/${productId}`, {
-    withCredentials: true,
+    // withCredentials: true,
   });
 
-  console.log('response from update product hook', response);
+  console.log('response from delete product hook', response);
 
   return response.data;
 };

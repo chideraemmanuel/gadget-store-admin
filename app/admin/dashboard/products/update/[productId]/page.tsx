@@ -1,6 +1,6 @@
 'use client';
 
-import UpdateProductForm from '@/container/updateProductForm/UpdateProductForm';
+import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories } from '@/lib/hooks/useCategory';
 import { useGetProduct } from '@/lib/hooks/useProduct';

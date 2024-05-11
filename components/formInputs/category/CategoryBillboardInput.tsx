@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { FC, useEffect } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
 import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
-import { CategoryFormDataTypes } from '../../../container/addCategoryForm/AddCategoryForm';
+import { CategoryFormDataTypes } from '../../../container/forms/categories/addCategoryForm/AddCategoryForm';
 
 interface Props {
   billboards: BillboardReturnTypes[];
@@ -94,7 +94,7 @@ const CategoryBillboardInput: FC<Props> = ({
         </SelectContent>
       </Select>
 
-      {/* <span className="text-xs text-red-700">{errors.category?.message}</span> */}
+      <span className="text-xs text-red-700">{errors.billboard?.message}</span>
     </>
   );
 };

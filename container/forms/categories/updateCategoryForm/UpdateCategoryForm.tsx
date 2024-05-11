@@ -1,51 +1,16 @@
 'use client';
 
 import { FC, FormEvent, useEffect, useRef, useState } from 'react';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import * as z from 'zod';
+import { Form } from '@/components/ui/form';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
-// import { DialogClose, DialogFooter } from '@/components/ui/dialog';
-import { Textarea } from '@/components/ui/textarea';
-import SelectField from '@/components/selectField/SelectField';
-import {
-  ProductUpdateTypes,
-  ProductReturnTypes,
-  useAddProduct,
-  useUpdateProduct,
-} from '@/lib/hooks/useProduct';
-import ProductNameInput from '../../components/formInputs/product/ProductNameInput';
-import ProductDescriptionInput from '../../components/formInputs/product/ProductDescriptionInput';
-import ProductPriceInput from '../../components/formInputs/product/ProductPriceInput';
-import ProductCountInput from '../../components/formInputs/product/ProductCountInput';
-import ProductCategoryInput from '../../components/formInputs/product/ProductCategoryInput';
-import ProductBrandInput from '../../components/formInputs/product/ProductBrandInput';
 import {
   CategoryReturnTypes,
   CategoryUpdateTypes,
   useUpdateCategory,
 } from '@/lib/hooks/useCategory';
-import { BrandReturnTypes } from '@/lib/hooks/useBrands';
 import CategoryNameInput from '@/components/formInputs/category/CategoryNameInput';
 import { CategoryFormDataTypes } from '../addCategoryForm/AddCategoryForm';
 import CategoryBillboardInput from '@/components/formInputs/category/CategoryBillboardInput';

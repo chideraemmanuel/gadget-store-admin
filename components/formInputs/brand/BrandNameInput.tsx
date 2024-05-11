@@ -2,16 +2,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { CategoryFormDataTypes } from '../../../container/forms/categories/addCategoryForm/AddCategoryForm';
+import { BrandFormDataTypes } from '@/container/forms/brands/addBrandForm/AddBrandForm';
 
 interface Props {
-  register: UseFormRegister<CategoryFormDataTypes>;
-  errors: FieldErrors<CategoryFormDataTypes>;
+  register: UseFormRegister<BrandFormDataTypes>;
+  errors: FieldErrors<BrandFormDataTypes>;
   disabled: boolean;
   defaultValue?: string;
 }
 
-const CategoryNameInput: FC<Props> = ({
+const BrandNameInput: FC<Props> = ({
   register,
   errors,
   disabled,
@@ -19,14 +19,14 @@ const CategoryNameInput: FC<Props> = ({
 }) => {
   return (
     <>
-      <Label htmlFor="category_name">Category Name</Label>
+      <Label htmlFor="brand_name">Brand Name</Label>
       <Input
         defaultValue={defaultValue}
         disabled={disabled}
-        placeholder="Enter category name"
-        id="category_name"
+        placeholder="Enter brand name"
+        id="brand_name"
         {...register('name', {
-          required: 'Category name is required',
+          required: 'Brand name is required',
         })}
         className={`${errors.name?.message && 'border-red-700'}`}
       />
@@ -35,4 +35,4 @@ const CategoryNameInput: FC<Props> = ({
   );
 };
 
-export default CategoryNameInput;
+export default BrandNameInput;

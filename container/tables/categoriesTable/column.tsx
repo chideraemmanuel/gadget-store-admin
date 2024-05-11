@@ -24,7 +24,10 @@ import {
 import { useRouter } from 'next/navigation';
 import { ProductReturnTypes, useDeleteProduct } from '@/lib/hooks/useProduct';
 import { useState } from 'react';
-import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
+import {
+  CategoryReturnTypes,
+  useDeleteCategory,
+} from '@/lib/hooks/useCategory';
 
 export const categoriesColumns: ColumnDef<CategoryReturnTypes>[] = [
   {
@@ -47,11 +50,11 @@ export const categoriesColumns: ColumnDef<CategoryReturnTypes>[] = [
       const [dropdownOpen, setDropdownOpen] = useState(false);
       const router = useRouter();
       const {
-        mutate: deleteProduct,
-        isLoading: isDeletingProduct,
-        isSuccess: hasDeletedProduct,
+        mutate: deleteCategory,
+        isLoading: isDeletingCategory,
+        isSuccess: hasDeletedCategory,
         isError,
-      } = useDeleteProduct();
+      } = useDeleteCategory();
 
       return (
         <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -98,16 +101,16 @@ export const categoriesColumns: ColumnDef<CategoryReturnTypes>[] = [
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel disabled={isDeletingProduct}>
+                  <AlertDialogCancel disabled={isDeletingCategory}>
                     Cancel
                   </AlertDialogCancel>
 
                   <Button
-                    disabled={isDeletingProduct}
+                    disabled={isDeletingCategory}
                     variant={'destructive'}
-                    onClick={() => deleteProduct(_id)}
+                    onClick={() => deleteCategory(_id)}
                   >
-                    Delete product
+                    Delete category
                   </Button>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -119,7 +122,7 @@ export const categoriesColumns: ColumnDef<CategoryReturnTypes>[] = [
   },
 ];
 
-export const categoriesSkeletonColumns: ColumnDef<ProductReturnTypes>[] = [
+export const categoriesSkeletonColumns: ColumnDef<CategoryReturnTypes>[] = [
   {
     accessorKey: 'name',
     header: 'Category name',

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
-import { FormDataTypes } from '../../../container/addProductForm/AddProductForm';
+import { FormDataTypes } from '../../../container/forms/products/addProductForm/AddProductForm';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import {

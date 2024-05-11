@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import AddProductForm from '../addProductForm/AddProductForm';
+import AddProductForm from '../../forms/products/addProductForm/AddProductForm';
 
 import {
   ColumnDef,

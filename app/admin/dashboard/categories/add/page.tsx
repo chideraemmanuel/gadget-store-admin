@@ -1,4 +1,4 @@
-import AddCategoryForm from '@/container/addCategoryForm/AddCategoryForm';
+import AddCategoryForm from '@/container/forms/categories/addCategoryForm/AddCategoryForm';
 import { useGetBillboards } from '@/lib/hooks/useBillboard';
 import { FC } from 'react';
 

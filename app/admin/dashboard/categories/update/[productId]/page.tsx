@@ -1,7 +1,7 @@
 'use client';
 
-import UpdateCategoryForm from '@/container/updateCategoryForm/UpdateCategoryForm';
-import UpdateProductForm from '@/container/updateProductForm/UpdateProductForm';
+import UpdateCategoryForm from '@/container/forms/categories/updateCategoryForm/UpdateCategoryForm';
+import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
 import { useGetBillboards } from '@/lib/hooks/useBillboard';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories, useGetCategory } from '@/lib/hooks/useCategory';
@@ -14,7 +14,7 @@ interface Props {
   };
 }
 
-const UpdateProductPage: FC<Props> = ({ params: { categoryId } }) => {
+const UpdateCategoryPage: FC<Props> = ({ params: { categoryId } }) => {
   // console.log(params);
 
   const {
@@ -56,4 +56,4 @@ const UpdateProductPage: FC<Props> = ({ params: { categoryId } }) => {
   );
 };
 
-export default UpdateProductPage;
+export default UpdateCategoryPage;

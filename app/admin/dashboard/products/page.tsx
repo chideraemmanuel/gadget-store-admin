@@ -25,9 +25,9 @@ import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 import { Plus, Search } from 'lucide-react';
 import ProductsShowcase from '@/container/productsShowcase/ProductsShowcase';
-import AddProductForm from '@/container/addProductForm/AddProductForm';
+import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
 import { useGetProducts } from '@/lib/hooks/useProduct';
-import ProductsTable from '@/container/productsTable/ProductsTable';
+import ProductsTable from '@/container/tables/productsTable/ProductsTable';
 
 interface Props {}
 

@@ -1,4 +1,4 @@
-import { FormData } from '@/container/addProductForm/AddProductForm';
+import { FormData } from '@/container/forms/products/addProductForm/AddProductForm';
 import { RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 export interface ComponentProps {

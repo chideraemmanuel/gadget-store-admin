@@ -2,7 +2,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { FormDataTypes } from '../../../container/addProductForm/AddProductForm';
+import { FormDataTypes } from '../../../container/forms/products/addProductForm/AddProductForm';
 
 interface Props {
   register: UseFormRegister<FormDataTypes>;

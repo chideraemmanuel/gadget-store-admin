@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 import axios from '@/config/axios';
-import { CategoryFormDataTypes } from '@/container/addCategoryForm/AddCategoryForm';
+import { CategoryFormDataTypes } from '@/container/forms/categories/addCategoryForm/AddCategoryForm';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 
@@ -69,9 +69,31 @@ const addCategory = async (category: CategoryFormDataTypes) => {
 };
 
 export const useAddCategory = () => {
+  const { toast } = useToast();
+  const router = useRouter();
+
   return useMutation(addCategory, {
-    onSuccess: (data) => {},
-    onError: (error) => {},
+    onSuccess: (data) => {
+      console.log(data);
+
+      toast({
+        description: 'Category Added Successfully!',
+      });
+
+      router.replace('/admin/dashboard/categories');
+    },
+    onError: (error: any) => {
+      // console.log('error', error);
+
+      toast({
+        description: `${
+          error?.response?.data?.error ||
+          error?.message ||
+          'Something went wrong'
+        }`,
+        variant: 'destructive',
+      });
+    },
   });
 };
 
@@ -120,6 +142,38 @@ export const useUpdateCategory = () => {
     onError: (error: any) => {
       console.log(error);
 
+      toast({
+        description: `${
+          error?.response?.data?.error ||
+          error?.message ||
+          'Something went wrong'
+        }`,
+        variant: 'destructive',
+      });
+    },
+  });
+};
+
+const deleteCategory = async (categoryId: string) => {
+  const response = await axios.delete(`/categories/${categoryId}`, {
+    // withCredentials: true,
+  });
+
+  console.log('response from delete product hook', response);
+
+  return response.data;
+};
+
+export const useDeleteCategory = () => {
+  const { toast } = useToast();
+
+  return useMutation(deleteCategory, {
+    onSuccess: (data) => {
+      toast({
+        description: 'Category Deleted Successfully!',
+      });
+    },
+    onError: (error: any) => {
       toast({
         description: `${
           error?.response?.data?.error ||

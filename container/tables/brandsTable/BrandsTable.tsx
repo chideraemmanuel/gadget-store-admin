@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import AddProductForm from '../addProductForm/AddProductForm';
+import AddProductForm from '../../forms/products/addProductForm/AddProductForm';
 
 import {
   ColumnDef,
@@ -35,21 +35,22 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import Link from 'next/link';
-import { categoriesColumns, categoriesSkeletonColumns } from './column';
+import { brandsColumns, brandsSkeletonColumns } from './column';
 import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
+import { BrandReturnTypes } from '@/lib/hooks/useBrands';
 
 interface Props {
-  data?: CategoryReturnTypes[];
+  data?: BrandReturnTypes[];
   isLoading?: boolean;
   isError?: boolean;
 }
 
-const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
+const BrandsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
     data,
-    columns: categoriesColumns,
+    columns: brandsColumns,
     getCoreRowModel: getCoreRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
@@ -60,25 +61,6 @@ const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
 
   return (
     <>
-      {/* <span>Products Table!</span> */}
-      {/* {isLoading && (
-        <div className="w-full h-[75vh] flex items-center justify-center">
-          Loading...
-        </div>
-      )}
-
-      {isError && (
-        <div className="w-full h-[75vh] flex items-center justify-center">
-          An error occured while fetching products
-        </div>
-      )} */}
-
-      {/* {data?.length === 0 && (
-        <div className="w-full h-[75vh] flex items-center justify-center">
-          No products to display.
-        </div>
-      )} */}
-
       <div className="flex md:flex-row flex-col gap-3 items-center md:justify-between px-4 py-5 sticky top-20 z-10 bg-white">
         <div className="flex items-center md:justify-start justify-stretch md:w-auto w-full gap-2">
           <div className="relative flex-1">
@@ -86,7 +68,7 @@ const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
 
             <Input
               className="pl-10"
-              placeholder="Search categories"
+              placeholder="Search brands"
               value={
                 (table.getColumn('name')?.getFilterValue() as string) ?? ''
               }
@@ -95,24 +77,12 @@ const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
               }
             />
           </div>
-
-          {/* <Select>
-            <SelectTrigger className="flex-1">
-              <SelectValue placeholder="Filter Products" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="allProducts">All Products</SelectItem>
-              <SelectItem value="featuredProducts">
-                Featured Products
-              </SelectItem>
-            </SelectContent>
-          </Select> */}
         </div>
 
         <Button asChild className="w-full md:w-auto flex items-center gap-1">
-          <Link href="/admin/dashboard/categories/add">
+          <Link href="/admin/dashboard/brands/add">
             <Plus />
-            <span>Add category</span>
+            <span>Add brand</span>
           </Link>
         </Button>
       </div>
@@ -120,7 +90,7 @@ const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
       <div className="container mx-auto py-10">
         {isLoading && (
           <DataTableSkeleton
-            columns={categoriesSkeletonColumns}
+            columns={brandsSkeletonColumns}
             data={[]}
             // emptyTableMessage="No products to display."
           />
@@ -128,18 +98,18 @@ const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
 
         {isError && (
           <DataTable
-            columns={categoriesColumns}
+            columns={brandsColumns}
             data={[]}
-            emptyTableMessage="An error occured while fetching categories."
+            emptyTableMessage="An error occured while fetching brands."
           />
         )}
 
         {!isLoading && !isError && data && (
           <DataTable
-            columns={categoriesColumns}
+            columns={brandsColumns}
             data={data}
             table={table}
-            emptyTableMessage="No categories to display."
+            emptyTableMessage="No brands to display."
           />
         )}
       </div>
@@ -147,7 +117,4 @@ const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
   );
 };
 
-export default CategoriesTable;
-
-// TODO: close dialog after adding product!
-// TODO: add pagination to data table / product table!
+export default BrandsTable;
