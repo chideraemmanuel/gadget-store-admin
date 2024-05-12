@@ -1,3 +1,5 @@
+'use client';
+
 import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories } from '@/lib/hooks/useCategory';

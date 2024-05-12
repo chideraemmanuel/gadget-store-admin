@@ -17,6 +17,11 @@ export const DASHBOARD_NAVIGATION_LINKS = [
     icon: ActivityIcon,
   },
   {
+    title: 'Brands',
+    href: '/dashboard/brands',
+    icon: ActivityIcon,
+  },
+  {
     title: 'Billboards',
     href: '/dashboard/billboards',
     icon: ActivityIcon,

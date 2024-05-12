@@ -62,12 +62,17 @@ const UpdateBillboardForm: FC<Props> = ({ billboard }) => {
     // console.log('type comparison', {
     //   name: `${typeof watchedFormFields.name} - ${typeof brand.name}`,
     // });
+    console.log('comparison', {
+      name: `${watchedFormFields.paragraph} - ${billboard.paragraph}`,
+    });
 
     if (
       watchedFormFields.name !== billboard.name ||
       watchedFormFields.head_text !== billboard.head_text ||
-      (billboard.paragraph &&
-        watchedFormFields.paragraph !== billboard.paragraph)
+      // (billboard.paragraph &&
+      //   watchedFormFields.paragraph !== billboard.paragraph)
+
+      watchedFormFields.paragraph !== billboard.paragraph
     ) {
       console.log('form changed');
 

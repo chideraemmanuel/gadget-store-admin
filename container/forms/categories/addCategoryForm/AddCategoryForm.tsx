@@ -36,7 +36,8 @@ const AddCategoryForm: FC<Props> = ({ billboards }) => {
 
   const onSubmit: SubmitHandler<CategoryFormDataTypes> = async (data, e) => {
     console.log('submitted data', data);
-    // TODO: finish this function
+
+    addCategory(data);
   };
 
   return (

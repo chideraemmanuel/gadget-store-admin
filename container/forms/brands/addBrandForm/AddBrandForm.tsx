@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { DevTool } from '@hookform/devtools';
@@ -34,7 +36,11 @@ const AddBrandForm: FC<Props> = () => {
 
   const onSubmit: SubmitHandler<BrandFormDataTypes> = async (data, e) => {
     console.log('submitted data', data);
-    // TODO: finish this function
+
+    addBrand({
+      ...data,
+      brand_logo: data.brand_logo[0],
+    });
   };
 
   return (

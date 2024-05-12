@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { DevTool } from '@hookform/devtools';
@@ -41,7 +43,11 @@ const AddBillboardForm: FC<Props> = () => {
 
   const onSubmit: SubmitHandler<BillboardFormDataTypes> = async (data, e) => {
     console.log('submitted data', data);
-    // TODO: finish this function
+
+    addBillboard({
+      ...data,
+      billboard_image: data.billboard_image[0],
+    });
   };
 
   return (

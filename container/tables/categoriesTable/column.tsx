@@ -38,7 +38,9 @@ export const categoriesColumns: ColumnDef<CategoryReturnTypes>[] = [
     accessorKey: 'billboard',
     header: 'Billboard',
     cell: ({ row }) => {
-      return <div className="">{row.original.billboard.name}</div>;
+      console.log('row', row);
+
+      return <div className="">{row?.original?.billboard?.name}</div>;
     },
   },
   {

@@ -1,6 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import { BillboardFormDataTypes } from '@/container/forms/billboards/addBillboardForm/AddBillboardForm';
+// import { BillboardFormDataTypes } from '@/container/forms/billboards/addBillboardForm/AddBillboardForm';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from 'react-query';
 
@@ -34,7 +34,7 @@ const getBillboard = async ({ queryKey }: { queryKey: any[] }) => {
   console.log('billboards id from get billboards hook', billboardId);
 
   const response = await axios.get<BillboardReturnTypes>(
-    `/billoards/${billboardId}`
+    `/billboards/${billboardId}`
   );
 
   console.log('response from get billboards hook', response);
@@ -50,6 +50,13 @@ export const useGetBillboard = (billboardId: string) => {
     },
   });
 };
+
+interface BillboardFormDataTypes {
+  name: string;
+  head_text: string;
+  paragraph?: string;
+  billboard_image: File;
+}
 
 const addBillboard = async (billboard: BillboardFormDataTypes) => {
   console.log('billboard', billboard);
