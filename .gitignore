@@ -37,4 +37,4 @@ next-env.d.ts
 
 AddProductFormZod.tsx
 BrandInput.tsx
-UpdateProductForm.tsx
+UpdateProductFormPrev.tsx

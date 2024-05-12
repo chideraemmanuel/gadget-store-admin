@@ -29,6 +29,13 @@ export const brandsColumns: ColumnDef<BrandReturnTypes>[] = [
   {
     accessorKey: 'brand_logo',
     header: 'Brand logo',
+    cell: ({ row }) => {
+      return (
+        <div className="w-10 h-auto">
+          <img src={row.original.brand_logo} alt={row.original.name} />
+        </div>
+      );
+    },
   },
   {
     accessorKey: 'name',
@@ -80,8 +87,6 @@ export const brandsColumns: ColumnDef<BrandReturnTypes>[] = [
               <DropdownMenuSeparator />
 
               <AlertDialogTrigger asChild>
-                {/* <DropdownMenuItem>Delete Product</DropdownMenuItem> */}
-
                 <Button
                   className="h-auto bg-transparent relative flex cursor-default select-none items-center justify-start rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-red-100 text-red-700 focus:bg-bg-red-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 w-full text-start"
                   tabIndex={0}

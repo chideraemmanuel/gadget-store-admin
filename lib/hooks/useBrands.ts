@@ -89,9 +89,9 @@ export const useAddBrand = () => {
   });
 };
 
-export interface CategoryUpdateTypes {
+export interface BrandUpdateTypes {
   name?: string;
-  billboard?: string;
+  brand_logo?: string;
 }
 
 const updateBrand = async ({
@@ -99,7 +99,7 @@ const updateBrand = async ({
   updates,
 }: {
   brandId: string;
-  updates: CategoryUpdateTypes;
+  updates: BrandUpdateTypes;
 }) => {
   console.log('brand id from update brand hook', brandId);
   console.log('updates from update brand hook', updates);

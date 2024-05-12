@@ -13,32 +13,36 @@ import {
 } from '@/lib/hooks/useCategory';
 import CategoryNameInput from '@/components/formInputs/category/CategoryNameInput';
 import CategoryBillboardInput from '@/components/formInputs/category/CategoryBillboardInput';
-import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
 import {
-  BrandReturnTypes,
-  BrandUpdateTypes,
-  useUpdateBrand,
-} from '@/lib/hooks/useBrands';
-import { BrandFormDataTypes } from '../addBrandForm/AddBrandForm';
+  BillboardReturnTypes,
+  BillboardUpdateTypes,
+  useUpdateBillboard,
+} from '@/lib/hooks/useBillboard';
+import { BrandReturnTypes, useUpdateBrand } from '@/lib/hooks/useBrands';
 import BrandNameInput from '@/components/formInputs/brand/BrandNameInput';
 import BrandLogoInput from '@/components/formInputs/brand/BrandLogoInput';
+import { BillboardFormDataTypes } from '../addBillboardForm/AddBillboardForm';
+import BillboardNameInput from '@/components/formInputs/billboard/BillboardNameInput';
+import BillboardImageInput from '@/components/formInputs/billboard/BillboardImageInput';
+import BillboardHeadTextInput from '@/components/formInputs/billboard/BillboardHeadTextInput';
+import BillboardParagraphInput from '@/components/formInputs/billboard/BillboardParagraphInput';
 
 interface Props {
-  brand: BrandReturnTypes;
+  billboard: BillboardReturnTypes;
 }
 
-const UpdateBrandForm: FC<Props> = ({ brand }) => {
+const UpdateBillboardForm: FC<Props> = ({ billboard }) => {
   const [formChanged, setFormChanged] = useState(false);
 
   const {
-    mutate: updateBrand,
-    data: updatedBrand,
-    isLoading: isUpdatingBrand,
-    isError: isErrorUpdateingBrand,
-    isSuccess: isSuccessUpdateingBrand,
-  } = useUpdateBrand();
+    mutate: updateBillboard,
+    data: updatedBillboard,
+    isLoading: isUpdatingBillboard,
+    isError: isErrorUpdateingBillboard,
+    isSuccess: isSuccessUpdateingBillboard,
+  } = useUpdateBillboard();
 
-  const form = useForm<BrandFormDataTypes>();
+  const form = useForm<BillboardFormDataTypes>();
 
   const {
     register,
@@ -59,7 +63,12 @@ const UpdateBrandForm: FC<Props> = ({ brand }) => {
     //   name: `${typeof watchedFormFields.name} - ${typeof brand.name}`,
     // });
 
-    if (watchedFormFields.name !== brand.name) {
+    if (
+      watchedFormFields.name !== billboard.name ||
+      watchedFormFields.head_text !== billboard.head_text ||
+      (billboard.paragraph &&
+        watchedFormFields.paragraph !== billboard.paragraph)
+    ) {
       console.log('form changed');
 
       return true;
@@ -85,7 +94,7 @@ const UpdateBrandForm: FC<Props> = ({ brand }) => {
     console.log('set to false');
   }, [hasFormChanged]);
 
-  const onSubmit: SubmitHandler<BrandFormDataTypes> = async (data, e) => {
+  const onSubmit: SubmitHandler<BillboardFormDataTypes> = async (data, e) => {
     console.log('submitted data', data);
 
     const formValues = getValues();
@@ -93,16 +102,24 @@ const UpdateBrandForm: FC<Props> = ({ brand }) => {
     console.log('form values', formValues);
 
     // BUILD UPDATES
-    const updates: BrandUpdateTypes = {};
+    const updates: BillboardUpdateTypes = {};
 
-    if (formValues.name !== brand.name) {
+    if (formValues.name !== billboard.name) {
       updates.name = formValues.name;
+    }
+
+    if (formValues.head_text !== billboard.head_text) {
+      updates.head_text = formValues.head_text;
+    }
+
+    if (formValues.paragraph !== billboard.paragraph) {
+      updates.paragraph = formValues.paragraph;
     }
 
     console.log('final update', updates);
 
-    updateBrand({
-      brandId: brand._id,
+    updateBillboard({
+      billboardId: billboard._id,
       updates,
     });
   };
@@ -119,25 +136,43 @@ const UpdateBrandForm: FC<Props> = ({ brand }) => {
           <DevTool control={control} />
           <div className="flex gap-2">
             <div className="w-full">
-              <BrandNameInput
+              <BillboardNameInput
                 register={register}
                 errors={errors}
-                disabled={isUpdatingBrand}
-                defaultValue={brand.name}
+                disabled={isUpdatingBillboard}
+                defaultValue={billboard.name}
               />
             </div>
 
             <div className="w-full">
-              <BrandLogoInput
+              <BillboardImageInput
                 register={register}
                 errors={errors}
-                disabled={isUpdatingBrand}
+                disabled={isUpdatingBillboard}
               />
             </div>
           </div>
 
-          <Button disabled={!formChanged || isUpdatingBrand}>
-            Update Brand
+          <div>
+            <BillboardHeadTextInput
+              register={register}
+              errors={errors}
+              disabled={isUpdatingBillboard}
+              defaultValue={billboard.head_text}
+            />
+          </div>
+
+          <div>
+            <BillboardParagraphInput
+              register={register}
+              errors={errors}
+              disabled={isUpdatingBillboard}
+              defaultValue={billboard.paragraph}
+            />
+          </div>
+
+          <Button disabled={!formChanged || isUpdatingBillboard}>
+            Update Billboard
           </Button>
         </form>
       </Form>
@@ -145,4 +180,4 @@ const UpdateBrandForm: FC<Props> = ({ brand }) => {
   );
 };
 
-export default UpdateBrandForm;
+export default UpdateBillboardForm;
