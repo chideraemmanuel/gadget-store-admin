@@ -26,11 +26,21 @@ import {
 import SidebarLink from '@/components/sidebarLink/SidebarLink';
 import DashboardNavLinks from '../dashboardNavLinks/DashboardNavLinks';
 import { useAdminLogout } from '@/lib/hooks/useAdminAuth';
+import { headers } from '@/constants';
+import { usePathname } from 'next/navigation';
 
 interface Props {}
 
 const DashboardHeader: FC<Props> = () => {
+  const pathname = usePathname();
   const { refetch: logout, isLoading } = useAdminLogout();
+
+  const header = headers.find((header) => {
+    return `/admin${header.href}` === pathname;
+  });
+
+  // console.log('header', header);
+  // console.log('pathname', pathname);
 
   if (isLoading) {
     return (
@@ -68,7 +78,8 @@ const DashboardHeader: FC<Props> = () => {
       </div>
 
       <div className="hidden md:block">
-        <h2 className="font-bold text-2xl">Overview</h2>
+        {/* <h2 className="font-bold text-2xl">Overview</h2> */}
+        <h2 className="font-bold text-2xl">{header?.text}</h2>
       </div>
 
       <DropdownMenu>

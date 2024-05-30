@@ -1,6 +1,7 @@
 'use client';
 
 import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
+import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories } from '@/lib/hooks/useCategory';
 import { FC } from 'react';
@@ -21,20 +22,22 @@ const AddProductPage: FC<Props> = () => {
   } = useGetBrands();
 
   return (
-    <div className="container mx-auto py-10 max-w-4xl">
-      <h3 className="font-medium text-xl pb-1 mb-5 text-gray-700 border border-x-0 border-t-0">
-        Fill in product details
-      </h3>
+    <div className="container mx-auto md:py-6 max-w-4xl">
+      <MobileDashboardHeader>
+        <h3 className="font-medium text-xl pb-1 mb-5 text-gray-700 border border-x-0 border-t-0">
+          Fill in product details
+        </h3>
 
-      {(isFetchingCategories ?? isFetchingBrands) && <span>Loading...</span>}
+        {(isFetchingCategories ?? isFetchingBrands) && <span>Loading...</span>}
 
-      {(isErrorFetchingCategories ?? isErrorFetchingBrands) && (
-        <span>An error occured</span>
-      )}
+        {(isErrorFetchingCategories ?? isErrorFetchingBrands) && (
+          <span>An error occured</span>
+        )}
 
-      {brands && categories && (
-        <AddProductForm categories={categories} brands={brands} />
-      )}
+        {brands && categories && (
+          <AddProductForm categories={categories} brands={brands} />
+        )}
+      </MobileDashboardHeader>
     </div>
   );
 };

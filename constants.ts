@@ -32,3 +32,62 @@ export const DASHBOARD_NAVIGATION_LINKS = [
     icon: ShoppingBagIcon,
   },
 ];
+
+export const headers = [
+  {
+    href: '/dashboard',
+    text: 'Overview',
+  },
+  {
+    href: '/dashboard/products',
+    text: 'Products',
+  },
+  {
+    href: '/dashboard/products/add',
+    text: 'Add Product',
+  },
+  {
+    href: '/dashboard/products/update',
+    text: 'Update Product',
+  },
+  {
+    href: '/dashboard/categories',
+    text: 'Categories',
+  },
+  {
+    href: '/dashboard/categories/add',
+    text: 'Add Category',
+  },
+  {
+    href: '/dashboard/categories/update',
+    text: 'Update Category',
+  },
+  {
+    href: '/dashboard/brands',
+    text: 'Brands',
+  },
+  {
+    href: '/dashboard/brands/add',
+    text: 'Add Brand',
+  },
+  {
+    href: '/dashboard/brands/update',
+    text: 'Update Brand',
+  },
+  {
+    href: '/dashboard/billboards',
+    text: 'Billboards',
+  },
+  {
+    href: '/dashboard/billboards/add',
+    text: 'Add Billboard',
+  },
+  {
+    href: '/dashboard/billboards/update',
+    text: 'Update Billboard',
+  },
+  {
+    href: '/dashboard/orders',
+    text: 'Orders',
+  },
+];
