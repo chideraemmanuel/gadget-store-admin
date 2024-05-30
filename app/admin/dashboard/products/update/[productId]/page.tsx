@@ -1,6 +1,7 @@
 'use client';
 
 import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
+import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories } from '@/lib/hooks/useCategory';
 import { useGetProduct } from '@/lib/hooks/useProduct';
@@ -38,10 +39,10 @@ const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
   console.log('[PRODUCT]', product);
 
   return (
-    <>
-      <div className="container mx-auto py-10 max-w-4xl">
-        <h3 className="font-medium text-xl pb-1 mb-5 text-gray-700 border border-x-0 border-t-0">
-          Update Product
+    <div className="container mx-auto md:py-7 max-w-4xl">
+      <MobileDashboardHeader>
+        <h3 className="font-medium md:text-xl text-lg pb-1 mb-5 text-gray-500 border border-x-0 border-t-0">
+          Modify Product details
         </h3>
 
         {(isFetchingProduct ?? isFetchingCategories ?? isFetchingBrands) && (
@@ -59,8 +60,8 @@ const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
             brands={brands}
           />
         )}
-      </div>
-    </>
+      </MobileDashboardHeader>
+    </div>
   );
 };
 

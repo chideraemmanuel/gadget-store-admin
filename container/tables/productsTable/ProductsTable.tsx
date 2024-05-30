@@ -78,7 +78,7 @@ const ProductsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
         </div>
       )} */}
 
-      <div className="flex md:flex-row flex-col gap-3 items-center md:justify-between px-4 py-5 sticky top-20 z-10 bg-white">
+      <div className="flex md:flex-row flex-col gap-3 items-center md:justify-between py-5 sticky top-[90px] z-10 bg-white">
         <div className="flex items-center md:justify-start justify-stretch md:w-auto w-full gap-2">
           <div className="relative flex-1">
             <Search className="absolute top-1/2 translate-y-[-50%] left-2 text-gray-500" />
@@ -119,7 +119,7 @@ const ProductsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
         </Button>
       </div>
 
-      <div className="container mx-auto py-10">
+      <div className="py-7">
         {isLoading && (
           <DataTableSkeleton
             columns={productsSkeletonColumns}

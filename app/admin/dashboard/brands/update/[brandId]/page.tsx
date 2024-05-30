@@ -1,6 +1,7 @@
 'use client';
 
 import UpdateBrandForm from '@/container/forms/brands/updateBrandForm/UpdateBrandForm';
+import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
 import { useGetBrand } from '@/lib/hooks/useBrands';
 import { FC } from 'react';
 
@@ -22,10 +23,10 @@ const UpdateBrandPage: FC<Props> = ({ params: { brandId } }) => {
   console.log('[BRAND]', brand);
 
   return (
-    <>
-      <div className="container mx-auto py-10 max-w-4xl">
-        <h3 className="font-medium text-xl pb-1 mb-5 text-gray-700 border border-x-0 border-t-0">
-          Update Brand
+    <div className="container mx-auto md:py-7 max-w-4xl">
+      <MobileDashboardHeader>
+        <h3 className="font-medium md:text-xl text-lg pb-1 mb-5 text-gray-500 border border-x-0 border-t-0">
+          Modify Brand details
         </h3>
 
         {isFetchingBrand && <span>Loading...</span>}
@@ -33,8 +34,8 @@ const UpdateBrandPage: FC<Props> = ({ params: { brandId } }) => {
         {isErrorFetchingBrand && <span>An error occured</span>}
 
         {brand && <UpdateBrandForm brand={brand} />}
-      </div>
-    </>
+      </MobileDashboardHeader>
+    </div>
   );
 };
 

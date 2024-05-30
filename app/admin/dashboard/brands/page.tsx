@@ -1,5 +1,6 @@
 'use client';
 
+import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
 import BrandsTable from '@/container/tables/brandsTable/BrandsTable';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { FC } from 'react';
@@ -10,9 +11,11 @@ const BrandsPage: FC<Props> = () => {
   const { data, isLoading, isError } = useGetBrands();
 
   return (
-    <>
-      <BrandsTable data={data} isLoading={isLoading} isError={isError} />
-    </>
+    <div className="container mx-auto">
+      <MobileDashboardHeader>
+        <BrandsTable data={data} isLoading={isLoading} isError={isError} />
+      </MobileDashboardHeader>
+    </div>
   );
 };
 

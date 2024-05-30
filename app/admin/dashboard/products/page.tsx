@@ -1,33 +1,9 @@
 'use client';
 
 import { FC } from 'react';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { buttonVariants } from '@/components/ui/button';
-import Link from 'next/link';
-import { Plus, Search } from 'lucide-react';
-import ProductsShowcase from '@/container/productsShowcase/ProductsShowcase';
-import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
 import { useGetProducts } from '@/lib/hooks/useProduct';
 import ProductsTable from '@/container/tables/productsTable/ProductsTable';
+import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
 
 interface Props {}
 
@@ -41,15 +17,21 @@ const ProductsPage: FC<Props> = () => {
   } = useGetProducts();
 
   return (
-    <>
+    <div className="container mx-auto">
       {/* showcase */}
       {/* <ProductsShowcase
         products={products}
         isLoading={isLoading}
         isError={isError}
       /> */}
-      <ProductsTable data={products} isLoading={isLoading} isError={isError} />
-    </>
+      <MobileDashboardHeader>
+        <ProductsTable
+          data={products}
+          isLoading={isLoading}
+          isError={isError}
+        />
+      </MobileDashboardHeader>
+    </div>
   );
 };
 

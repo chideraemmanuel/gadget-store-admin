@@ -2,6 +2,7 @@
 
 import UpdateCategoryForm from '@/container/forms/categories/updateCategoryForm/UpdateCategoryForm';
 import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
+import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
 import { useGetBillboards } from '@/lib/hooks/useBillboard';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories, useGetCategory } from '@/lib/hooks/useCategory';
@@ -34,10 +35,10 @@ const UpdateCategoryPage: FC<Props> = ({ params: { categoryId } }) => {
   console.log('[CATEGORY]', category);
 
   return (
-    <>
-      <div className="container mx-auto py-10 max-w-4xl">
-        <h3 className="font-medium text-xl pb-1 mb-5 text-gray-700 border border-x-0 border-t-0">
-          Update Category
+    <div className="container mx-auto md:py-7 max-w-4xl">
+      <MobileDashboardHeader>
+        <h3 className="font-medium md:text-xl text-lg pb-1 mb-5 text-gray-500 border border-x-0 border-t-0">
+          Modify Category details
         </h3>
 
         {(isFetchingCategory ?? isFetchingBillboards) && (
@@ -51,8 +52,8 @@ const UpdateCategoryPage: FC<Props> = ({ params: { categoryId } }) => {
         {category && billboards && (
           <UpdateCategoryForm category={category} billboards={billboards} />
         )}
-      </div>
-    </>
+      </MobileDashboardHeader>
+    </div>
   );
 };
 
