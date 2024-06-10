@@ -1,7 +1,7 @@
 'use client';
 
 import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories } from '@/lib/hooks/useCategory';
 import { useGetProduct } from '@/lib/hooks/useProduct';

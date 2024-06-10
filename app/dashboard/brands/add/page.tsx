@@ -1,5 +1,5 @@
 import AddBrandForm from '@/container/forms/brands/addBrandForm/AddBrandForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { FC } from 'react';
 
 interface Props {}

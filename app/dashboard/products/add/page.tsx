@@ -1,7 +1,7 @@
 'use client';
 
 import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories } from '@/lib/hooks/useCategory';
 import { FC } from 'react';

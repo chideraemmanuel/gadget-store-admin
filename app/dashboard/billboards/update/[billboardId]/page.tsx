@@ -2,7 +2,7 @@
 
 import UpdateBillboardForm from '@/container/forms/billboards/updateBillboardForm/UpdateBillboardForm';
 import UpdateBrandForm from '@/container/forms/brands/updateBrandForm/UpdateBrandForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { useGetBillboard } from '@/lib/hooks/useBillboard';
 import { useGetBrand } from '@/lib/hooks/useBrands';
 import { FC } from 'react';

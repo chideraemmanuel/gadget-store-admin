@@ -1,7 +1,7 @@
 'use client';
 
 import UpdateBrandForm from '@/container/forms/brands/updateBrandForm/UpdateBrandForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { useGetBrand } from '@/lib/hooks/useBrands';
 import { FC } from 'react';
 

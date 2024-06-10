@@ -1,7 +1,7 @@
 'use client';
 
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
-import BillboardsTable from '@/container/tables/billboardsTable/BillboardsTable';
+import BillboardsTable from '@/container/billboards-table/BillboardsTable';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { useGetBillboards } from '@/lib/hooks/useBillboard';
 import { FC } from 'react';
 
@@ -13,7 +13,8 @@ const BillboardsPage: FC<Props> = () => {
   return (
     <div className="container mx-auto">
       <MobileDashboardHeader>
-        <BillboardsTable data={data} isLoading={isLoading} isError={isError} />
+        {/* <BillboardsTable data={data} isLoading={isLoading} isError={isError} /> */}
+        <BillboardsTable />
       </MobileDashboardHeader>
     </div>
   );

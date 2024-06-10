@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import ReduxProvider from '@/redux/ReduxProvider';
-import ReactQueryProvider from '@/lib/decorators/ReactQueryProvider';
-import StyledComponentsThemeProvider from '@/lib/decorators/StylesComponentsThemeProvider';
+import ReactQueryProvider from '@/decorators/ReactQueryProvider';
+import StyledComponentsThemeProvider from '@/decorators/StylesComponentsThemeProvider';
 import { Toaster } from '@/components/ui/toaster';
+import { ThemeProvider } from '@/decorators/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,18 +20,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <ReactQueryProvider>
-        <StyledComponentsThemeProvider>
-          <ReduxProvider>
-            <body className={inter.className}>
-              <Toaster />
-              {children}
-            </body>
-          </ReduxProvider>
-        </StyledComponentsThemeProvider>
-      </ReactQueryProvider>
-    </html>
+    <ThemeProvider defaultTheme="light">
+      <html lang="en">
+        <ReactQueryProvider>
+          <StyledComponentsThemeProvider>
+            <ReduxProvider>
+              <body className={inter.className}>
+                <Toaster />
+                {children}
+              </body>
+            </ReduxProvider>
+          </StyledComponentsThemeProvider>
+        </ReactQueryProvider>
+      </html>
+    </ThemeProvider>
   );
 }
 

@@ -1,5 +1,5 @@
 import AddBillboardForm from '@/container/forms/billboards/addBillboardForm/AddBillboardForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { FC } from 'react';
 
 interface Props {}

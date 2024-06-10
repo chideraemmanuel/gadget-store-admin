@@ -1,9 +1,9 @@
-import Logo from '@/components/logo/Logo';
-import SidebarLink from '@/components/sidebarLink/SidebarLink';
+import Logo from '@/components/Logo';
+import SidebarLink from '@/components/SidebarLink';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { FC } from 'react';
-import DashboardNavLinks from '../dashboardNavLinks/DashboardNavLinks';
+import DashboardNavigationLinks from '../dashboard-navigation-links/DashboardNavigationLinks';
 
 interface Props {}
 
@@ -15,7 +15,7 @@ const Sidebar: FC<Props> = () => {
       </div>
 
       <div className="px-4 h-full">
-        <DashboardNavLinks />
+        <DashboardNavigationLinks />
       </div>
     </div>
   );

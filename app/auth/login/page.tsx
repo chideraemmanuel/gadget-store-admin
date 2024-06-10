@@ -11,7 +11,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Logo from '@/components/logo/Logo';
+import Logo from '@/components/Logo';
 import { useForm } from 'react-hook-form';
 import { useAdminLogin } from '@/lib/hooks/useAdminAuth';
 import { useRouter } from 'next/navigation';

@@ -1,7 +1,7 @@
-import { Overview } from '@/components/overview/Overview';
+import { Overview } from '@/components/Overview';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { headers } from '@/constants';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 

@@ -2,7 +2,7 @@
 
 import UpdateCategoryForm from '@/container/forms/categories/updateCategoryForm/UpdateCategoryForm';
 import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { useGetBillboards } from '@/lib/hooks/useBillboard';
 import { useGetBrands } from '@/lib/hooks/useBrands';
 import { useGetCategories, useGetCategory } from '@/lib/hooks/useCategory';

@@ -1,6 +1,6 @@
-import DashboardHeader from '@/container/dashboardHeader/DashboardHeader';
+import DashboardHeader from '@/container/dashboard-header/DashboardHeader';
 import Sidebar from '@/container/sidebar/Sidebar';
-import AdminAuthProvider from '@/lib/decorators/AdminAuthProvider';
+import AdminAuthProvider from '@/decorators/AdminAuthProvider';
 import { FC } from 'react';
 
 const DashboardLayout: FC<{ children: React.ReactNode }> = ({ children }) => {

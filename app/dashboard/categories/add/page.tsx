@@ -1,7 +1,7 @@
 'use client';
 
 import AddCategoryForm from '@/container/forms/categories/addCategoryForm/AddCategoryForm';
-import MobileDashboardHeader from '@/container/mobileDashboardHeader/MobileDashboardHeader';
+import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
 import { useGetBillboards } from '@/lib/hooks/useBillboard';
 import { FC } from 'react';
 

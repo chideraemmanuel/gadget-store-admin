@@ -1,6 +1,6 @@
 'use client';
 
-import Logo from '@/components/logo/Logo';
+import Logo from '@/components/Logo';
 import { Menu, MenuIcon } from 'lucide-react';
 import { FC } from 'react';
 import profileImage from '../../assets/profile.jpg';
@@ -23,8 +23,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import SidebarLink from '@/components/sidebarLink/SidebarLink';
-import DashboardNavLinks from '../dashboardNavLinks/DashboardNavLinks';
+import SidebarLink from '@/components/SidebarLink';
+import DashboardNavigationLinks from '../dashboard-navigation-links/DashboardNavigationLinks';
 import { useAdminLogout } from '@/lib/hooks/useAdminAuth';
 import { headers } from '@/constants';
 import { usePathname } from 'next/navigation';
@@ -68,7 +68,7 @@ const DashboardHeader: FC<Props> = () => {
           </SheetHeader>
 
           <div className="bg-blue- h-full">
-            <DashboardNavLinks SheetClose={SheetClose} />
+            <DashboardNavigationLinks SheetClose={SheetClose} />
           </div>
         </SheetContent>
       </Sheet>
