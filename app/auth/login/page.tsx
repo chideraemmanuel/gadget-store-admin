@@ -15,6 +15,8 @@ import Logo from '@/components/Logo';
 import { useForm } from 'react-hook-form';
 import { useAdminLogin } from '@/lib/hooks/useAdminAuth';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import AdminLoginForm from '@/container/admin-login-form/AdminLoginForm';
 
 interface Props {}
 
@@ -48,66 +50,79 @@ const AdminLoginPage: FC<Props> = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full bg-gray-200">
-      <Card className="w-[min(500px,_90%)]">
-        <CardHeader className="flex flex-col gap-2 text-center">
-          {/* TODO: make logo lik unnclickable when logging in! */}
-          <div className="mx-auto mb-2">
-            <Logo />
-          </div>
-          <CardTitle>Enter credentials to login</CardTitle>
-          <CardDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-            soluta.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form
-            className="flex flex-col gap-4"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="text"
-                placeholder="chideraemmanuel01@hotmail.com"
-                id="email"
-                {...register('email', {
-                  required: 'Please enter an email address',
-                  // pattern:
-                })}
-                className={`${errors.email?.message && 'border-red-700'}`}
-                disabled={isLoading}
-              />
-              <span className="text-xs text-red-700">
-                {errors.email?.message}
-              </span>
-            </div>
-            <div>
-              <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                placeholder="Enter password"
-                id="password"
-                {...register('password', {
-                  required: 'Please enter a password',
-                })}
-                className={`${errors.password?.message && 'border-red-700'}`}
-                disabled={isLoading}
-              />
-              <span className="text-xs text-red-700">
-                {errors.password?.message}
-              </span>
-            </div>
+    <>
+      {/* <Button
+        asChild
+        variant={'outline'}
+        className="absolute top-6 right-6 z-50 bg-transparent"
+      >
+        <Link href={'/auth/register'}>Sign up</Link>
+      </Button> */}
 
-            <Button disabled={isLoading}>
-              {/* {isLoading ? 'Logging in..' : 'Login'} */}
-              Login
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+      <div className="relative z-10 w-[min(90%,_600px)] pt-20">
+        <AdminLoginForm />
+      </div>
+    </>
+    // <div className="flex justify-center items-center h-full bg-gray-200">
+    //   <Card className="w-[min(500px,_90%)]">
+    //     <CardHeader className="flex flex-col gap-2 text-center">
+    //       {/* TODO: make logo lik unnclickable when logging in! */}
+    //       <div className="mx-auto mb-2">
+    //         <Logo />
+    //       </div>
+    //       <CardTitle>Enter credentials to login</CardTitle>
+    //       <CardDescription>
+    //         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
+    //         soluta.
+    //       </CardDescription>
+    //     </CardHeader>
+    //     <CardContent>
+    //       <form
+    //         className="flex flex-col gap-4"
+    //         onSubmit={handleSubmit(onSubmit)}
+    //       >
+    //         <div>
+    //           <Label htmlFor="email">Email</Label>
+    //           <Input
+    //             type="text"
+    //             placeholder="chideraemmanuel01@hotmail.com"
+    //             id="email"
+    //             {...register('email', {
+    //               required: 'Please enter an email address',
+    //               // pattern:
+    //             })}
+    //             className={`${errors.email?.message && 'border-red-700'}`}
+    //             disabled={isLoading}
+    //           />
+    //           <span className="text-xs text-red-700">
+    //             {errors.email?.message}
+    //           </span>
+    //         </div>
+    //         <div>
+    //           <Label htmlFor="password">Password</Label>
+    //           <Input
+    //             type="password"
+    //             placeholder="Enter password"
+    //             id="password"
+    //             {...register('password', {
+    //               required: 'Please enter a password',
+    //             })}
+    //             className={`${errors.password?.message && 'border-red-700'}`}
+    //             disabled={isLoading}
+    //           />
+    //           <span className="text-xs text-red-700">
+    //             {errors.password?.message}
+    //           </span>
+    //         </div>
+
+    //         <Button disabled={isLoading}>
+    //           {/* {isLoading ? 'Logging in..' : 'Login'} */}
+    //           Login
+    //         </Button>
+    //       </form>
+    //     </CardContent>
+    //   </Card>
+    // </div>
   );
 };
 

@@ -5,29 +5,30 @@ import { LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
+import { SheetClose } from '@/components/ui/sheet';
 
 interface Props {
   href: string;
   text: string;
   icon: React.ReactNode;
-  SheetClose?: any;
+  mobile?: boolean;
 }
 
-const SidebarLink: FC<Props> = ({ href, text, icon, SheetClose }) => {
+const NavigationLink: FC<Props> = ({ href, text, icon, mobile }) => {
   const pathname = usePathname();
 
   // console.log(pathname);
 
   return (
-    <>
-      {SheetClose ? (
+    <li>
+      {mobile ? (
         <SheetClose asChild>
           <Link
             href={href}
-            className={`flex items-center gap-2 py-4 px-5 rounded-sm transition ${
+            className={`flex items-center gap-2 py-3 px-3 rounded-md transition-colors ${
               pathname === `${href}`
-                ? 'bg-slate-900 text-white'
-                : 'text-gray-400 hover:bg-slate-300 hover:text-slate-700'
+                ? 'bg-primary/30'
+                : 'text-muted-foreground hover:bg-primary/10 hover:text-secondary-foreground'
             }`}
           >
             {icon}
@@ -37,18 +38,18 @@ const SidebarLink: FC<Props> = ({ href, text, icon, SheetClose }) => {
       ) : (
         <Link
           href={href}
-          className={`flex items-center gap-2 py-4 px-5 rounded-sm transition ${
+          className={`flex items-center gap-2 py-2 px-3 rounded-md transition-colors ${
             pathname === `${href}`
-              ? 'bg-slate-900 text-white'
-              : 'text-gray-400 hover:bg-slate-300 hover:text-slate-700'
+              ? 'bg-primary/30'
+              : 'text-muted-foreground hover:bg-primary/10 hover:text-secondary-foreground'
           }`}
         >
           {icon}
           <span>{text}</span>
         </Link>
       )}
-    </>
+    </li>
   );
 };
 
-export default SidebarLink;
+export default NavigationLink;

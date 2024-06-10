@@ -1,3 +1,4 @@
+import { Separator } from '@/components/ui/separator';
 import DashboardHeader from '@/container/dashboard-header/DashboardHeader';
 import Sidebar from '@/container/sidebar/Sidebar';
 import AdminAuthProvider from '@/decorators/AdminAuthProvider';
@@ -7,15 +8,15 @@ const DashboardLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     // <div className="grid grid-cols-[3fr,_9fr] items-stretch h-full bg-blue-500">
     // <AdminAuthProvider>
-    <div>
-      <Sidebar />
+    <>
+      <DashboardHeader />
 
-      <div className="ml-0 md:ml-[min(270px,_30vw)]">
-        <DashboardHeader />
+      <div>
+        <Sidebar />
 
-        <div>{children}</div>
+        <main className="ml-0 md:ml-[min(270px,_30vw)]">{children}</main>
       </div>
-    </div>
+    </>
     // </AdminAuthProvider>
   );
 };

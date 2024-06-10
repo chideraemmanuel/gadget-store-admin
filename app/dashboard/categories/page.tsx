@@ -1,7 +1,7 @@
 'use client';
 
 import CategoriesTable from '@/container/categories-table/CategoriesTable';
-import MobileDashboardHeader from '@/container/mobile-dashboard-header/MobileDashboardHeader';
+import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import { useGetCategories } from '@/lib/hooks/useCategory';
 import { FC } from 'react';
 
@@ -12,10 +12,9 @@ const CategoriesPage: FC<Props> = () => {
 
   return (
     <div className="container mx-auto">
-      <MobileDashboardHeader>
-        {/* <CategoriesTable data={data} isLoading={isLoading} isError={isError} /> */}
-        <CategoriesTable />
-      </MobileDashboardHeader>
+      <DashboardHeaderText />
+      {/* <CategoriesTable data={data} isLoading={isLoading} isError={isError} /> */}
+      <CategoriesTable />
     </div>
   );
 };

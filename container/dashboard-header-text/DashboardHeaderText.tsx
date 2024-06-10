@@ -4,11 +4,9 @@ import { headers } from '@/constants';
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 
-interface Props {
-  children: React.ReactNode;
-}
+interface Props {}
 
-const MobileDashboardHeader: FC<Props> = ({ children }) => {
+const DashboardHeaderText: FC<Props> = () => {
   const pathname = usePathname();
 
   const header = headers.find((header) => {
@@ -17,13 +15,9 @@ const MobileDashboardHeader: FC<Props> = ({ children }) => {
 
   return (
     <div className="pt-6 pb-8">
-      <div className="block md:hidden">
-        <h2 className="font-bold text-2xl pb-5">{header?.text}</h2>
-      </div>
-
-      {children}
+      <h2 className="font-bold text-2xl">{header?.text}</h2>
     </div>
   );
 };
 
-export default MobileDashboardHeader;
+export default DashboardHeaderText;

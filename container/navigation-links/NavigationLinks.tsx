@@ -1,27 +1,27 @@
-import SidebarLink from '@/components/SidebarLink';
+import NavigationLink from '@/components/NavigationLink';
 import { DASHBOARD_NAVIGATION_LINKS } from '@/constants';
 import { FC } from 'react';
 
 // import { SheetClose } from '@/components/ui/sheet';
 
 interface Props {
-  SheetClose?: any;
+  mobile?: boolean;
 }
 
-const DashboardNavigationLinks: FC<Props> = ({ SheetClose }) => {
+const NavigationLinks: FC<Props> = ({ mobile }) => {
   return (
-    <div className="flex flex-col gap-1 h-full overflow-scroll pt-6 md:pb-20 pb-10 nav-links sidebar-links">
+    <ul className="flex flex-col gap-1 h-full pt-3 md:pb-20 pb-10">
       {DASHBOARD_NAVIGATION_LINKS.map((link, index) => (
-        <SidebarLink
+        <NavigationLink
           href={`${link.href}`}
           text={link.title}
           icon={<link.icon />}
           key={index}
-          SheetClose={SheetClose}
+          mobile={mobile}
         />
       ))}
-    </div>
+    </ul>
   );
 };
 
-export default DashboardNavigationLinks;
+export default NavigationLinks;

@@ -4,15 +4,6 @@ import Logo from '@/components/Logo';
 import { Menu, MenuIcon } from 'lucide-react';
 import { FC } from 'react';
 import profileImage from '../../assets/profile.jpg';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetClose,
-} from '@/components/ui/sheet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -23,11 +14,13 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import SidebarLink from '@/components/SidebarLink';
-import DashboardNavigationLinks from '../dashboard-navigation-links/DashboardNavigationLinks';
+import NavigationLink from '@/components/NavigationLink';
+import NavigationLinks from '../navigation-links/NavigationLinks';
 import { useAdminLogout } from '@/lib/hooks/useAdminAuth';
 import { headers } from '@/constants';
 import { usePathname } from 'next/navigation';
+import MobileNavigationMenu from '../mobile-navigation-menu/MobileNavigationMenu';
+import { Separator } from '@/components/ui/separator';
 
 interface Props {}
 
@@ -51,55 +44,43 @@ const DashboardHeader: FC<Props> = () => {
   // }
 
   return (
-    <div className="py-6 px-4 border-b-[2px] border-gray-200 flex items-center justify-between sticky top-0 z-10 backdrop-blur-lg bg-white bg-opacity-80">
-      <Sheet>
-        <SheetTrigger className="block md:hidden">
-          <MenuIcon />
-        </SheetTrigger>
+    <>
+      <header className="sticky top-0 z-20 backdrop-blur-lg bg-background bg-opacity-80">
+        <div className="h-[70px] flex items-center justify-between px-8">
+          <MobileNavigationMenu />
 
-        <SheetContent side={'left'} className="block md:hidden">
-          <SheetHeader>
+          <div>
             <Logo />
-            {/* <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription> */}
-          </SheetHeader>
-
-          <div className="bg-blue- h-full">
-            <DashboardNavigationLinks SheetClose={SheetClose} />
           </div>
-        </SheetContent>
-      </Sheet>
 
-      <div className="block md:hidden">
-        <Logo />
-      </div>
-
-      <div className="hidden md:block">
-        {/* <h2 className="font-bold text-2xl">Overview</h2> */}
+          {/* <div className="hidden md:block">
         <h2 className="font-bold text-2xl">{header?.text}</h2>
-      </div>
+      </div> */}
 
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-        </DropdownMenuTrigger>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="mr-4">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          {/* <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuContent className="mr-4">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              {/* <DropdownMenuItem>Billing</DropdownMenuItem>
           <DropdownMenuItem>Team</DropdownMenuItem> */}
-          <DropdownMenuItem onClick={() => logout()}>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+              <DropdownMenuItem onClick={() => logout()}>
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
+        <Separator />
+      </header>
+    </>
   );
 };
 
