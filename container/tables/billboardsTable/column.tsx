@@ -72,7 +72,7 @@ export const billboardsColumns: ColumnDef<BillboardReturnTypes>[] = [
               {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem
                 onClick={() =>
-                  router.push(`/admin/dashboard/billboards/update/${_id}`)
+                  router.push(`/dashboard/billboards/update/${_id}`)
                 }
               >
                 Update Billboard

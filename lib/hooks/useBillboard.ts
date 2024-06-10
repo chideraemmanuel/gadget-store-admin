@@ -86,7 +86,7 @@ export const useAddBillboard = () => {
         description: 'Billboard Added Successfully!',
       });
 
-      router.replace('/admin/dashboard/billboards');
+      router.replace('/dashboard/billboards');
     },
     onError: (error: any) => {
       // console.log('error', error);
@@ -137,14 +137,14 @@ export const useUpdateBillboard = () => {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/admin/dashboard/products/update/[categoryId]', 'page');
+      // revalidatePath('/dashboard/products/update/[categoryId]', 'page');
       // TODO: make revalidatePath work
 
       toast({
         description: 'Billboard Updated Successfully!',
       });
 
-      router.replace('/admin/dashboard/billboards');
+      router.replace('/dashboard/billboards');
     },
     onError: (error: any) => {
       console.log(error);

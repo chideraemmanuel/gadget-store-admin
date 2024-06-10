@@ -27,7 +27,7 @@ const AdminAuthProvider: FC<Props> = ({ children }) => {
   // }, [data]);
 
   // if (isError) {
-  //   router.replace('/admin/auth/login');
+  //   router.replace('/auth/login');
   //   return;
   // }
 

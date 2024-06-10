@@ -80,7 +80,7 @@ export const useAddCategory = () => {
         description: 'Category Added Successfully!',
       });
 
-      router.replace('/admin/dashboard/categories');
+      router.replace('/dashboard/categories');
     },
     onError: (error: any) => {
       // console.log('error', error);
@@ -130,14 +130,14 @@ export const useUpdateCategory = () => {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/admin/dashboard/products/update/[categoryId]', 'page');
+      // revalidatePath('/dashboard/products/update/[categoryId]', 'page');
       // TODO: make revalidatePath work
 
       toast({
         description: 'Category Updated Successfully!',
       });
 
-      router.replace('/admin/dashboard/categories');
+      router.replace('/dashboard/categories');
     },
     onError: (error: any) => {
       console.log(error);

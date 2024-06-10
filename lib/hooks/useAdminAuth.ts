@@ -42,7 +42,7 @@ export const useAdminLogin = () => {
         description: 'Login Successful!',
       });
 
-      router.replace('/admin/dashboard');
+      router.replace('/dashboard');
     },
     onError: (error: any) => {
       // console.log('error', error);
@@ -80,7 +80,7 @@ export const useAdminLogout = () => {
       onSuccess: (data) => {
         // console.log(data);
         dispatch(setAdmin(null));
-        router.replace('/admin/auth/login');
+        router.replace('/auth/login');
 
         toast({
           description: 'Logout Successful',

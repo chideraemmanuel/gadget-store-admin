@@ -72,7 +72,7 @@ export const useAddBrand = () => {
         description: 'Brand Added Successfully!',
       });
 
-      router.replace('/admin/dashboard/brands');
+      router.replace('/dashboard/brands');
     },
     onError: (error: any) => {
       // console.log('error', error);
@@ -122,14 +122,14 @@ export const useUpdateBrand = () => {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/admin/dashboard/products/update/[categoryId]', 'page');
+      // revalidatePath('/dashboard/products/update/[categoryId]', 'page');
       // TODO: make revalidatePath work
 
       toast({
         description: 'Brand Updated Successfully!',
       });
 
-      router.replace('/admin/dashboard/brands');
+      router.replace('/dashboard/brands');
     },
     onError: (error: any) => {
       console.log(error);

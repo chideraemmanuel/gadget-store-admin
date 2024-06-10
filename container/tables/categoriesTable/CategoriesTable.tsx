@@ -79,7 +79,7 @@ const CategoriesTable: FC<Props> = ({ data = [], isLoading, isError }) => {
         </div>
 
         <Button asChild className="w-full md:w-auto flex items-center gap-1">
-          <Link href="/admin/dashboard/categories/add">
+          <Link href="/dashboard/categories/add">
             <Plus />
             <span>Add category</span>
           </Link>

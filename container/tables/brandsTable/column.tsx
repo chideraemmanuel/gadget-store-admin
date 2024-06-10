@@ -77,9 +77,7 @@ export const brandsColumns: ColumnDef<BrandReturnTypes>[] = [
               </DropdownMenuItem>
               {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem
-                onClick={() =>
-                  router.push(`/admin/dashboard/brands/update/${_id}`)
-                }
+                onClick={() => router.push(`/dashboard/brands/update/${_id}`)}
               >
                 Update Brand
               </DropdownMenuItem>

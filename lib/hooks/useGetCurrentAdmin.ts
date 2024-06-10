@@ -21,7 +21,7 @@ const useGetCurrentAdmin = () => {
       dispatch(setAdmin(data));
     },
     onError: (error: any) => {
-      router.replace('/admin/auth/login');
+      router.replace('/auth/login');
     },
   });
 };

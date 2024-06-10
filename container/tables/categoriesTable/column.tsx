@@ -77,7 +77,7 @@ export const categoriesColumns: ColumnDef<CategoryReturnTypes>[] = [
               {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem
                 onClick={() =>
-                  router.push(`/admin/dashboard/categories/update/${_id}`)
+                  router.push(`/dashboard/categories/update/${_id}`)
                 }
               >
                 Update Category

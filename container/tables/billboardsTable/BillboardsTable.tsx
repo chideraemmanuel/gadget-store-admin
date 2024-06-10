@@ -60,7 +60,7 @@ const BillboardsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
         </div>
 
         <Button asChild className="w-full md:w-auto flex items-center gap-1">
-          <Link href="/admin/dashboard/billboards/add">
+          <Link href="/dashboard/billboards/add">
             <Plus />
             <span>Add billboard</span>
           </Link>

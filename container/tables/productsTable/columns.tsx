@@ -133,9 +133,7 @@ export const productsColumns: ColumnDef<ProductReturnTypes>[] = [
               </DropdownMenuItem>
               {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem
-                onClick={() =>
-                  router.push(`/admin/dashboard/products/update/${_id}`)
-                }
+                onClick={() => router.push(`/dashboard/products/update/${_id}`)}
               >
                 Update Product
               </DropdownMenuItem>

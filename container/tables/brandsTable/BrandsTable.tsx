@@ -80,7 +80,7 @@ const BrandsTable: FC<Props> = ({ data = [], isLoading, isError }) => {
         </div>
 
         <Button asChild className="w-full md:w-auto flex items-center gap-1">
-          <Link href="/admin/dashboard/brands/add">
+          <Link href="/dashboard/brands/add">
             <Plus />
             <span>Add brand</span>
           </Link>

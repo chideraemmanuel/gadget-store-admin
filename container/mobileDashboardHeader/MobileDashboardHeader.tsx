@@ -12,7 +12,7 @@ const MobileDashboardHeader: FC<Props> = ({ children }) => {
   const pathname = usePathname();
 
   const header = headers.find((header) => {
-    return `/admin${header.href}` === pathname;
+    return `${header.href}` === pathname;
   });
 
   return (

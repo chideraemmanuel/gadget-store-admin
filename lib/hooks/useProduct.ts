@@ -43,7 +43,7 @@ export const useAddProduct = () => {
         description: 'Product Added Successfully!',
       });
 
-      router.replace('/admin/dashboard/products');
+      router.replace('/dashboard/products');
     },
     onError: (error: any) => {
       // console.log('error', error);
@@ -87,12 +87,23 @@ export interface ProductReturnTypes {
   featured: boolean;
 }
 
+export interface ResultTypes {
+  data: ProductReturnTypes[];
+  pagination: {
+    total_records: number;
+    total_pages: number;
+    current_page: number;
+    previous_page: number;
+    next_page: number;
+  };
+}
+
 const getProducts = async ({ queryKey }: { queryKey: any[] }) => {
   const filters = queryKey[1];
   console.log('query key', queryKey);
   console.log('filters', filters);
 
-  const response = await axios.get<ProductReturnTypes[]>('/products', {
+  const response = await axios.get<ResultTypes>('/products', {
     params: filters,
   });
 
@@ -178,14 +189,14 @@ export const useUpdateProduct = () => {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/admin/dashboard/products/update/[productId]', 'page');
+      // revalidatePath('/dashboard/products/update/[productId]', 'page');
       // TODO: make revalidatePath work
 
       toast({
         description: 'Product Updated Successfully!',
       });
 
-      router.replace('/admin/dashboard/products');
+      router.replace('/dashboard/products');
     },
     onError: (error: any) => {
       console.log(error);

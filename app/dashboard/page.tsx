@@ -11,8 +11,8 @@ const AdminDashboard: FC<Props> = () => {
   return (
     // <div className="">
 
-    <MobileDashboardHeader>
-      <div className="">
+    <div className="container mx-auto">
+      <MobileDashboardHeader>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 pb-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -121,8 +121,8 @@ const AdminDashboard: FC<Props> = () => {
             <Overview />
           </CardContent>
         </Card>
-      </div>
-    </MobileDashboardHeader>
+      </MobileDashboardHeader>
+    </div>
 
     // </div>
   );

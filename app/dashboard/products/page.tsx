@@ -26,7 +26,7 @@ const ProductsPage: FC<Props> = () => {
       /> */}
       <MobileDashboardHeader>
         <ProductsTable
-          data={products}
+          data={products?.data}
           isLoading={isLoading}
           isError={isError}
         />

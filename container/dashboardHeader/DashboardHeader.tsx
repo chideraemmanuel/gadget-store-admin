@@ -36,19 +36,19 @@ const DashboardHeader: FC<Props> = () => {
   const { refetch: logout, isLoading } = useAdminLogout();
 
   const header = headers.find((header) => {
-    return `/admin${header.href}` === pathname;
+    return `${header.href}` === pathname;
   });
 
   // console.log('header', header);
   // console.log('pathname', pathname);
 
-  if (isLoading) {
-    return (
-      <>
-        <span>Is Logging Out...</span>
-      </>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <>
+  //       <span>Is Logging Out...</span>
+  //     </>
+  //   );
+  // }
 
   return (
     <div className="py-6 px-4 border-b-[2px] border-gray-200 flex items-center justify-between sticky top-0 z-10 backdrop-blur-lg bg-white bg-opacity-80">
