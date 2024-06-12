@@ -5,7 +5,7 @@ interface Props {}
 const AddProductLoadingPage: FC<Props> = () => {
   return (
     <>
-      <span>Loading...</span>
+      <span>Loading product creation page...</span>
     </>
   );
 };

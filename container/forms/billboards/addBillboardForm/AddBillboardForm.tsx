@@ -5,15 +5,11 @@ import { Form } from '@/components/ui/form';
 import { DevTool } from '@hookform/devtools';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAddCategory } from '@/lib/hooks/useCategory';
-import BrandNameInput from '@/components/formInputs/brand/BrandNameInput';
-import BrandLogoInput from '@/components/formInputs/brand/BrandLogoInput';
-import { useAddBrand } from '@/lib/hooks/useBrands';
-import { useAddBillboard } from '@/lib/hooks/useBillboard';
 import BillboardNameInput from '@/components/formInputs/billboard/BillboardNameInput';
 import BillboardImageInput from '@/components/formInputs/billboard/BillboardImageInput';
 import BillboardHeadTextInput from '@/components/formInputs/billboard/BillboardHeadTextInput';
 import BillboardParagraphInput from '@/components/formInputs/billboard/BillboardParagraphInput';
+import useAddBillboardOnClient from '@/lib/hooks/billboards/useAddBillboardOnClient';
 
 interface Props {}
 
@@ -29,7 +25,7 @@ const AddBillboardForm: FC<Props> = () => {
     mutate: addBillboard,
     isLoading: isAddingBillboard,
     isError: isErrorAddingBillboard,
-  } = useAddBillboard();
+  } = useAddBillboardOnClient();
 
   const form = useForm<BillboardFormDataTypes>();
 

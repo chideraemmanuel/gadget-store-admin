@@ -1,20 +1,21 @@
-'use client';
-
+import { FC, Suspense } from 'react';
 import BillboardsTable from '@/container/billboards-table/BillboardsTable';
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import { useGetBillboards } from '@/lib/hooks/useBillboard';
-import { FC } from 'react';
+import { getBillboardsOnServer } from '@/lib/actions/billboards';
+import { SearchParams } from '@/types';
 
-interface Props {}
+interface Props {
+  searchParams: SearchParams;
+}
 
-const BillboardsPage: FC<Props> = () => {
-  const { data, isLoading, isError } = useGetBillboards();
-
+const BillboardsPage: FC<Props> = async ({ searchParams }) => {
   return (
     <div className="container mx-auto">
       <DashboardHeaderText />
-      {/* <BillboardsTable data={data} isLoading={isLoading} isError={isError} /> */}
-      <BillboardsTable />
+
+      {/* <Suspense fallback={<div>Loading billboards...</div>}> */}
+      <BillboardsTable searchParams={searchParams} />
+      {/* </Suspense> */}
     </div>
   );
 };

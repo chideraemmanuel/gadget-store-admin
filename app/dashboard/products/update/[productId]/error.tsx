@@ -10,7 +10,7 @@ interface Props {
 const UpdateProductErrorPage: FC<Props> = ({ error, reset }) => {
   return (
     <>
-      <h2>An error occured</h2>
+      <h2>An error occured while loading product update page</h2>
       <span>{error.message}</span>
       <button onClick={() => reset()}>Retry</button>
     </>

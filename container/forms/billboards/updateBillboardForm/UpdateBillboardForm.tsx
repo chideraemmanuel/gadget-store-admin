@@ -6,26 +6,13 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
-import {
-  CategoryReturnTypes,
-  CategoryUpdateTypes,
-  useUpdateCategory,
-} from '@/lib/hooks/useCategory';
-import CategoryNameInput from '@/components/formInputs/category/CategoryNameInput';
-import CategoryBillboardInput from '@/components/formInputs/category/CategoryBillboardInput';
-import {
-  BillboardReturnTypes,
-  BillboardUpdateTypes,
-  useUpdateBillboard,
-} from '@/lib/hooks/useBillboard';
-import { BrandReturnTypes, useUpdateBrand } from '@/lib/hooks/useBrands';
-import BrandNameInput from '@/components/formInputs/brand/BrandNameInput';
-import BrandLogoInput from '@/components/formInputs/brand/BrandLogoInput';
 import { BillboardFormDataTypes } from '../addBillboardForm/AddBillboardForm';
 import BillboardNameInput from '@/components/formInputs/billboard/BillboardNameInput';
 import BillboardImageInput from '@/components/formInputs/billboard/BillboardImageInput';
 import BillboardHeadTextInput from '@/components/formInputs/billboard/BillboardHeadTextInput';
 import BillboardParagraphInput from '@/components/formInputs/billboard/BillboardParagraphInput';
+import { BillboardReturnTypes, BillboardUpdateTypes } from '@/types';
+import useUpdateBillboardOnClient from '@/lib/hooks/billboards/useUpdateBillboardOnClient';
 
 interface Props {
   billboard: BillboardReturnTypes;
@@ -40,7 +27,7 @@ const UpdateBillboardForm: FC<Props> = ({ billboard }) => {
     isLoading: isUpdatingBillboard,
     isError: isErrorUpdateingBillboard,
     isSuccess: isSuccessUpdateingBillboard,
-  } = useUpdateBillboard();
+  } = useUpdateBillboardOnClient();
 
   const form = useForm<BillboardFormDataTypes>();
 

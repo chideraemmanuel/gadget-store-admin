@@ -121,3 +121,12 @@ export interface LoginCredentialsTypes {
   email: string;
   password: string;
 }
+
+export interface ErrorPageProps {
+  error: Error;
+  reset: () => void;
+}
+
+export interface SearchParams {
+  [key: string]: string | string[] | undefined;
+}
