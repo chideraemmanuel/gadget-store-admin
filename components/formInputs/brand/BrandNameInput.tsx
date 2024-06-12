@@ -28,9 +28,9 @@ const BrandNameInput: FC<Props> = ({
         {...register('name', {
           required: 'Brand name is required',
         })}
-        className={`${errors.name?.message && 'border-red-700'}`}
+        className={`${errors.name?.message && 'border-destructive'}`}
       />
-      <span className="text-xs text-red-700">{errors.name?.message}</span>
+      <span className="text-xs text-destructive">{errors.name?.message}</span>
     </>
   );
 };

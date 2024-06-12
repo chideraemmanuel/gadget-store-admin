@@ -1,25 +1,37 @@
-'use client';
+// 'use client';
 
+// import AddProductForm from '@/container/add-product-form/AddProductForm';
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
-import { useGetBrands } from '@/lib/hooks/useBrands';
-import { useGetCategories } from '@/lib/hooks/useCategory';
+import { getBrandsOnServer } from '@/lib/actions/brands';
+import getCategoriesOnServer from '@/lib/actions/categories';
 import { FC } from 'react';
 
 interface Props {}
 
-const AddProductPage: FC<Props> = () => {
-  const {
-    data: categories,
-    isError: isErrorFetchingCategories,
-    isLoading: isFetchingCategories,
-  } = useGetCategories();
+const AddProductPage: FC<Props> = async () => {
+  // const {
+  //   data: categories,
+  //   isError: isErrorFetchingCategories,
+  //   isLoading: isFetchingCategories,
+  // } = useGetCategories();
 
-  const {
-    data: brands,
-    isError: isErrorFetchingBrands,
-    isLoading: isFetchingBrands,
-  } = useGetBrands();
+  // const {
+  //   data: brands,
+  //   isError: isErrorFetchingBrands,
+  //   isLoading: isFetchingBrands,
+  // } = useGetBrands();
+
+  const fetchBrands = getBrandsOnServer();
+  const fetchCategories = getCategoriesOnServer();
+
+  const [brands, categories] = await Promise.all([
+    fetchBrands,
+    fetchCategories,
+  ]);
+
+  // const brands: any[] = [];
+  // const categories: any[] = [];
 
   return (
     <div className="container mx-auto md:py-7 max-w-4xl">
@@ -28,15 +40,17 @@ const AddProductPage: FC<Props> = () => {
         Fill in product details
       </h3>
 
-      {(isFetchingCategories ?? isFetchingBrands) && <span>Loading...</span>}
+      {/* {(isFetchingCategories ?? isFetchingBrands) && <span>Loading...</span>}
 
       {(isErrorFetchingCategories ?? isErrorFetchingBrands) && (
         <span>An error occured</span>
-      )}
+      )} */}
 
-      {brands && categories && (
-        <AddProductForm categories={categories} brands={brands} />
-      )}
+      {/* {brands && categories && ( */}
+      <AddProductForm categories={categories} brands={brands} />
+      {/* )} */}
+
+      {/* <AddProductForm /> */}
     </div>
   );
 };

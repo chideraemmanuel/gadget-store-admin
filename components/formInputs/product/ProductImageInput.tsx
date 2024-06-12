@@ -21,9 +21,9 @@ const ProductImageInput: FC<Props> = ({ register, errors, disabled }) => {
         {...register('product_image', {
           required: 'Product image is required',
         })}
-        className={`${errors.product_image?.message && 'border-red-700'}`}
+        className={`${errors.product_image?.message && 'border-destructive'}`}
       />
-      <span className="text-xs text-red-700">
+      <span className="text-xs text-destructive">
         {errors.product_image?.message}
       </span>
     </>

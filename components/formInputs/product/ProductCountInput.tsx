@@ -31,9 +31,9 @@ const ProductCountInput: FC<Props> = ({
           validate: (value) =>
             value > 0 || 'Count in stock cannot be less than 1',
         })}
-        className={`${errors.count_in_stock?.message && 'border-red-700'}`}
+        className={`${errors.count_in_stock?.message && 'border-destructive'}`}
       />
-      <span className="text-xs text-red-700">
+      <span className="text-xs text-destructive">
         {errors.count_in_stock?.message}
       </span>
     </>

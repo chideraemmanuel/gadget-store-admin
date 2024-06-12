@@ -9,7 +9,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
-import { useAddProduct } from '@/lib/hooks/useProduct';
 import ProductNameInput from '../../../../components/formInputs/product/ProductNameInput';
 import ProductBrandInput from '../../../../components/formInputs/product/ProductBrandInput';
 import ProductDescriptionInput from '../../../../components/formInputs/product/ProductDescriptionInput';
@@ -18,8 +17,8 @@ import ProductCategoryInput from '../../../../components/formInputs/product/Prod
 import ProductImageInput from '../../../../components/formInputs/product/ProductImageInput';
 import ProductCountInput from '../../../../components/formInputs/product/ProductCountInput';
 import ProductFeaturedInput from '../../../../components/formInputs/product/ProductFeaturedInput';
-import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
-import { BrandReturnTypes } from '@/lib/hooks/useBrands';
+import { BrandReturnTypes, CategoryReturnTypes } from '@/types';
+import useAddProductOnClient from '@/lib/hooks/products/useAddProductOnClient';
 
 interface Props {
   categories: CategoryReturnTypes[];
@@ -44,7 +43,7 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
     isLoading: isAddingProduct,
     isError: isErrorAddingProduct,
     isSuccess: isSuccessAddingProduct,
-  } = useAddProduct();
+  } = useAddProductOnClient();
 
   const form = useForm<FormDataTypes>({
     defaultValues: { featured: false },

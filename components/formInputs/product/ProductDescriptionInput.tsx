@@ -29,10 +29,10 @@ const ProductDescriptionInput: FC<Props> = ({
           required: 'Product description is required',
         })}
         className={`resize-none ${
-          errors.description?.message && 'border-red-700'
+          errors.description?.message && 'border-destructive'
         }`}
       />
-      <span className="text-xs text-red-700">
+      <span className="text-xs text-destructive">
         {errors.description?.message}
       </span>
     </>

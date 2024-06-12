@@ -21,9 +21,11 @@ const BrandLogoInput: FC<Props> = ({ register, errors, disabled }) => {
         {...register('brand_logo', {
           required: 'Brand logo is required',
         })}
-        className={`${errors.brand_logo?.message && 'border-red-700'}`}
+        className={`${errors.brand_logo?.message && 'border-destructive'}`}
       />
-      <span className="text-xs text-red-700">{errors.brand_logo?.message}</span>
+      <span className="text-xs text-destructive">
+        {errors.brand_logo?.message}
+      </span>
     </>
   );
 };

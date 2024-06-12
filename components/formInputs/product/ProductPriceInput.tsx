@@ -31,9 +31,9 @@ const ProductPriceInput: FC<Props> = ({
           required: 'Product price is required',
           validate: (value) => value > 0 || 'Price cannot be less than $1',
         })}
-        className={`${errors.price?.message && 'border-red-700'}`}
+        className={`${errors.price?.message && 'border-destructive'}`}
       />
-      <span className="text-xs text-red-700">{errors.price?.message}</span>
+      <span className="text-xs text-destructive">{errors.price?.message}</span>
     </>
   );
 };

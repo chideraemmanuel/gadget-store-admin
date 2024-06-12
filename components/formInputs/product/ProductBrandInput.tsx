@@ -57,7 +57,7 @@ const BrandInput: FC<Props> = ({
           })}
           id="brand"
           className={cn(
-            errors.brand?.message && 'border-red-700',
+            errors.brand?.message && 'border-destructive',
             // 'capitalize',
 
             // 'w-[200px] justify-between',
@@ -96,7 +96,7 @@ const BrandInput: FC<Props> = ({
         </SelectContent>
       </Select>
 
-      <span className="text-xs text-red-700">{errors.brand?.message}</span>
+      <span className="text-xs text-destructive">{errors.brand?.message}</span>
     </>
   );
 };

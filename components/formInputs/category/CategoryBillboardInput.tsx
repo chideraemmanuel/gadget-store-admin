@@ -57,7 +57,7 @@ const CategoryBillboardInput: FC<Props> = ({
           })}
           id="billboard"
           className={cn(
-            errors.billboard?.message && 'border-red-700',
+            errors.billboard?.message && 'border-destructive',
             // 'capitalize',
 
             // 'w-[200px] justify-between',
@@ -96,7 +96,9 @@ const CategoryBillboardInput: FC<Props> = ({
         </SelectContent>
       </Select>
 
-      <span className="text-xs text-red-700">{errors.billboard?.message}</span>
+      <span className="text-xs text-destructive">
+        {errors.billboard?.message}
+      </span>
     </>
   );
 };

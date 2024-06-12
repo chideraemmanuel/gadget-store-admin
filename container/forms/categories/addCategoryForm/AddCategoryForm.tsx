@@ -12,11 +12,6 @@ interface Props {
   billboards: BillboardReturnTypes[];
 }
 
-export interface CategoryFormDataTypes {
-  name: string;
-  billboard: string;
-}
-
 const AddCategoryForm: FC<Props> = ({ billboards }) => {
   const {
     mutate: addCategory,

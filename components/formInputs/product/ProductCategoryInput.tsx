@@ -87,7 +87,7 @@ const ProductCategoryInput: FC<Props> = ({
           })}
           id="category"
           className={cn(
-            errors.category?.message && 'border-red-700',
+            errors.category?.message && 'border-destructive',
             // 'capitalize',
 
             // 'w-[200px] justify-between',
@@ -126,7 +126,9 @@ const ProductCategoryInput: FC<Props> = ({
         </SelectContent>
       </Select>
 
-      <span className="text-xs text-red-700">{errors.category?.message}</span>
+      <span className="text-xs text-destructive">
+        {errors.category?.message}
+      </span>
     </>
   );
 };

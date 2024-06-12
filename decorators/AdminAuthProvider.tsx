@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, useEffect } from 'react';
-import useGetCurrentAdmin from '../lib/hooks/useGetCurrentAdmin';
+import useGetCurrentAdmin from '../lib/hooks/auth/useGetCurrentAdmin';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreTypes } from '@/redux/store';

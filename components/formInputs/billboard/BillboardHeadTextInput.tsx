@@ -28,9 +28,11 @@ const BillboardHeadTextInput: FC<Props> = ({
         {...register('head_text', {
           required: 'Head text is required',
         })}
-        className={`${errors.head_text?.message && 'border-red-700'}`}
+        className={`${errors.head_text?.message && 'border-destructive'}`}
       />
-      <span className="text-xs text-red-700">{errors.head_text?.message}</span>
+      <span className="text-xs text-destructive">
+        {errors.head_text?.message}
+      </span>
     </>
   );
 };

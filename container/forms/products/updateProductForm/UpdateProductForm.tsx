@@ -27,7 +27,6 @@ import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
-import SelectField from '@/components/selectField/SelectField';
 import {
   ProductUpdateTypes,
   ProductReturnTypes,
@@ -287,10 +286,10 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
                   required: 'Product Image is required',
                 })}
                 className={`${
-                  errors.product_image?.message && 'border-red-700'
+                  errors.product_image?.message && 'border-destructive'
                 }`}
               />
-              <span className="text-xs text-red-700">
+              <span className="text-xs text-destructive">
                 {errors.product_image?.message}
               </span>
             </div>

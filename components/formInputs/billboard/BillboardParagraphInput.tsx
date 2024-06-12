@@ -29,10 +29,12 @@ const BillboardParagraphInput: FC<Props> = ({
           //   required: 'Billboard paragraph is required',
         })}
         className={`resize-none ${
-          errors.paragraph?.message && 'border-red-700'
+          errors.paragraph?.message && 'border-destructive'
         }`}
       />
-      <span className="text-xs text-red-700">{errors.paragraph?.message}</span>
+      <span className="text-xs text-destructive">
+        {errors.paragraph?.message}
+      </span>
     </>
   );
 };

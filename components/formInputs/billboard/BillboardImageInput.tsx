@@ -21,9 +21,9 @@ const BillboardImageInput: FC<Props> = ({ register, errors, disabled }) => {
         {...register('billboard_image', {
           required: 'Billboard image is required',
         })}
-        className={`${errors.billboard_image?.message && 'border-red-700'}`}
+        className={`${errors.billboard_image?.message && 'border-destructive'}`}
       />
-      <span className="text-xs text-red-700">
+      <span className="text-xs text-destructive">
         {errors.billboard_image?.message}
       </span>
     </>

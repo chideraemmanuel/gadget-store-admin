@@ -12,11 +12,6 @@ import { useAddBrand } from '@/lib/hooks/useBrands';
 
 interface Props {}
 
-export interface BrandFormDataTypes {
-  name: string;
-  brand_logo: string;
-}
-
 const AddBrandForm: FC<Props> = () => {
   const {
     mutate: addBrand,

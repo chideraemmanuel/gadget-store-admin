@@ -16,17 +16,17 @@ import {
 
 import NavigationLink from '@/components/NavigationLink';
 import NavigationLinks from '../navigation-links/NavigationLinks';
-import { useAdminLogout } from '@/lib/hooks/useAdminAuth';
 import { headers } from '@/constants';
 import { usePathname } from 'next/navigation';
 import MobileNavigationMenu from '../mobile-navigation-menu/MobileNavigationMenu';
 import { Separator } from '@/components/ui/separator';
+import useLogoutAdminOnClient from '@/lib/hooks/auth/useLogoutAdminOnClient';
 
 interface Props {}
 
 const DashboardHeader: FC<Props> = () => {
   const pathname = usePathname();
-  const { refetch: logout, isLoading } = useAdminLogout();
+  const { refetch: logout, isLoading } = useLogoutAdminOnClient();
 
   const header = headers.find((header) => {
     return `${header.href}` === pathname;
