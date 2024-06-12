@@ -10,32 +10,50 @@ import {
 import Image from 'next/image';
 import image from '@/assets/phone.png';
 import CategoriesTableDropdown from './CategoriesTableDropdown';
+import { SearchParams } from '@/types';
+import { getCategoriesOnServer } from '@/lib/actions/categories';
+import ResourceSearch from '@/components/ResourceSearch';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import ResourcePagination from '@/components/ResourcePagination';
 
-interface Props {}
+interface Props {
+  searchParams: SearchParams;
+}
 
 const headers = ['category name', 'billboard'];
 
-const categories = [
-  {
-    _id: '1',
-    name: 'Laptops',
-    billboard: {
-      name: 'Laptops',
-    },
-  },
-  {
-    _id: '2',
-    name: 'Phones',
-    billboard: {
-      name: 'Phones',
-    },
-  },
-];
-// const categories: any[] = [];
+// const categories = [
+//   {
+//     _id: '1',
+//     name: 'Laptops',
+//     billboard: {
+//       name: 'Laptops',
+//     },
+//   },
+//   {
+//     _id: '2',
+//     name: 'Phones',
+//     billboard: {
+//       name: 'Phones',
+//     },
+//   },
+// ];
 
-const CategoriesTable: FC<Props> = () => {
+const CategoriesTable: FC<Props> = async ({ searchParams }) => {
+  // const categories = await getCategoriesOnServer(searchParams);
+  const categories: any[] = [];
+
   return (
-    <>
+    <section className="flex flex-col gap-5">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <ResourceSearch placeholder="Search categories" />
+
+        <Button asChild>
+          <Link href={'/dashboard/categories/add'}>Add category</Link>
+        </Button>
+      </div>
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -86,7 +104,11 @@ const CategoriesTable: FC<Props> = () => {
           </TableBody>
         </Table>
       </div>
-    </>
+
+      {/* <ResourcePagination totalPages={categories.pagination.totalPages} /> */}
+      <ResourcePagination totalPages={5} />
+      {/* {categories.length > 0 && <ResourcePagination totalPages={5} />} */}
+    </section>
   );
 };
 

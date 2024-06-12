@@ -30,7 +30,8 @@ const UpdateBillboardPage: FC<Props> = async ({ params: { billboardId } }) => {
         Modify Billboard details
       </h3>
 
-      {billboard && <UpdateBillboardForm billboard={billboard} />}
+      {/* {billboard && <UpdateBillboardForm billboard={billboard} />} */}
+      <UpdateBillboardForm billboard={billboard} />
     </div>
   );
 };

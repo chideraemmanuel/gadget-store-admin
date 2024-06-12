@@ -4,14 +4,14 @@ import { Button } from '@/components/ui/button';
 import { ErrorPageProps } from '@/types';
 import { FC } from 'react';
 
-const ProductCreationErrorPage: FC<ErrorPageProps> = ({ error, reset }) => {
+const UpdateBillboardErrorPage: FC<ErrorPageProps> = ({ error, reset }) => {
   return (
     <>
-      <h2>An error occured while loading product creation page</h2>
+      <h2>An error occured while loading billboard to update</h2>
       <span>{error.message}</span>
       <Button onClick={() => reset()}>Retry</Button>
     </>
   );
 };
 
-export default ProductCreationErrorPage;
+export default UpdateBillboardErrorPage;

@@ -1,20 +1,19 @@
-'use client';
-
 import CategoriesTable from '@/container/categories-table/CategoriesTable';
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import { useGetCategories } from '@/lib/hooks/useCategory';
-import { FC } from 'react';
+import { SearchParams } from '@/types';
+import { FC, Suspense } from 'react';
 
-interface Props {}
+interface Props {
+  searchParams: SearchParams;
+}
 
-const CategoriesPage: FC<Props> = () => {
-  const { data, isLoading, isError } = useGetCategories();
-
+const CategoriesPage: FC<Props> = ({ searchParams }) => {
   return (
     <div className="container mx-auto">
       <DashboardHeaderText />
-      {/* <CategoriesTable data={data} isLoading={isLoading} isError={isError} /> */}
-      <CategoriesTable />
+      {/* <Suspense fallback={<div>Loading categories...</div>}> */}
+      <CategoriesTable searchParams={searchParams} />
+      {/* </Suspense> */}
     </div>
   );
 };

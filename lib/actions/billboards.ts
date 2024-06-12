@@ -14,7 +14,8 @@ export const getBillboardsOnServer = async (
   );
 
   if (!response.ok) {
-    throw new Error('An error occured');
+    console.log('respose not ok from getBillboardsOnServer', response);
+    throw new Error('An error occured while fetching billboards');
   }
 
   const promise: Promise<BillboardReturnTypes[]> = response.json();
@@ -28,7 +29,8 @@ export const getBillboardByIdOnServer = async (billboardId: string) => {
   );
 
   if (!response.ok) {
-    throw new Error('An error occured');
+    console.log('respose not ok from getBillboardByIdOnServer', response);
+    throw new Error('An error occured while fetching billboard by id');
   }
 
   const promise: Promise<BillboardReturnTypes> = response.json();

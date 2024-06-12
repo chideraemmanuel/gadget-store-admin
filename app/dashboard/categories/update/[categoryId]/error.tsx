@@ -3,14 +3,14 @@
 import { ErrorPageProps } from '@/types';
 import { FC } from 'react';
 
-const UpdateProductErrorPage: FC<ErrorPageProps> = ({ error, reset }) => {
+const UpdateCategoryErrorPage: FC<ErrorPageProps> = ({ error, reset }) => {
   return (
     <>
-      <h2>An error occured while loading product to update</h2>
+      <h2>An error occured while loading category to update</h2>
       <span>{error.message}</span>
       <button onClick={() => reset()}>Retry</button>
     </>
   );
 };
 
-export default UpdateProductErrorPage;
+export default UpdateCategoryErrorPage;

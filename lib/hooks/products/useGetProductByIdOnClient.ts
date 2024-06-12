@@ -1,5 +1,5 @@
 import axios from '@/config/axios';
-import { BrandReturnTypes, ProductsReturnTypes } from '@/types';
+import { ProductTypes } from '@/types';
 import { useQuery } from 'react-query';
 
 const getProduct = async ({ queryKey }: { queryKey: any[] }) => {
@@ -7,9 +7,7 @@ const getProduct = async ({ queryKey }: { queryKey: any[] }) => {
 
   console.log('product id from get product hook', productId);
 
-  const response = await axios.get<ProductsReturnTypes>(
-    `/products/${productId}`
-  );
+  const response = await axios.get<ProductTypes>(`/products/${productId}`);
 
   console.log('response from get product hook', response);
 

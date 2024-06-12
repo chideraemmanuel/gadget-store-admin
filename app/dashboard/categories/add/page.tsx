@@ -1,14 +1,13 @@
-'use client';
-
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import AddCategoryForm from '@/container/forms/categories/addCategoryForm/AddCategoryForm';
-import { useGetBillboards } from '@/lib/hooks/useBillboard';
+import { getBillboardsOnServer } from '@/lib/actions/billboards';
+import { getCategoryByIdOnServer } from '@/lib/actions/categories';
 import { FC } from 'react';
 
 interface Props {}
 
-const AddCategoryPage: FC<Props> = () => {
-  const { data, isLoading, isError } = useGetBillboards();
+const AddCategoryPage: FC<Props> = async () => {
+  const billboards = await getBillboardsOnServer();
 
   return (
     <div className="container mx-auto md:py-7 max-w-4xl">
@@ -17,11 +16,8 @@ const AddCategoryPage: FC<Props> = () => {
         Fill in category details
       </h3>
 
-      {isLoading && <span>Loading...</span>}
-
-      {isError && <span>An error occured</span>}
-
-      {data && <AddCategoryForm billboards={data} />}
+      {/* {billboards && <AddCategoryForm billboards={billboards} />} */}
+      <AddCategoryForm billboards={billboards} />
     </div>
   );
 };

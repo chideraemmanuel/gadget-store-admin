@@ -1,11 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import {
-  CategoryFormDataTypes,
-  CategoryReturnTypes,
-  ProductFormDataTypes,
-  ProductsReturnTypes,
-} from '@/types';
+import { CategoryFormDataTypes, CategoryReturnTypes } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 

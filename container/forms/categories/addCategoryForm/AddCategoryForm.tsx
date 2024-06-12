@@ -1,12 +1,14 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
 import { DevTool } from '@hookform/devtools';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import CategoryNameInput from '../../../../components/formInputs/category/CategoryNameInput';
 import CategoryBillboardInput from '../../../../components/formInputs/category/CategoryBillboardInput';
-import { useAddCategory } from '@/lib/hooks/useCategory';
+import { BillboardReturnTypes, CategoryFormDataTypes } from '@/types';
+import useAddCategoryOnClient from '@/lib/hooks/categories/useAddCategoryOnClient';
 
 interface Props {
   billboards: BillboardReturnTypes[];
@@ -17,7 +19,7 @@ const AddCategoryForm: FC<Props> = ({ billboards }) => {
     mutate: addCategory,
     isLoading: isAddingCategory,
     isError: isErrorAddingCategory,
-  } = useAddCategory();
+  } = useAddCategoryOnClient();
 
   const form = useForm<CategoryFormDataTypes>();
 

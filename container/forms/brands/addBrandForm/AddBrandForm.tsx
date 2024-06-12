@@ -5,10 +5,10 @@ import { Form } from '@/components/ui/form';
 import { DevTool } from '@hookform/devtools';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAddCategory } from '@/lib/hooks/useCategory';
 import BrandNameInput from '@/components/formInputs/brand/BrandNameInput';
 import BrandLogoInput from '@/components/formInputs/brand/BrandLogoInput';
-import { useAddBrand } from '@/lib/hooks/useBrands';
+import { BrandFormDataTypes } from '@/types';
+import useAddBrandOnClient from '@/lib/hooks/brands/useAddBrandOnClient';
 
 interface Props {}
 
@@ -17,7 +17,7 @@ const AddBrandForm: FC<Props> = () => {
     mutate: addBrand,
     isLoading: isAddingBrand,
     isError: isErrorAddingBrand,
-  } = useAddBrand();
+  } = useAddBrandOnClient();
 
   const form = useForm<BrandFormDataTypes>();
 

@@ -1,6 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import { ProductUpdateTypes, ProductsReturnTypes } from '@/types';
+import { ProductTypes, ProductUpdateTypes } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 
@@ -14,7 +14,7 @@ const updateProduct = async ({
   console.log('product id from update product hook', productId);
   console.log('updates from update product hook', updates);
 
-  const response = await axios.put<ProductsReturnTypes>(
+  const response = await axios.put<ProductTypes>(
     `/products/${productId}`,
     updates
     // { withCredentials: true }

@@ -4,7 +4,7 @@
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
 import { getBrandsOnServer } from '@/lib/actions/brands';
-import getCategoriesOnServer from '@/lib/actions/categories';
+import { getCategoriesOnServer } from '@/lib/actions/categories';
 import { FC } from 'react';
 
 interface Props {}

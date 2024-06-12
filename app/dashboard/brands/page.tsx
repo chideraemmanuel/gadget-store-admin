@@ -1,20 +1,19 @@
-'use client';
-
 import BrandsTable from '@/container/brands-table/BrandsTable';
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import { useGetBrands } from '@/lib/hooks/useBrands';
-import { FC } from 'react';
+import { SearchParams } from '@/types';
+import { FC, Suspense } from 'react';
 
-interface Props {}
+interface Props {
+  searchParams: SearchParams;
+}
 
-const BrandsPage: FC<Props> = () => {
-  const { data, isLoading, isError } = useGetBrands();
-
+const BrandsPage: FC<Props> = ({ searchParams }) => {
   return (
     <div className="container mx-auto">
       <DashboardHeaderText />
-      {/* <BrandsTable data={data} isLoading={isLoading} isError={isError} /> */}
-      <BrandsTable />
+      {/* <Suspense fallback={<div>Loading brandss...</div>}> */}
+      <BrandsTable searchParams={searchParams} />
+      {/* </Suspense> */}
     </div>
   );
 };

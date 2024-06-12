@@ -1,8 +1,7 @@
-'use client';
-
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import UpdateBrandForm from '@/container/forms/brands/updateBrandForm/UpdateBrandForm';
-import { useGetBrand } from '@/lib/hooks/useBrands';
+import { getBrandByIdOnServer } from '@/lib/actions/brands';
+import useGetBrandByIdOnClient from '@/lib/hooks/brands/useGetBrandByIdOnClient';
 import { FC } from 'react';
 
 interface Props {
@@ -11,14 +10,16 @@ interface Props {
   };
 }
 
-const UpdateBrandPage: FC<Props> = ({ params: { brandId } }) => {
+const UpdateBrandPage: FC<Props> = async ({ params: { brandId } }) => {
   // console.log(params);
 
-  const {
-    data: brand,
-    isLoading: isFetchingBrand,
-    isError: isErrorFetchingBrand,
-  } = useGetBrand(brandId);
+  // const {
+  //   data: brand,
+  //   isLoading: isFetchingBrand,
+  //   isError: isErrorFetchingBrand,
+  // } = useGetBrandByIdOnClient(brandId);
+
+  const brand = await getBrandByIdOnServer(brandId);
 
   console.log('[BRAND]', brand);
 
@@ -29,11 +30,8 @@ const UpdateBrandPage: FC<Props> = ({ params: { brandId } }) => {
         Modify Brand details
       </h3>
 
-      {isFetchingBrand && <span>Loading...</span>}
-
-      {isErrorFetchingBrand && <span>An error occured</span>}
-
-      {brand && <UpdateBrandForm brand={brand} />}
+      {/* {brand && <UpdateBrandForm brand={brand} />} */}
+      <UpdateBrandForm brand={brand} />
     </div>
   );
 };

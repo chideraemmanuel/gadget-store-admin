@@ -58,7 +58,7 @@ const BillboardsTable: FC<Props> = async ({ searchParams }) => {
           <TableHeader>
             <TableRow>
               {headers.map((header, index) => (
-                <TableHead className="capitalize min-w-[130px]">
+                <TableHead className="capitalize min-w-[130px]" key={index}>
                   {header}
                 </TableHead>
               ))}

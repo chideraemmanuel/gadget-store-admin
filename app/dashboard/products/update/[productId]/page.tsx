@@ -1,7 +1,7 @@
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
 import { getBrandsOnServer } from '@/lib/actions/brands';
-import getCategoriesOnServer from '@/lib/actions/categories';
+import { getCategoriesOnServer } from '@/lib/actions/categories';
 import { getProductByIdOnServer } from '@/lib/actions/products';
 import { FC } from 'react';
 

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 interface Props {}
 
-const AddProductLoadingPage: FC<Props> = () => {
+const ProductCreationLoadingPage: FC<Props> = () => {
   return (
     <>
       <span>Loading product creation page...</span>
@@ -10,4 +10,4 @@ const AddProductLoadingPage: FC<Props> = () => {
   );
 };
 
-export default AddProductLoadingPage;
+export default ProductCreationLoadingPage;

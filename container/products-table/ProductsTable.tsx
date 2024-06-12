@@ -10,8 +10,16 @@ import {
 import Image from 'next/image';
 import image from '@/assets/phone.png';
 import ProductsTableDropdown from './ProductsTableDropdown';
+import { getProductsOnServer } from '@/lib/actions/products';
+import { SearchParams } from '@/types';
+import ResourceSearch from '@/components/ResourceSearch';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import ResourcePagination from '@/components/ResourcePagination';
 
-interface Props {}
+interface Props {
+  searchParams: SearchParams;
+}
 
 const headers = [
   'product image',
@@ -21,29 +29,40 @@ const headers = [
   'featured',
 ];
 
-const products = [
-  {
-    _id: '1',
-    product_name: 'iPhone X',
-    product_image: image.src,
-    count_in_stock: 12,
-    featured: true,
-    price: 999.99,
-  },
-  {
-    _id: '2',
-    product_name: 'iPhone 13',
-    product_image: image.src,
-    count_in_stock: 29,
-    featured: false,
-    price: 799.99,
-  },
-];
-// const products: any[] = [];
+// const products = [
+//   {
+//     _id: '1',
+//     product_name: 'iPhone X',
+//     product_image: image.src,
+//     count_in_stock: 12,
+//     featured: true,
+//     price: 999.99,
+//   },
+//   {
+//     _id: '2',
+//     product_name: 'iPhone 13',
+//     product_image: image.src,
+//     count_in_stock: 29,
+//     featured: false,
+//     price: 799.99,
+//   },
+// ];
 
-const ProductsTable: FC<Props> = () => {
+const ProductsTable: FC<Props> = async ({ searchParams }) => {
+  // const productsReturn = await getProductsOnServer(searchParams);
+  // const products = productsReturn.data;
+  const products: any[] = [];
+
   return (
-    <>
+    <section className="flex flex-col gap-5">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <ResourceSearch placeholder="Search categories" />
+
+        <Button asChild>
+          <Link href={'/dashboard/products/add'}>Add product</Link>
+        </Button>
+      </div>
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -96,7 +115,11 @@ const ProductsTable: FC<Props> = () => {
           </TableBody>
         </Table>
       </div>
-    </>
+
+      {/* <ResourcePagination totalPages={products.pagination.totalPages} /> */}
+      <ResourcePagination totalPages={5} />
+      {/* {products.length > 0 && <ResourcePagination totalPages={5} />} */}
+    </section>
   );
 };
 
