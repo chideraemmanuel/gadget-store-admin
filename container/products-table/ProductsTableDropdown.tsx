@@ -19,9 +19,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useToast } from '@/components/ui/use-toast';
+import useDeleteProductOnClient from '@/lib/hooks/products/useDeleteProductOnClient';
 import { Copy, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 interface Props {
   _id: string;
@@ -33,6 +34,20 @@ const ProductsTableDropdown: FC<Props> = ({ _id }) => {
   const router = useRouter();
 
   const { toast } = useToast();
+
+  const {
+    mutate: deleteProduct,
+    isLoading: isDeletingProduct,
+    isSuccess,
+    isError,
+  } = useDeleteProductOnClient();
+
+  // CLOSE DIALOG ONCE MUTATION IS COMPLETE
+  useEffect(() => {
+    if (isSuccess) {
+      setDialogOpen(false);
+    }
+  }, [isSuccess]);
 
   return (
     <>
@@ -91,9 +106,11 @@ const ProductsTableDropdown: FC<Props> = ({ _id }) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
             <Button
-              //   disabled={isDeletingProduct}
+              disabled={isDeletingProduct}
               variant={'destructive'}
-              //   onClick={() => deleteProduct(_id)}
+              onClick={() => {
+                deleteProduct(_id);
+              }}
             >
               Delete Product
             </Button>

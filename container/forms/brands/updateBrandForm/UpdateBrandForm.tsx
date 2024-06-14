@@ -6,25 +6,13 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
-import {
-  CategoryReturnTypes,
-  CategoryUpdateTypes,
-  useUpdateCategory,
-} from '@/lib/hooks/useCategory';
-import CategoryNameInput from '@/components/formInputs/category/CategoryNameInput';
-import CategoryBillboardInput from '@/components/formInputs/category/CategoryBillboardInput';
-import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
-import {
-  BrandReturnTypes,
-  BrandUpdateTypes,
-  useUpdateBrand,
-} from '@/lib/hooks/useBrands';
-import { BrandFormDataTypes } from '../addBrandForm/AddBrandForm';
 import BrandNameInput from '@/components/formInputs/brand/BrandNameInput';
 import BrandLogoInput from '@/components/formInputs/brand/BrandLogoInput';
+import { BrandFormDataTypes, BrandTypes, BrandUpdateTypes } from '@/types';
+import useUpdateBrandOnClient from '@/lib/hooks/brands/useUpdateBrandOnClient';
 
 interface Props {
-  brand: BrandReturnTypes;
+  brand: BrandTypes;
 }
 
 const UpdateBrandForm: FC<Props> = ({ brand }) => {
@@ -36,7 +24,7 @@ const UpdateBrandForm: FC<Props> = ({ brand }) => {
     isLoading: isUpdatingBrand,
     isError: isErrorUpdateingBrand,
     isSuccess: isSuccessUpdateingBrand,
-  } = useUpdateBrand();
+  } = useUpdateBrandOnClient();
 
   const form = useForm<BrandFormDataTypes>();
 

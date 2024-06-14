@@ -1,6 +1,7 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import { BillboardReturnTypes, BillboardUpdateTypes } from '@/types';
+import { BillboardTypes, BillboardUpdateTypes } from '@/types';
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 
@@ -14,7 +15,7 @@ const updateBillboard = async ({
   console.log('billboard id from update billboard hook', billboardId);
   console.log('updates from update billboard hook', updates);
 
-  const response = await axios.put<BillboardReturnTypes>(
+  const response = await axios.put<BillboardTypes>(
     `/billboards/${billboardId}`,
     updates
   );

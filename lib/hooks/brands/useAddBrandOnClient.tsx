@@ -1,13 +1,13 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import { BrandFormDataTypes, BrandReturnTypes } from '@/types';
+import { BrandFormDataTypes, BrandTypes } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 
 const addBrand = async (brand: BrandFormDataTypes) => {
   console.log('brand', brand);
 
-  const response = await axios.post<BrandReturnTypes>('/brands', brand, {
+  const response = await axios.post<BrandTypes>('/brands', brand, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

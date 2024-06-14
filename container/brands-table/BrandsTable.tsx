@@ -37,19 +37,12 @@ const headers = ['brand logo', 'brand name'];
 // ];
 
 const BrandsTable: FC<Props> = async ({ searchParams }) => {
-  // const brands = await getBrandsOnServer(searchParams);
-  const brands: any[] = [];
+  const brandsReturn = await getBrandsOnServer(searchParams);
+  const brands = brandsReturn.data;
+  // const brands: any[] = [];
 
   return (
-    <section className="flex flex-col gap-5">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <ResourceSearch placeholder="Search brands" />
-
-        <Button asChild>
-          <Link href={'/dashboard/brands/add'}>Add brand</Link>
-        </Button>
-      </div>
-
+    <>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -101,9 +94,11 @@ const BrandsTable: FC<Props> = async ({ searchParams }) => {
       </div>
 
       {/* <ResourcePagination totalPages={brands.pagination.totalPages} /> */}
-      <ResourcePagination totalPages={5} />
-      {/* {brands.length > 0 && <ResourcePagination totalPages={5} />} */}
-    </section>
+      {/* <ResourcePagination totalPages={5} /> */}
+      {brandsReturn.pagination.total_pages > 0 && (
+        <ResourcePagination totalPages={brandsReturn.pagination.total_pages} />
+      )}
+    </>
   );
 };
 

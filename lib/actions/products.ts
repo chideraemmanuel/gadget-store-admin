@@ -10,7 +10,8 @@ export const getProductsOnServer = async (
   console.log('params', params);
 
   const response = await fetch(
-    `http://localhost:5000/api/v1/billboards?${params}`
+    `http://localhost:5000/api/v1/products?${params}`,
+    { credentials: 'include', cache: 'no-store' }
   );
 
   if (!response.ok) {
@@ -25,7 +26,8 @@ export const getProductsOnServer = async (
 
 export const getProductByIdOnServer = async (productId: string) => {
   const response = await fetch(
-    `http://localhost:5000/api/v1/products/${productId}`
+    `http://localhost:5000/api/v1/products/${productId}`,
+    { credentials: 'include' }
   );
 
   if (!response.ok) {

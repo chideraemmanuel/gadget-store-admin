@@ -1,29 +1,28 @@
 import axios from '@/config/axios';
-import { ProductsReturnTypes } from '@/types';
+import createSearchParams from '@/lib/createSearchParam';
+import { ProductsReturnTypes, SearchParams } from '@/types';
 import { useQuery } from 'react-query';
 
 const getProducts = async ({ queryKey }: { queryKey: any[] }) => {
-  const filters = queryKey[1];
+  const searchParamsObject = queryKey[1];
+
   console.log('query key', queryKey);
-  console.log('filters', filters);
+  console.log('searchParamsObject', searchParamsObject);
 
-  const response = await axios.get<ProductsReturnTypes>('/products', {
-    params: filters,
-  });
+  const params = createSearchParams(searchParamsObject);
 
-  console.log('response', response.data);
+  console.log('params', params);
+
+  const response = await axios.get<ProductsReturnTypes>(`/products?${params}`);
+
+  console.log('response data', response.data);
 
   return response.data;
 };
 
-interface FiltersTypes {
-  product_name: string;
-  brand: string;
-}
-
-const useGetProductsOnClient = (filters?: FiltersTypes) => {
+const useGetProductsOnClient = (searchParamsObject: SearchParams = {}) => {
   return useQuery({
-    queryKey: ['get products', filters],
+    queryKey: ['get products', searchParamsObject],
     queryFn: getProducts,
     retry: false,
     // retry: 3,

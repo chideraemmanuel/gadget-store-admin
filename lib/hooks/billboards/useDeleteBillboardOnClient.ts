@@ -1,5 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
+import { revalidatePath } from 'next/cache';
 import { useMutation } from 'react-query';
 
 const deleteBillboard = async (billboardId: string) => {

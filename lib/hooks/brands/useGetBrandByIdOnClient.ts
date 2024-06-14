@@ -1,5 +1,5 @@
 import axios from '@/config/axios';
-import { BrandReturnTypes } from '@/types';
+import { BrandTypes } from '@/types';
 import { useQuery } from 'react-query';
 
 const getBrand = async ({ queryKey }: { queryKey: any[] }) => {
@@ -7,7 +7,7 @@ const getBrand = async ({ queryKey }: { queryKey: any[] }) => {
 
   console.log('brand id from get brand hook', brandId);
 
-  const response = await axios.get<BrandReturnTypes>(`/brands/${brandId}`);
+  const response = await axios.get<BrandTypes>(`/brands/${brandId}`);
 
   console.log('response from get brand hook', response);
 

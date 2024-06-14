@@ -41,25 +41,18 @@ const headers = ['category name', 'billboard'];
 // ];
 
 const CategoriesTable: FC<Props> = async ({ searchParams }) => {
-  // const categories = await getCategoriesOnServer(searchParams);
-  const categories: any[] = [];
+  const categoriesReturn = await getCategoriesOnServer(searchParams);
+  const categories = categoriesReturn.data;
+  // const categories: any[] = [];
 
   return (
-    <section className="flex flex-col gap-5">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <ResourceSearch placeholder="Search categories" />
-
-        <Button asChild>
-          <Link href={'/dashboard/categories/add'}>Add category</Link>
-        </Button>
-      </div>
-
+    <>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
               {headers.map((header, index) => (
-                <TableHead className="capitalize min-w-[130px]">
+                <TableHead className="capitalize min-w-[130px]" key={index}>
                   {header}
                 </TableHead>
               ))}
@@ -106,9 +99,13 @@ const CategoriesTable: FC<Props> = async ({ searchParams }) => {
       </div>
 
       {/* <ResourcePagination totalPages={categories.pagination.totalPages} /> */}
-      <ResourcePagination totalPages={5} />
-      {/* {categories.length > 0 && <ResourcePagination totalPages={5} />} */}
-    </section>
+      {/* <ResourcePagination totalPages={5} /> */}
+      {categoriesReturn.pagination.total_pages > 0 && (
+        <ResourcePagination
+          totalPages={categoriesReturn.pagination.total_pages}
+        />
+      )}
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
-import { FormDataTypes } from '../../../container/forms/products/addProductForm/AddProductForm';
+import { FormDataTypes } from '@/container/forms/products/addProductForm/AddProductForm';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import {
@@ -10,10 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { BrandReturnTypes } from '@/lib/hooks/useBrands';
+import { BrandTypes } from '@/types';
 
 interface Props {
-  brands: BrandReturnTypes[];
+  brands: BrandTypes[];
   form: UseFormReturn<FormDataTypes, any, undefined>;
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;
@@ -69,6 +69,7 @@ const BrandInput: FC<Props> = ({
         >
           <SelectValue placeholder="Select a brand" />
         </SelectTrigger>
+
         <SelectContent>
           {brands &&
             brands

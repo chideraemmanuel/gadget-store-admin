@@ -2,6 +2,7 @@ import Logo from '@/components/Logo';
 import Image from 'next/image';
 import { FC } from 'react';
 import image from '@/assets/phone.png';
+import AuthRoutesGuard from '@/decorators/AuthRoutesGuard';
 
 interface Props {
   children: React.ReactNode;
@@ -9,7 +10,7 @@ interface Props {
 
 const AuthLayout: FC<Props> = ({ children }) => {
   return (
-    <>
+    <AuthRoutesGuard>
       <main>
         <div className="absolute lg:fixed top-6 left-6 z-50 lg:text-[hsl(210_40%_98%)]">
           <Logo />
@@ -47,7 +48,7 @@ const AuthLayout: FC<Props> = ({ children }) => {
           {/* </div> */}
         </section>
       </main>
-    </>
+    </AuthRoutesGuard>
   );
 };
 

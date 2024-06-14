@@ -2,7 +2,7 @@ import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { ProductTypes, ProductUpdateTypes } from '@/types';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const updateProduct = async ({
   productId,
@@ -28,13 +28,13 @@ const updateProduct = async ({
 const useUpdateProductOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(updateProduct, {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/dashboard/products/update/[productId]', 'page');
-      // TODO: make revalidatePath work
+      queryClient.invalidateQueries('get products');
 
       toast({
         description: 'Product Updated Successfully!',
@@ -49,7 +49,7 @@ const useUpdateProductOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to update product'
         }`,
         variant: 'destructive',
       });

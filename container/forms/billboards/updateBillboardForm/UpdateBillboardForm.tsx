@@ -11,11 +11,11 @@ import BillboardNameInput from '@/components/formInputs/billboard/BillboardNameI
 import BillboardImageInput from '@/components/formInputs/billboard/BillboardImageInput';
 import BillboardHeadTextInput from '@/components/formInputs/billboard/BillboardHeadTextInput';
 import BillboardParagraphInput from '@/components/formInputs/billboard/BillboardParagraphInput';
-import { BillboardReturnTypes, BillboardUpdateTypes } from '@/types';
+import { BillboardTypes, BillboardUpdateTypes } from '@/types';
 import useUpdateBillboardOnClient from '@/lib/hooks/billboards/useUpdateBillboardOnClient';
 
 interface Props {
-  billboard: BillboardReturnTypes;
+  billboard: BillboardTypes;
 }
 
 const UpdateBillboardForm: FC<Props> = ({ billboard }) => {

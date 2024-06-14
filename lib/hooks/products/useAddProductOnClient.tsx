@@ -2,7 +2,7 @@ import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { ProductFormDataTypes, ProductTypes } from '@/types';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const addProduct = async (product: ProductFormDataTypes) => {
   console.log('product', product);
@@ -19,10 +19,13 @@ const addProduct = async (product: ProductFormDataTypes) => {
 const useAddProductOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(addProduct, {
     onSuccess: (data) => {
       console.log(data);
+
+      queryClient.invalidateQueries('get products');
 
       toast({
         description: 'Product Added Successfully!',
@@ -37,7 +40,7 @@ const useAddProductOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to add product'
         }`,
         variant: 'destructive',
       });

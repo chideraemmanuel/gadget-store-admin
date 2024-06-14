@@ -1,6 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import { BrandReturnTypes, BrandUpdateTypes } from '@/types';
+import { BrandTypes, BrandUpdateTypes } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 
@@ -14,10 +14,7 @@ const updateBrand = async ({
   console.log('brand id from update brand hook', brandId);
   console.log('updates from update brand hook', updates);
 
-  const response = await axios.put<BrandReturnTypes>(
-    `/brands/${brandId}`,
-    updates
-  );
+  const response = await axios.put<BrandTypes>(`/brands/${brandId}`, updates);
 
   console.log('response from update brand hook', response);
 

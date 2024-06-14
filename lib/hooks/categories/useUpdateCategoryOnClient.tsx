@@ -1,6 +1,10 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import { CategoryReturnTypes, CategoryUpdateTypes } from '@/types';
+import {
+  CategoryReturnTypes,
+  CategoryTypes,
+  CategoryUpdateTypes,
+} from '@/types';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 
@@ -14,7 +18,7 @@ const updateCategory = async ({
   console.log('category id from update category hook', categoryId);
   console.log('updates from update category hook', updates);
 
-  const response = await axios.put<CategoryReturnTypes>(
+  const response = await axios.put<CategoryTypes>(
     `/categories/${categoryId}`,
     updates
   );

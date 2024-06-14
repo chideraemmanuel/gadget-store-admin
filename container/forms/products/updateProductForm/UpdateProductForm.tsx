@@ -27,25 +27,24 @@ import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
+import ProductNameInput from '@/components/formInputs/product/ProductNameInput';
+import ProductDescriptionInput from '@/components/formInputs/product/ProductDescriptionInput';
+import ProductPriceInput from '@/components/formInputs/product/ProductPriceInput';
+import ProductCountInput from '@/components/formInputs/product/ProductCountInput';
+import ProductCategoryInput from '@/components/formInputs/product/ProductCategoryInput';
+import ProductBrandInput from '@/components/formInputs/product/ProductBrandInput';
 import {
+  BrandTypes,
+  CategoryTypes,
+  ProductTypes,
   ProductUpdateTypes,
-  ProductReturnTypes,
-  useAddProduct,
-  useUpdateProduct,
-} from '@/lib/hooks/useProduct';
-import ProductNameInput from '../../../../components/formInputs/product/ProductNameInput';
-import ProductDescriptionInput from '../../../../components/formInputs/product/ProductDescriptionInput';
-import ProductPriceInput from '../../../../components/formInputs/product/ProductPriceInput';
-import ProductCountInput from '../../../../components/formInputs/product/ProductCountInput';
-import ProductCategoryInput from '../../../../components/formInputs/product/ProductCategoryInput';
-import ProductBrandInput from '../../../../components/formInputs/product/ProductBrandInput';
-import { CategoryReturnTypes } from '@/lib/hooks/useCategory';
-import { BrandReturnTypes } from '@/lib/hooks/useBrands';
+} from '@/types';
+import useUpdateProductOnClient from '@/lib/hooks/products/useUpdateProductOnClient';
 
 interface Props {
-  product: ProductReturnTypes;
-  categories: CategoryReturnTypes[];
-  brands: BrandReturnTypes[];
+  product: ProductTypes;
+  categories: CategoryTypes[];
+  brands: BrandTypes[];
 }
 
 export interface FormDataTypes {
@@ -81,7 +80,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
     isLoading: isUpdatingProduct,
     isError: isErrorUpdateingProduct,
     isSuccess: isSuccessUpdateingProduct,
-  } = useUpdateProduct();
+  } = useUpdateProductOnClient();
 
   const form = useForm<FormDataTypes>({
     // defaultValues: { featured: false },
@@ -143,12 +142,12 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
 
   useEffect(() => {
     // console.log('useeffect rann!');
-    const formChangeStatus = hasFormChanged();
+    const formHasChanged = hasFormChanged();
 
-    console.log('form change status', formChangeStatus);
+    console.log('form change status', formHasChanged);
     console.log('form changed state', formChanged);
 
-    if (formChangeStatus) {
+    if (formHasChanged) {
       setFormChanged(true);
       return;
     }

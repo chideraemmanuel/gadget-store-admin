@@ -5,33 +5,52 @@ import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHead
 import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
 import { getBrandsOnServer } from '@/lib/actions/brands';
 import { getCategoriesOnServer } from '@/lib/actions/categories';
-import { FC } from 'react';
+import useGetBrandsOnClient from '@/lib/hooks/brands/useGetBrandsOnClient';
+import useGetCategoriesOnClient from '@/lib/hooks/categories/useGetCategoriesOnClient';
+import { FC, useEffect } from 'react';
 
 interface Props {}
 
 const AddProductPage: FC<Props> = async () => {
-  // const {
-  //   data: categories,
-  //   isError: isErrorFetchingCategories,
-  //   isLoading: isFetchingCategories,
-  // } = useGetCategories();
+  const {
+    data: categories,
+    isError: isErrorFetchingCategories,
+    isLoading: isFetchingCategories,
+    error: errorFetchingCategories,
+  } = useGetCategoriesOnClient({ paginated: false });
 
-  // const {
-  //   data: brands,
-  //   isError: isErrorFetchingBrands,
-  //   isLoading: isFetchingBrands,
-  // } = useGetBrands();
+  const {
+    data: brands,
+    isError: isErrorFetchingBrands,
+    isLoading: isFetchingBrands,
+    error: errorFetchingBrands,
+  } = useGetBrandsOnClient({ paginated: false });
 
-  const fetchBrands = getBrandsOnServer();
-  const fetchCategories = getCategoriesOnServer();
+  // const fetchBrands = getBrandsOnServer();
+  // const fetchCategories = getCategoriesOnServer();
 
-  const [brands, categories] = await Promise.all([
-    fetchBrands,
-    fetchCategories,
-  ]);
+  // const [brands, categories] = await Promise.all([
+  //   fetchBrands,
+  //   fetchCategories,
+  // ]);
 
   // const brands: any[] = [];
   // const categories: any[] = [];
+
+  useEffect(() => {
+    if (errorFetchingBrands || errorFetchingCategories) {
+      // WILL BE CAUGHT BY ERROR.TSX IN SEGMENT
+      const error = errorFetchingBrands || errorFetchingCategories;
+
+      throw new Error(
+        // @ts-ignore
+        error?.message?.data?.error ||
+          // @ts-ignore
+          error?.message ||
+          'An error occured'
+      );
+    }
+  }, [errorFetchingBrands, errorFetchingCategories]);
 
   return (
     <div className="container mx-auto md:py-7 max-w-4xl">
@@ -40,15 +59,20 @@ const AddProductPage: FC<Props> = async () => {
         Fill in product details
       </h3>
 
-      {/* {(isFetchingCategories ?? isFetchingBrands) && <span>Loading...</span>}
+      {(isFetchingCategories ?? isFetchingBrands) && (
+        <span>Loading form...</span>
+      )}
 
-      {(isErrorFetchingCategories ?? isErrorFetchingBrands) && (
+      {/* {(isErrorFetchingCategories ?? isErrorFetchingBrands) && (
         <span>An error occured</span>
       )} */}
 
-      {/* {brands && categories && ( */}
-      <AddProductForm categories={categories} brands={brands} />
-      {/* )} */}
+      {brands && categories && (
+        <AddProductForm
+          categories={categories?.data || categories}
+          brands={brands?.data || brands}
+        />
+      )}
 
       {/* <AddProductForm /> */}
     </div>

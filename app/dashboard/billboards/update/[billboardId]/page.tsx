@@ -1,6 +1,6 @@
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import UpdateBillboardForm from '@/container/forms/billboards/updateBillboardForm/UpdateBillboardForm';
-import { getBillboardByIdOnServer } from '@/lib/actions/billboards';
+import { getBillboardByIdOnServer } from '@/lib/actions/billboards-fetch';
 import useGetBillboardByIdOnClient from '@/lib/hooks/billboards/useGetBillboardByIdOnClient';
 import { FC } from 'react';
 

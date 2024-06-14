@@ -1,5 +1,5 @@
 import axios from '@/config/axios';
-import { BillboardReturnTypes } from '@/types';
+import { BillboardTypes } from '@/types';
 import { useQuery } from 'react-query';
 
 const getBillboard = async ({ queryKey }: { queryKey: any[] }) => {
@@ -7,7 +7,7 @@ const getBillboard = async ({ queryKey }: { queryKey: any[] }) => {
 
   console.log('billboards id from get billboards hook', billboardId);
 
-  const response = await axios.get<BillboardReturnTypes>(
+  const response = await axios.get<BillboardTypes>(
     `/billboards/${billboardId}`
   );
 

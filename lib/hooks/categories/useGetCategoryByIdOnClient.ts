@@ -1,5 +1,5 @@
 import axios from '@/config/axios';
-import { CategoryReturnTypes } from '@/types';
+import { CategoryTypes } from '@/types';
 import { useQuery } from 'react-query';
 
 const getCategory = async ({ queryKey }: { queryKey: any[] }) => {
@@ -7,9 +7,7 @@ const getCategory = async ({ queryKey }: { queryKey: any[] }) => {
 
   console.log('category id from get category hook', categoryId);
 
-  const response = await axios.get<CategoryReturnTypes>(
-    `/categories/${categoryId}`
-  );
+  const response = await axios.get<CategoryTypes>(`/categories/${categoryId}`);
 
   console.log('response from get category hook', response);
 

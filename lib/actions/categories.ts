@@ -1,4 +1,4 @@
-import { CategoryReturnTypes, SearchParams } from '@/types';
+import { CategoryReturnTypes, CategoryTypes, SearchParams } from '@/types';
 import createSearchParams from '../createSearchParam';
 
 export const getCategoriesOnServer = async (
@@ -6,10 +6,15 @@ export const getCategoriesOnServer = async (
 ) => {
   const params = createSearchParams(searchParamsObject);
 
+  // delete paginated from query params if it gets added, and then set to true to enable paginated response from api
+  params.delete('paginated');
+  params.set('paginated', 'true');
+
   console.log('params', params);
 
   const response = await fetch(
-    `http://localhost:5000/api/v1/categories?${params}`
+    `http://localhost:5000/api/v1/categories?${params}`,
+    { credentials: 'include', cache: 'no-store' }
   );
 
   if (!response.ok) {
@@ -17,14 +22,15 @@ export const getCategoriesOnServer = async (
     throw new Error('An error occured while fetching categories');
   }
 
-  const promise: Promise<CategoryReturnTypes[]> = response.json();
+  const promise: Promise<CategoryReturnTypes> = response.json();
 
   return promise;
 };
 
 export const getCategoryByIdOnServer = async (categoryId: string) => {
   const response = await fetch(
-    `http://localhost:5000/api/v1/categories/${categoryId}`
+    `http://localhost:5000/api/v1/categories/${categoryId}`,
+    { credentials: 'include' }
   );
 
   if (!response.ok) {
@@ -32,7 +38,7 @@ export const getCategoryByIdOnServer = async (categoryId: string) => {
     throw new Error('An error occured while fetching category by id');
   }
 
-  const promise: Promise<CategoryReturnTypes> = response.json();
+  const promise: Promise<CategoryTypes> = response.json();
 
   return promise;
 };

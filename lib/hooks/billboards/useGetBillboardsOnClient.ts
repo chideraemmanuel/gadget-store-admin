@@ -3,7 +3,7 @@ import { BillboardReturnTypes } from '@/types';
 import { useQuery } from 'react-query';
 
 const getBillboards = async () => {
-  const response = await axios.get<BillboardReturnTypes[]>('/billboards');
+  const response = await axios.get<BillboardReturnTypes>('/billboards');
 
   console.log('response from get billboards hook', response);
 

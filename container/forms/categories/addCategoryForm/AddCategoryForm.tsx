@@ -7,11 +7,11 @@ import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import CategoryNameInput from '../../../../components/formInputs/category/CategoryNameInput';
 import CategoryBillboardInput from '../../../../components/formInputs/category/CategoryBillboardInput';
-import { BillboardReturnTypes, CategoryFormDataTypes } from '@/types';
+import { BillboardTypes, CategoryFormDataTypes } from '@/types';
 import useAddCategoryOnClient from '@/lib/hooks/categories/useAddCategoryOnClient';
 
 interface Props {
-  billboards: BillboardReturnTypes[];
+  billboards: BillboardTypes[];
 }
 
 const AddCategoryForm: FC<Props> = ({ billboards }) => {

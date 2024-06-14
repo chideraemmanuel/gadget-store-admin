@@ -10,20 +10,24 @@ const getCurrentAdmin = async () => {
   return response.data;
 };
 
-const useGetCurrentAdmin = () => {
+const useGetCurrentAdminOnClient = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
   return useQuery('get current admin', getCurrentAdmin, {
     // enabled: false,
     retry: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     onSuccess: (data) => {
-      dispatch(setAdmin(data));
+      // dispatch(setAdmin(data));
     },
     onError: (error: any) => {
-      router.replace('/auth/login');
+      // if (error?.response?.data?.error) {
+      //   router.replace('/auth/login');
+      // }
     },
   });
 };
 
-export default useGetCurrentAdmin;
+export default useGetCurrentAdminOnClient;

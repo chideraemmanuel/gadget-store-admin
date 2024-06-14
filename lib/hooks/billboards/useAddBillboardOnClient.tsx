@@ -1,21 +1,18 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
-import { BillboardFormDataTypes, BillboardReturnTypes } from '@/types';
+import { BillboardFormDataTypes, BillboardTypes } from '@/types';
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 
 const addBillboard = async (billboard: BillboardFormDataTypes) => {
   console.log('billboard', billboard);
 
-  const response = await axios.post<BillboardReturnTypes>(
-    '/billboards',
-    billboard,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }
-  );
+  const response = await axios.post<BillboardTypes>('/billboards', billboard, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
   return response.data;
 };

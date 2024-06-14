@@ -6,19 +6,19 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
-import {
-  CategoryReturnTypes,
-  CategoryUpdateTypes,
-  useUpdateCategory,
-} from '@/lib/hooks/useCategory';
 import CategoryNameInput from '@/components/formInputs/category/CategoryNameInput';
-import { CategoryFormDataTypes } from '../addCategoryForm/AddCategoryForm';
 import CategoryBillboardInput from '@/components/formInputs/category/CategoryBillboardInput';
-import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
+import {
+  BillboardTypes,
+  CategoryFormDataTypes,
+  CategoryTypes,
+  CategoryUpdateTypes,
+} from '@/types';
+import useUpdateCategoryOnClient from '@/lib/hooks/categories/useUpdateCategoryOnClient';
 
 interface Props {
-  category: CategoryReturnTypes;
-  billboards: BillboardReturnTypes[];
+  category: CategoryTypes;
+  billboards: BillboardTypes[];
 }
 
 const UpdateCategoryForm: FC<Props> = ({ category, billboards }) => {
@@ -32,7 +32,7 @@ const UpdateCategoryForm: FC<Props> = ({ category, billboards }) => {
     isLoading: isUpdatingCategory,
     isError: isErrorUpdateingCategory,
     isSuccess: isSuccessUpdateingCategory,
-  } = useUpdateCategory();
+  } = useUpdateCategoryOnClient();
 
   const form = useForm<CategoryFormDataTypes>();
 

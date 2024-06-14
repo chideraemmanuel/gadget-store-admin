@@ -19,6 +19,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useToast } from '@/components/ui/use-toast';
+import useDeleteCategoryOnClient from '@/lib/hooks/categories/useDeleteCategoryOnClient';
 import { Copy, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
@@ -33,6 +34,13 @@ const CategoriesTableDropdown: FC<Props> = ({ _id }) => {
   const router = useRouter();
 
   const { toast } = useToast();
+
+  const {
+    mutate: deleteCategory,
+    isLoading: isDeletingCategory,
+    isSuccess,
+    isError,
+  } = useDeleteCategoryOnClient();
 
   return (
     <>
@@ -90,9 +98,12 @@ const CategoriesTableDropdown: FC<Props> = ({ _id }) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
             <Button
-              //   disabled={isDeletingProduct}
+              disabled={isDeletingCategory}
               variant={'destructive'}
-              //   onClick={() => deleteProduct(_id)}
+              onClick={() => {
+                deleteCategory(_id);
+                setDialogOpen(false);
+              }}
             >
               Delete Category
             </Button>

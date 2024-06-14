@@ -9,13 +9,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import { BillboardTypes, CategoryFormDataTypes } from '@/types';
 import { FC, useEffect } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
-import { BillboardReturnTypes } from '@/lib/hooks/useBillboard';
-import { CategoryFormDataTypes } from '../../../container/forms/categories/addCategoryForm/AddCategoryForm';
 
 interface Props {
-  billboards: BillboardReturnTypes[];
+  billboards: BillboardTypes[];
   form: UseFormReturn<CategoryFormDataTypes, any, undefined>;
   register: UseFormRegister<CategoryFormDataTypes>;
   errors: FieldErrors<CategoryFormDataTypes>;

@@ -10,15 +10,14 @@ import {
 import Image from 'next/image';
 import image from '@/assets/phone.png';
 import BillboardsTableDropdown from './BillboardsTableDropdown';
-import { BillboardReturnTypes, SearchParams } from '@/types';
-import { getBillboardsOnServer } from '@/lib/actions/billboards';
+import { SearchParams } from '@/types';
+import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
 import ResourcePagination from '@/components/ResourcePagination';
 import ResourceSearch from '@/components/ResourceSearch';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 interface Props {
-  // billboards: BillboardReturnTypes[];
   searchParams: SearchParams;
 }
 
@@ -40,19 +39,12 @@ const headers = ['billboard image', 'billboard name'];
 // const billboards: any[] = [];
 
 const BillboardsTable: FC<Props> = async ({ searchParams }) => {
-  // const billboards = await getBillboardsOnServer(searchParams);
-  const billboards: any[] = [];
+  const billboardsReturn = await getBillboardsOnServer(searchParams);
+  const billboards = billboardsReturn.data.data;
+  // const billboards: any[] = [];
 
   return (
-    <section className="flex flex-col gap-5">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <ResourceSearch placeholder="Search billboards" />
-
-        <Button asChild>
-          <Link href={'/dashboard/billboards/add'}>Add billboard</Link>
-        </Button>
-      </div>
-
+    <>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -104,9 +96,13 @@ const BillboardsTable: FC<Props> = async ({ searchParams }) => {
       </div>
 
       {/* <ResourcePagination totalPages={billboards.pagination.totalPages} /> */}
-      <ResourcePagination totalPages={5} />
-      {/* {billboards.length > 0 && <ResourcePagination totalPages={5} />} */}
-    </section>
+      {/* <ResourcePagination totalPages={5} /> */}
+      {billboardsReturn?.data?.pagination?.total_pages > 0 && (
+        <ResourcePagination
+          totalPages={billboardsReturn.data.pagination.total_pages}
+        />
+      )}
+    </>
   );
 };
 

@@ -26,7 +26,7 @@ const useDeleteProductOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to delete product'
         }`,
         variant: 'destructive',
       });

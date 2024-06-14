@@ -1,6 +1,6 @@
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import UpdateCategoryForm from '@/container/forms/categories/updateCategoryForm/UpdateCategoryForm';
-import { getBillboardsOnServer } from '@/lib/actions/billboards';
+import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
 import { getCategoryByIdOnServer } from '@/lib/actions/categories';
 import { FC } from 'react';
 

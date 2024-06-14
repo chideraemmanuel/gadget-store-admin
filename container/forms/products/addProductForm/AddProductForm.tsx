@@ -9,20 +9,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 import { Button } from '@/components/ui/button';
 // import { DialogClose, DialogFooter } from '@/components/ui/dialog';
-import ProductNameInput from '../../../../components/formInputs/product/ProductNameInput';
-import ProductBrandInput from '../../../../components/formInputs/product/ProductBrandInput';
-import ProductDescriptionInput from '../../../../components/formInputs/product/ProductDescriptionInput';
-import ProductPriceInput from '../../../../components/formInputs/product/ProductPriceInput';
-import ProductCategoryInput from '../../../../components/formInputs/product/ProductCategoryInput';
-import ProductImageInput from '../../../../components/formInputs/product/ProductImageInput';
-import ProductCountInput from '../../../../components/formInputs/product/ProductCountInput';
-import ProductFeaturedInput from '../../../../components/formInputs/product/ProductFeaturedInput';
-import { BrandReturnTypes, CategoryReturnTypes } from '@/types';
+import ProductNameInput from '@/components/formInputs/product/ProductNameInput';
+import ProductBrandInput from '@/components/formInputs/product/ProductBrandInput';
+import ProductDescriptionInput from '@/components/formInputs/product/ProductDescriptionInput';
+import ProductPriceInput from '@/components/formInputs/product/ProductPriceInput';
+import ProductCategoryInput from '@/components/formInputs/product/ProductCategoryInput';
+import ProductImageInput from '@/components/formInputs/product/ProductImageInput';
+import ProductCountInput from '@/components/formInputs/product/ProductCountInput';
+import ProductFeaturedInput from '@/components/formInputs/product/ProductFeaturedInput';
+import { BrandTypes, CategoryTypes } from '@/types';
 import useAddProductOnClient from '@/lib/hooks/products/useAddProductOnClient';
 
 interface Props {
-  categories: CategoryReturnTypes[];
-  brands: BrandReturnTypes[];
+  categories: CategoryTypes[];
+  brands: BrandTypes[];
 }
 
 export interface FormDataTypes {

@@ -19,9 +19,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useToast } from '@/components/ui/use-toast';
+import { deleteBillboardOnServer } from '@/lib/actions/billboard-mutation';
+import useDeleteBillboardOnClient from '@/lib/hooks/billboards/useDeleteBillboardOnClient';
 import { Copy, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
+import { useFormStatus } from 'react-dom';
 
 interface Props {
   _id: string;
@@ -30,9 +33,17 @@ interface Props {
 const BillboardsTableDropdown: FC<Props> = ({ _id }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
 
   const { toast } = useToast();
+
+  const {
+    mutate: deleteBillboard,
+    isLoading: isDeletingBillboard,
+    isSuccess,
+    isError,
+  } = useDeleteBillboardOnClient();
 
   return (
     <>
@@ -90,9 +101,27 @@ const BillboardsTableDropdown: FC<Props> = ({ _id }) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
             <Button
-              //   disabled={isDeletingProduct}
+              disabled={isDeleting}
               variant={'destructive'}
-              //   onClick={() => deleteProduct(_id)}
+              onClick={async () => {
+                setIsDeleting(true);
+                // deleteBillboard(_id);
+                const { data, error } = await deleteBillboardOnServer(_id);
+
+                if (error) {
+                  toast({
+                    description: error,
+                    variant: 'destructive',
+                  });
+                } else {
+                  toast({
+                    description: 'Billboard Deleted Successfully!',
+                  });
+                }
+
+                setIsDeleting(false);
+                setDialogOpen(false);
+              }}
             >
               Delete Billboard
             </Button>

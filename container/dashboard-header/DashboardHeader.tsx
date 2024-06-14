@@ -21,6 +21,7 @@ import { usePathname } from 'next/navigation';
 import MobileNavigationMenu from '../mobile-navigation-menu/MobileNavigationMenu';
 import { Separator } from '@/components/ui/separator';
 import useLogoutAdminOnClient from '@/lib/hooks/auth/useLogoutAdminOnClient';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 
 interface Props {}
 
@@ -53,29 +54,29 @@ const DashboardHeader: FC<Props> = () => {
             <Logo />
           </div>
 
-          {/* <div className="hidden md:block">
-        <h2 className="font-bold text-2xl">{header?.text}</h2>
-      </div> */}
+          <div className="flex items-center gap-3">
+            <ThemeSwitcher />
 
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="mr-4">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              {/* <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuContent className="mr-4">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                {/* <DropdownMenuItem>Billing</DropdownMenuItem>
           <DropdownMenuItem>Team</DropdownMenuItem> */}
-              <DropdownMenuItem onClick={() => logout()}>
-                Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                <DropdownMenuItem onClick={() => logout()}>
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
 
         <Separator />

@@ -10,10 +10,10 @@ import { cn } from '@/lib/utils';
 import { FC, useEffect } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
 import { FormDataTypes } from '../../../container/forms/products/addProductForm/AddProductForm';
-import { CategoryReturnTypes, useGetCategories } from '@/lib/hooks/useCategory';
+import { CategoryTypes } from '@/types';
 
 interface Props {
-  categories: CategoryReturnTypes[];
+  categories: CategoryTypes[];
   form: UseFormReturn<FormDataTypes, any, undefined>;
   register: UseFormRegister<FormDataTypes>;
   errors: FieldErrors<FormDataTypes>;

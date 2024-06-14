@@ -27,13 +27,7 @@ export interface ProductTypes {
 
 export interface ProductsReturnTypes {
   data: ProductTypes[];
-  pagination: {
-    total_records: number;
-    total_pages: number;
-    current_page: number;
-    previous_page: number;
-    next_page: number;
-  };
+  pagination: PaginationTypes;
 }
 
 export interface ProductUpdateTypes {
@@ -58,7 +52,7 @@ export interface ProductFormDataTypes {
   featured: boolean;
 }
 
-export interface CategoryReturnTypes {
+export interface CategoryTypes {
   _id: string;
   name: string;
   billboard: {
@@ -68,6 +62,10 @@ export interface CategoryReturnTypes {
     paragraph?: string;
     billboard_image: string;
   };
+}
+export interface CategoryReturnTypes {
+  data: CategoryTypes[];
+  pagination: PaginationTypes;
 }
 
 export interface CategoryFormDataTypes {
@@ -80,10 +78,15 @@ export interface CategoryUpdateTypes {
   billboard?: string;
 }
 
-export interface BrandReturnTypes {
+export interface BrandTypes {
   _id: string;
   name: string;
   brand_logo: string;
+}
+
+export interface BrandReturnTypes {
+  data: BrandTypes[];
+  pagination: PaginationTypes;
 }
 
 export interface BrandFormDataTypes {
@@ -96,12 +99,17 @@ export interface BrandUpdateTypes {
   brand_logo?: string;
 }
 
-export interface BillboardReturnTypes {
+export interface BillboardTypes {
   _id: string;
   name: string;
   head_text: string;
   paragraph?: string;
   billboard_image: string;
+}
+
+export interface BillboardReturnTypes {
+  data: BillboardTypes[];
+  pagination: PaginationTypes;
 }
 
 export interface BillboardFormDataTypes {
@@ -117,9 +125,26 @@ export interface BillboardUpdateTypes {
   paragraph?: string;
 }
 
+export interface PaginationTypes {
+  total_records: number;
+  total_pages: number;
+  current_page: number;
+  previous_page: number;
+  next_page: number;
+}
+
 export interface LoginCredentialsTypes {
   email: string;
   password: string;
+}
+
+export interface AuthReturnTypes {
+  first_name: string;
+  last_name: string;
+  email: string;
+  verified: boolean;
+  auth_type: 'MANUAL_AUTH_SERVICE' | 'GOOGLE_AUTH_SERVICE';
+  role: string;
 }
 
 export interface ErrorPageProps {
