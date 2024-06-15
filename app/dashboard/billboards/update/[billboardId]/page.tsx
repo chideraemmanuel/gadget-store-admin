@@ -1,8 +1,10 @@
+'use client';
+
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import UpdateBillboardForm from '@/container/forms/billboards/updateBillboardForm/UpdateBillboardForm';
 import { getBillboardByIdOnServer } from '@/lib/actions/billboards-fetch';
 import useGetBillboardByIdOnClient from '@/lib/hooks/billboards/useGetBillboardByIdOnClient';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 interface Props {
   params: {
@@ -10,18 +12,32 @@ interface Props {
   };
 }
 
-const UpdateBillboardPage: FC<Props> = async ({ params: { billboardId } }) => {
+const UpdateBillboardPage: FC<Props> = ({ params: { billboardId } }) => {
   // console.log(params);
 
-  // const {
-  //   data: billboard,
-  //   isLoading: isFetchingBillboard,
-  //   isError: isErrorFetchingBillboard,
-  // } = useGetBillboardByIdOnClient(billboardId);
+  const {
+    data: billboard,
+    isLoading: isFetchingBillboard,
+    isError: isErrorFetchingBillboard,
+    error,
+  } = useGetBillboardByIdOnClient(billboardId);
 
-  const billboard = await getBillboardByIdOnServer(billboardId);
+  // const billboard = await getBillboardByIdOnServer(billboardId);
 
   console.log('[BILLBOARD]', billboard);
+
+  useEffect(() => {
+    if (error) {
+      // WILL BE CAUGHT BY ERROR.TSX IN SEGMENT
+      throw new Error(
+        // @ts-ignore
+        error?.message?.data?.error ||
+          // @ts-ignore
+          error?.message ||
+          'An error occured while fetching billboard'
+      );
+    }
+  }, [error]);
 
   return (
     <div className="container mx-auto md:py-6  max-w-4xl">
@@ -30,8 +46,10 @@ const UpdateBillboardPage: FC<Props> = async ({ params: { billboardId } }) => {
         Modify Billboard details
       </h3>
 
-      {/* {billboard && <UpdateBillboardForm billboard={billboard} />} */}
-      <UpdateBillboardForm billboard={billboard} />
+      {isFetchingBillboard && <span>Loading form...</span>}
+
+      {billboard && <UpdateBillboardForm billboard={billboard} />}
+      {/* <UpdateBillboardForm billboard={billboard} /> */}
     </div>
   );
 };

@@ -25,10 +25,10 @@ import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
 
 interface Props {
-  _id: string;
+  id: string;
 }
 
-const CategoriesTableDropdown: FC<Props> = ({ _id }) => {
+const CategoriesTableDropdown: FC<Props> = ({ id }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
@@ -57,7 +57,7 @@ const CategoriesTableDropdown: FC<Props> = ({ _id }) => {
             <DropdownMenuItem
               className="flex items-center gap-2"
               onClick={() => {
-                navigator.clipboard.writeText(_id);
+                navigator.clipboard.writeText(id);
                 toast({
                   description: 'Category ID Copied Successfully!',
                 });
@@ -69,7 +69,7 @@ const CategoriesTableDropdown: FC<Props> = ({ _id }) => {
             {/* <DropdownMenuSeparator /> */}
             <DropdownMenuItem
               className="flex items-center gap-2"
-              onClick={() => router.push(`/dashboard/categories/update/${_id}`)}
+              onClick={() => router.push(`/dashboard/categories/update/${id}`)}
             >
               <Edit className="h-4 w-4" />
               <span>Update Category</span>
@@ -101,7 +101,7 @@ const CategoriesTableDropdown: FC<Props> = ({ _id }) => {
               disabled={isDeletingCategory}
               variant={'destructive'}
               onClick={() => {
-                deleteCategory(_id);
+                deleteCategory(id);
                 setDialogOpen(false);
               }}
             >

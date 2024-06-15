@@ -21,7 +21,7 @@ const UpdateProductPage: FC<Props> = async ({ params: { productId } }) => {
     data: product,
     isLoading: isFetchingProduct,
     isError: isErrorFetchingProduct,
-    error: errorFetchingBrands,
+    error: errorFetchingProduct,
   } = useGetProductByIdOnClient(productId);
 
   const {
@@ -35,12 +35,18 @@ const UpdateProductPage: FC<Props> = async ({ params: { productId } }) => {
     data: brands,
     isError: isErrorFetchingBrands,
     isLoading: isFetchingBrands,
+    error: errorFetchingBrands,
   } = useGetBrandsOnClient({ paginated: false });
 
   useEffect(() => {
-    if (errorFetchingBrands || errorFetchingCategories) {
+    if (
+      errorFetchingProduct ||
+      errorFetchingBrands ||
+      errorFetchingCategories
+    ) {
       // WILL BE CAUGHT BY ERROR.TSX IN SEGMENT
-      const error = errorFetchingBrands || errorFetchingCategories;
+      const error =
+        errorFetchingProduct || errorFetchingBrands || errorFetchingCategories;
 
       throw new Error(
         // @ts-ignore
@@ -50,7 +56,7 @@ const UpdateProductPage: FC<Props> = async ({ params: { productId } }) => {
           'An error occured'
       );
     }
-  }, [errorFetchingBrands, errorFetchingCategories]);
+  }, [errorFetchingProduct, errorFetchingBrands, errorFetchingCategories]);
 
   // console.log(isErrorFetchingCategories);
   // console.log(isErrorFetchingProduct);

@@ -2,7 +2,9 @@ import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHead
 import UpdateCategoryForm from '@/container/forms/categories/updateCategoryForm/UpdateCategoryForm';
 import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
 import { getCategoryByIdOnServer } from '@/lib/actions/categories';
-import { FC } from 'react';
+import useGetBillboardsOnClient from '@/lib/hooks/billboards/useGetBillboardsOnClient';
+import useGetCategoryByIdOnClient from '@/lib/hooks/categories/useGetCategoryByIdOnClient';
+import { FC, useEffect } from 'react';
 
 interface Props {
   params: {
@@ -13,29 +15,46 @@ interface Props {
 const UpdateCategoryPage: FC<Props> = async ({ params: { categoryId } }) => {
   // console.log(params);
 
-  // const {
-  //   data: category,
-  //   isLoading: isFetchingCategory,
-  //   isError: isErrorFetchingCategory,
-  // } = useGetCategory(categoryId);
+  const {
+    data: category,
+    isLoading: isFetchingCategory,
+    isError: isErrorFetchingCategory,
+    error: errorFetchingCategory,
+  } = useGetCategoryByIdOnClient(categoryId);
 
-  // const {
-  //   data: billboards,
-  //   isError: isErrorFetchingBillboards,
-  //   isLoading: isFetchingBillboards,
-  // } = useGetBillboards();
+  const {
+    data: billboards,
+    isError: isErrorFetchingBillboards,
+    isLoading: isFetchingBillboards,
+    error: errorFetchingBillboards,
+  } = useGetBillboardsOnClient({ paginated: false });
 
   // console.log(isErrorFetchingCategories);
   // console.log(isErrorFetchingProduct);
   // console.log('[CATEGORY]', category);
 
-  const fetchCategory = getCategoryByIdOnServer(categoryId);
-  const fetchBillboards = getBillboardsOnServer();
+  // const fetchCategory = getCategoryByIdOnServer(categoryId);
+  // const fetchBillboards = getBillboardsOnServer();
 
-  const [category, billboards] = await Promise.all([
-    fetchCategory,
-    fetchBillboards,
-  ]);
+  // const [category, billboards] = await Promise.all([
+  //   fetchCategory,
+  //   fetchBillboards,
+  // ]);
+
+  useEffect(() => {
+    if (errorFetchingCategory || errorFetchingBillboards) {
+      // WILL BE CAUGHT BY ERROR.TSX IN SEGMENT
+      const error = errorFetchingCategory || errorFetchingBillboards;
+
+      throw new Error(
+        // @ts-ignore
+        error?.message?.data?.error ||
+          // @ts-ignore
+          error?.message ||
+          'An error occured'
+      );
+    }
+  }, [errorFetchingCategory, errorFetchingBillboards]);
 
   return (
     <div className="container mx-auto md:py-7 max-w-4xl">
@@ -44,11 +63,18 @@ const UpdateCategoryPage: FC<Props> = async ({ params: { categoryId } }) => {
         Modify Category details
       </h3>
 
-      {/* {category && billboards && (
-        <UpdateCategoryForm category={category} billboards={billboards} />
-      )} */}
+      {(isFetchingCategory ?? isFetchingBillboards) && (
+        <span>Loading form...</span>
+      )}
 
-      <UpdateCategoryForm category={category} billboards={billboards} />
+      {category && billboards && (
+        <UpdateCategoryForm
+          category={category}
+          billboards={billboards?.data || billboards}
+        />
+      )}
+
+      {/* <UpdateCategoryForm category={category} billboards={billboards} /> */}
     </div>
   );
 };

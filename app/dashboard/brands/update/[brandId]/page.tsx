@@ -2,7 +2,7 @@ import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHead
 import UpdateBrandForm from '@/container/forms/brands/updateBrandForm/UpdateBrandForm';
 import { getBrandByIdOnServer } from '@/lib/actions/brands';
 import useGetBrandByIdOnClient from '@/lib/hooks/brands/useGetBrandByIdOnClient';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 interface Props {
   params: {
@@ -13,15 +13,29 @@ interface Props {
 const UpdateBrandPage: FC<Props> = async ({ params: { brandId } }) => {
   // console.log(params);
 
-  // const {
-  //   data: brand,
-  //   isLoading: isFetchingBrand,
-  //   isError: isErrorFetchingBrand,
-  // } = useGetBrandByIdOnClient(brandId);
+  const {
+    data: brand,
+    isLoading: isFetchingBrand,
+    isError: isErrorFetchingBrand,
+    error,
+  } = useGetBrandByIdOnClient(brandId);
 
-  const brand = await getBrandByIdOnServer(brandId);
+  // const brand = await getBrandByIdOnServer(brandId);
 
   console.log('[BRAND]', brand);
+
+  useEffect(() => {
+    if (error) {
+      // WILL BE CAUGHT BY ERROR.TSX IN SEGMENT
+      throw new Error(
+        // @ts-ignore
+        error?.message?.data?.error ||
+          // @ts-ignore
+          error?.message ||
+          'An error occured while fetching brand'
+      );
+    }
+  }, [error]);
 
   return (
     <div className="container mx-auto md:py-7 max-w-4xl">
@@ -30,8 +44,10 @@ const UpdateBrandPage: FC<Props> = async ({ params: { brandId } }) => {
         Modify Brand details
       </h3>
 
-      {/* {brand && <UpdateBrandForm brand={brand} />} */}
-      <UpdateBrandForm brand={brand} />
+      {isFetchingBrand && <span>Loading form...</span>}
+
+      {brand && <UpdateBrandForm brand={brand} />}
+      {/* <UpdateBrandForm brand={brand} /> */}
     </div>
   );
 };

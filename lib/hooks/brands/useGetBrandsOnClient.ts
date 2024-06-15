@@ -1,13 +1,18 @@
 import axios from '@/config/axios';
-import { BrandReturnTypes } from '@/types';
+import createSearchParams from '@/lib/createSearchParam';
+import { BrandReturnTypes, SearchParams } from '@/types';
 import { useQuery } from 'react-query';
 
 const getBrands = async ({ queryKey }: { queryKey: any[] }) => {
-  const paginate = queryKey[1];
-  console.log('should paginate?:', paginate);
+  const searchParamsObject = queryKey[1];
+  const paginated = queryKey[2];
 
-  const params = new URLSearchParams();
-  params.set('paginated', paginate);
+  console.log('should paginate?:', paginated);
+  console.log('searchParamsObject', searchParamsObject);
+
+  const params = createSearchParams(searchParamsObject);
+
+  params.set('paginated', paginated);
 
   const response = await axios.get<BrandReturnTypes>(`/brands?${params}`);
 
@@ -16,14 +21,18 @@ const getBrands = async ({ queryKey }: { queryKey: any[] }) => {
   return response.data;
 };
 
-const useGetBrandsOnClient = ({
-  paginated = true,
-}: {
+interface Params {
+  searchParamsObject?: SearchParams;
   paginated?: boolean;
-}) => {
+}
+
+const useGetBrandsOnClient = ({
+  searchParamsObject = {},
+  paginated = true,
+}: Params) => {
   // TODO: configure hook to take in filters
   return useQuery({
-    queryKey: ['get brands', paginated],
+    queryKey: ['get brands', searchParamsObject, paginated],
     queryFn: getBrands,
     retry: false,
   });

@@ -27,10 +27,10 @@ import { FC, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 
 interface Props {
-  _id: string;
+  id: string;
 }
 
-const BillboardsTableDropdown: FC<Props> = ({ _id }) => {
+const BillboardsTableDropdown: FC<Props> = ({ id }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -60,7 +60,7 @@ const BillboardsTableDropdown: FC<Props> = ({ _id }) => {
             <DropdownMenuItem
               className="flex items-center gap-2"
               onClick={() => {
-                navigator.clipboard.writeText(_id);
+                navigator.clipboard.writeText(id);
                 toast({
                   description: 'Billboard ID Copied Successfully!',
                 });
@@ -72,7 +72,7 @@ const BillboardsTableDropdown: FC<Props> = ({ _id }) => {
             {/* <DropdownMenuSeparator /> */}
             <DropdownMenuItem
               className="flex items-center gap-2"
-              onClick={() => router.push(`/dashboard/billboards/update/${_id}`)}
+              onClick={() => router.push(`/dashboard/billboards/update/${id}`)}
             >
               <Edit className="h-4 w-4" />
               <span>Update Billboard</span>
@@ -105,8 +105,8 @@ const BillboardsTableDropdown: FC<Props> = ({ _id }) => {
               variant={'destructive'}
               onClick={async () => {
                 setIsDeleting(true);
-                // deleteBillboard(_id);
-                const { data, error } = await deleteBillboardOnServer(_id);
+                // deleteBillboard(id);
+                const { data, error } = await deleteBillboardOnServer(id);
 
                 if (error) {
                   toast({

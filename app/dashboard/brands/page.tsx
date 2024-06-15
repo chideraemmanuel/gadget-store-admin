@@ -25,9 +25,9 @@ const BrandsPage: FC<Props> = ({ searchParams }) => {
           </Button>
         </div>
 
-        <Suspense fallback={<TableSkeleton />}>
-          <BrandsTable searchParams={searchParams} />
-        </Suspense>
+        {/* <Suspense fallback={<TableSkeleton />}> */}
+        <BrandsTable searchParams={searchParams} />
+        {/* </Suspense> */}
       </section>
     </div>
   );

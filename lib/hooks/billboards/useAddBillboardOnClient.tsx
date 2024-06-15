@@ -3,7 +3,7 @@ import axios from '@/config/axios';
 import { BillboardFormDataTypes, BillboardTypes } from '@/types';
 import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const addBillboard = async (billboard: BillboardFormDataTypes) => {
   console.log('billboard', billboard);
@@ -20,10 +20,13 @@ const addBillboard = async (billboard: BillboardFormDataTypes) => {
 const useAddBillboardOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(addBillboard, {
     onSuccess: (data) => {
       console.log(data);
+
+      queryClient.invalidateQueries('get billboards');
 
       toast({
         description: 'Billboard Added Successfully!',
@@ -38,7 +41,7 @@ const useAddBillboardOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to add billboard'
         }`,
         variant: 'destructive',
       });

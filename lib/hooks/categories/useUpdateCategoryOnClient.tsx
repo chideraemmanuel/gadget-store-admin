@@ -6,7 +6,7 @@ import {
   CategoryUpdateTypes,
 } from '@/types';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const updateCategory = async ({
   categoryId,
@@ -31,13 +31,13 @@ const updateCategory = async ({
 const useUpdateCategoryOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(updateCategory, {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/dashboard/products/update/[categoryId]', 'page');
-      // TODO: make revalidatePath work
+      queryClient.invalidateQueries('get categories');
 
       toast({
         description: 'Category Updated Successfully!',
@@ -52,7 +52,7 @@ const useUpdateCategoryOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to update category'
         }`,
         variant: 'destructive',
       });

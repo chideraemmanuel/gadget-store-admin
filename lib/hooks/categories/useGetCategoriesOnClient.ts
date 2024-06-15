@@ -1,13 +1,18 @@
 import axios from '@/config/axios';
-import { CategoryReturnTypes, CategoryTypes } from '@/types';
+import createSearchParams from '@/lib/createSearchParam';
+import { CategoryReturnTypes, CategoryTypes, SearchParams } from '@/types';
 import { useQuery } from 'react-query';
 
 const getCategories = async ({ queryKey }: { queryKey: any[] }) => {
-  const paginate = queryKey[1];
-  console.log('should paginate?:', paginate);
+  const searchParamsObject = queryKey[1];
+  const paginated = queryKey[2];
 
-  const params = new URLSearchParams();
-  params.set('paginated', paginate);
+  console.log('should paginate?:', paginated);
+  console.log('searchParamsObject', searchParamsObject);
+
+  const params = createSearchParams(searchParamsObject);
+
+  params.set('paginated', paginated);
 
   const response = await axios.get<CategoryReturnTypes>(
     `/categories?${params}`
@@ -18,17 +23,25 @@ const getCategories = async ({ queryKey }: { queryKey: any[] }) => {
   return response.data;
 };
 
-const useGetCategoriesOnClient = ({
-  paginated = true,
-}: {
+interface Params {
+  searchParamsObject?: SearchParams;
   paginated?: boolean;
-}) => {
-  return useQuery(['get categories', paginated], getCategories, {
-    retry: false,
-    onError: (error: any) => {
-      console.log('error from get categories hook', error);
-    },
-  });
+}
+
+const useGetCategoriesOnClient = ({
+  searchParamsObject = {},
+  paginated = true,
+}: Params) => {
+  return useQuery(
+    ['get categories', searchParamsObject, paginated],
+    getCategories,
+    {
+      retry: false,
+      onError: (error: any) => {
+        console.log('error from get categories hook', error);
+      },
+    }
+  );
 };
 
 export default useGetCategoriesOnClient;

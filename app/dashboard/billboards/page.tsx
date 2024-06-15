@@ -26,9 +26,9 @@ const BillboardsPage: FC<Props> = async ({ searchParams }) => {
           </Button>
         </div>
 
-        <Suspense fallback={<TableSkeleton />}>
-          <BillboardsTable searchParams={searchParams} />
-        </Suspense>
+        {/* <Suspense fallback={<TableSkeleton />}> */}
+        <BillboardsTable searchParams={searchParams} />
+        {/* </Suspense> */}
       </section>
     </div>
   );

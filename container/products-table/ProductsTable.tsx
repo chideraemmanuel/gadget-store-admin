@@ -115,8 +115,8 @@ const ProductsTable: FC<Props> = async ({ searchParams }) => {
               </TableHeader>
 
               <TableBody>
-                {/* cells must be in the same order as headers array  */}
-                {productsReturn.data?.length > 0 ? (
+                {/* CELLS MUST BE IN THE SAME ORDER AS HEADERS ARRAY */}
+                {productsReturn?.data?.length > 0 ? (
                   products?.map((product) => (
                     <TableRow key={product._id}>
                       <TableCell>
@@ -137,7 +137,7 @@ const ProductsTable: FC<Props> = async ({ searchParams }) => {
                       <TableCell>{JSON.stringify(product.featured)}</TableCell>
 
                       <TableCell>
-                        <ProductsTableDropdown _id={product._id} />
+                        <ProductsTableDropdown id={product._id} />
                       </TableCell>
                     </TableRow>
                   ))
@@ -158,7 +158,9 @@ const ProductsTable: FC<Props> = async ({ searchParams }) => {
           {/* <ResourcePagination totalPages={products.pagination.totalPages} /> */}
           {/* <ResourcePagination totalPages={5} /> */}
           {productsReturn?.pagination?.total_pages > 0 && (
-            <ResourcePagination totalPages={5} />
+            <ResourcePagination
+              totalPages={productsReturn?.pagination?.total_pages}
+            />
           )}
         </>
       )}

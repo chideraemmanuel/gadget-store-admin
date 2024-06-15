@@ -2,7 +2,7 @@ import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { BrandTypes, BrandUpdateTypes } from '@/types';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const updateBrand = async ({
   brandId,
@@ -24,13 +24,13 @@ const updateBrand = async ({
 const useUpdateBrandOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(updateBrand, {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/dashboard/products/update/[categoryId]', 'page');
-      // TODO: make revalidatePath work
+      queryClient.invalidateQueries('get brands');
 
       toast({
         description: 'Brand Updated Successfully!',
@@ -45,7 +45,7 @@ const useUpdateBrandOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to update brand'
         }`,
         variant: 'destructive',
       });

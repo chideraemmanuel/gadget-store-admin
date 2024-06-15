@@ -2,7 +2,7 @@ import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { BrandFormDataTypes, BrandTypes } from '@/types';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const addBrand = async (brand: BrandFormDataTypes) => {
   console.log('brand', brand);
@@ -19,10 +19,13 @@ const addBrand = async (brand: BrandFormDataTypes) => {
 const useAddBrandOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(addBrand, {
     onSuccess: (data) => {
       console.log(data);
+
+      queryClient.invalidateQueries('get brands');
 
       toast({
         description: 'Brand Added Successfully!',
@@ -37,7 +40,7 @@ const useAddBrandOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to add brand'
         }`,
         variant: 'destructive',
       });

@@ -3,7 +3,7 @@ import axios from '@/config/axios';
 import { BillboardTypes, BillboardUpdateTypes } from '@/types';
 import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const updateBillboard = async ({
   billboardId,
@@ -28,13 +28,13 @@ const updateBillboard = async ({
 const useUpdateBillboardOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(updateBillboard, {
     onSuccess: (data) => {
       console.log(data);
 
-      // revalidatePath('/dashboard/products/update/[categoryId]', 'page');
-      // TODO: make revalidatePath work
+      queryClient.invalidateQueries('get billboards');
 
       toast({
         description: 'Billboard Updated Successfully!',
@@ -49,7 +49,7 @@ const useUpdateBillboardOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to update billboard'
         }`,
         variant: 'destructive',
       });

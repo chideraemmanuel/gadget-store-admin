@@ -2,7 +2,7 @@ import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { CategoryFormDataTypes, CategoryTypes } from '@/types';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 const addCategory = async (category: CategoryFormDataTypes) => {
   console.log('category', category);
@@ -17,10 +17,13 @@ const addCategory = async (category: CategoryFormDataTypes) => {
 const useAddCategoryOnClient = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(addCategory, {
     onSuccess: (data) => {
       console.log(data);
+
+      queryClient.invalidateQueries('get categories');
 
       toast({
         description: 'Category Added Successfully!',
@@ -35,7 +38,7 @@ const useAddCategoryOnClient = () => {
         description: `${
           error?.response?.data?.error ||
           error?.message ||
-          'Something went wrong'
+          'Failed to add category'
         }`,
         variant: 'destructive',
       });

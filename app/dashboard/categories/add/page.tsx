@@ -2,12 +2,33 @@ import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHead
 import AddCategoryForm from '@/container/forms/categories/addCategoryForm/AddCategoryForm';
 import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
 import { getCategoryByIdOnServer } from '@/lib/actions/categories';
-import { FC } from 'react';
+import useGetBillboardsOnClient from '@/lib/hooks/billboards/useGetBillboardsOnClient';
+import { FC, useEffect } from 'react';
 
 interface Props {}
 
 const AddCategoryPage: FC<Props> = async () => {
-  const billboards = await getBillboardsOnServer();
+  // const billboards = await getBillboardsOnServer();
+
+  const {
+    data: billboards,
+    isLoading,
+    isError,
+    error,
+  } = useGetBillboardsOnClient({ paginated: false });
+
+  useEffect(() => {
+    if (error) {
+      // WILL BE CAUGHT BY ERROR.TSX IN SEGMENT
+      throw new Error(
+        // @ts-ignore
+        error?.message?.data?.error ||
+          // @ts-ignore
+          error?.message ||
+          'An error occured while fetching billboards'
+      );
+    }
+  }, [error]);
 
   return (
     <div className="container mx-auto md:py-7 max-w-4xl">
@@ -16,8 +37,12 @@ const AddCategoryPage: FC<Props> = async () => {
         Fill in category details
       </h3>
 
-      {/* {billboards && <AddCategoryForm billboards={billboards} />} */}
-      <AddCategoryForm billboards={billboards} />
+      {isLoading && <span>Loading form...</span>}
+
+      {billboards && (
+        <AddCategoryForm billboards={billboards?.data || billboards} />
+      )}
+      {/* <AddCategoryForm billboards={billboards} /> */}
     </div>
   );
 };
