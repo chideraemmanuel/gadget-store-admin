@@ -44,7 +44,7 @@ const headers = ['category name', 'billboard'];
 //   },
 // ];
 
-const CategoriesTable: FC<Props> = async ({ searchParams }) => {
+const CategoriesTable: FC<Props> = ({ searchParams }) => {
   // const categoriesReturn = await getCategoriesOnServer(searchParams);
   // const categories = categoriesReturn.data;
   // const categories: any[] = [];

@@ -1,15 +1,13 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
 import { FC } from 'react';
-import errorImage from '@/assets/error.svg';
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import errorImage from '@/assets/error.svg';
 
 interface Props {
   retry: () => void;
 }
 
-const NetworkError: FC<Props> = ({ retry }) => {
+const ServerError: FC<Props> = ({ retry }) => {
   return (
     <div className="flex flex-col justify-center items-center gap-7 min-h-[calc(100vh-70px)] container mx-auto p-10">
       <div className="max-w-[300px] h-auto">
@@ -23,10 +21,11 @@ const NetworkError: FC<Props> = ({ retry }) => {
       </div>
 
       <div className="flex flex-col gap-3 text-center">
-        <h2 className="font-bold text-2xl md:3xl">Network Error</h2>
+        <h2 className="font-bold text-2xl md:3xl">Internal Server Error</h2>
 
         <p className="text-muted-foreground w-[90%] mx-auto">
-          Please check your internet connection and try again
+          Oops! It's not you, it's us. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Reprehenderit, voluptas?
         </p>
 
         <Button onClick={() => retry()} className="w-[200px] mx-auto">
@@ -37,4 +36,4 @@ const NetworkError: FC<Props> = ({ retry }) => {
   );
 };
 
-export default NetworkError;
+export default ServerError;

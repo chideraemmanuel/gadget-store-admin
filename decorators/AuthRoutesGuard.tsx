@@ -33,6 +33,14 @@ const AuthRoutesGuard: FC<Props> = ({ children }) => {
       console.log('network error');
       throw new Error('Network Error');
     }
+
+    if (
+      error?.response?.data?.error === 'Internal Server Error' ||
+      error?.response?.status === 500
+    ) {
+      console.log('server error');
+      throw new Error('Internal Server Error');
+    }
   }, [admin, error]);
 
   // if (isLoading) {
@@ -46,6 +54,7 @@ const AuthRoutesGuard: FC<Props> = ({ children }) => {
         !isLoading &&
         isError &&
         error?.message !== 'Network Error' &&
+        error?.response?.data?.error !== 'Internal Server Error' &&
         children}
     </>
   );

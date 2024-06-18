@@ -31,6 +31,14 @@ const AdminAuthProvider: FC<Props> = ({ children }) => {
       throw new Error('Network Error');
     }
 
+    if (
+      error?.response?.data?.error === 'Internal Server Error' ||
+      error?.response?.status === 500
+    ) {
+      console.log('server error');
+      throw new Error('Internal Server Error');
+    }
+
     // NAVIGATE TO LOGIN PAGE IF SERVER SENDS BACK AN ERROR (USER NOT AUTHENTICATED)
     if (error) {
       router.replace('/auth/login');

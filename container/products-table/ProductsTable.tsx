@@ -52,7 +52,7 @@ const headers = [
 //   },
 // ];
 
-const ProductsTable: FC<Props> = async ({ searchParams }) => {
+const ProductsTable: FC<Props> = ({ searchParams }) => {
   // const productsReturn = await getProductsOnServer(searchParams);
   // const products = productsReturn.data;
   // const products: any[] = [];

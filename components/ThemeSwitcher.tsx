@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Check, Moon, Sun } from 'lucide-react';
+import { Check, Laptop, Monitor, Moon, Sun } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -29,21 +29,32 @@ const ThemeSwitcher: FC<Props> = () => {
           onClick={() => setTheme('light')}
           className="flex items-center justify-between"
         >
-          <span>Light</span>
+          <div className="flex items-center gap-2">
+            <Sun className="h-4 w-4" />
+            <span>Light</span>
+          </div>
           {theme === 'light' && <Check width={15} />}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setTheme('dark')}
           className="flex items-center justify-between"
         >
-          <span>Dark</span>
+          <div className="flex items-center gap-2">
+            <Moon className="h-4 w-4" />
+            <span>Dark</span>
+          </div>
+
           {theme === 'dark' && <Check width={15} />}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setTheme('system')}
           className="flex items-center justify-between"
         >
-          <span>System</span>
+          <div className="flex items-center gap-2">
+            <Monitor className="h-4 w-4" />
+            <span>System</span>
+          </div>
+
           {theme === 'system' && <Check width={15} />}
         </DropdownMenuItem>
       </DropdownMenuContent>

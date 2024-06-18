@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 
 // import AddProductForm from '@/container/add-product-form/AddProductForm';
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
@@ -11,7 +11,7 @@ import { FC, useEffect } from 'react';
 
 interface Props {}
 
-const AddProductPage: FC<Props> = async () => {
+const AddProductPage: FC<Props> = () => {
   const {
     data: categories,
     isError: isErrorFetchingCategories,

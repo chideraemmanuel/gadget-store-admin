@@ -1,7 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import GlobalNetworkError from '@/container/network-error/GlobalNetworkError';
 import NetworkError from '@/container/network-error/NetworkError';
+import GlobalServerError from '@/container/server-error/GlobalServerError';
+import ServerError from '@/container/server-error/ServerError';
 import { ErrorPageProps } from '@/types';
 import { redirect, useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
@@ -27,7 +30,12 @@ const RootErrorPage: FC<ErrorPageProps> = ({ error, reset }) => {
 
   // CATCHES NETWORK ERROR
   if (error.message === 'Network Error' || error.message === 'failed fetch') {
-    return <NetworkError retry={reset} />;
+    return <GlobalNetworkError retry={reset} />;
+  }
+
+  // CATCHES SERVER ERROR
+  if (error.message === 'Internal Server Error') {
+    return <GlobalServerError retry={reset} />;
   }
 
   return (

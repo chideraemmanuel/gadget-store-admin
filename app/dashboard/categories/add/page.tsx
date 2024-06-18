@@ -1,3 +1,5 @@
+'use client';
+
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import AddCategoryForm from '@/container/forms/categories/addCategoryForm/AddCategoryForm';
 import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
@@ -7,7 +9,7 @@ import { FC, useEffect } from 'react';
 
 interface Props {}
 
-const AddCategoryPage: FC<Props> = async () => {
+const AddCategoryPage: FC<Props> = () => {
   // const billboards = await getBillboardsOnServer();
 
   const {

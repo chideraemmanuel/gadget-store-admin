@@ -1,3 +1,5 @@
+'use client';
+
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import UpdateCategoryForm from '@/container/forms/categories/updateCategoryForm/UpdateCategoryForm';
 import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
@@ -12,7 +14,7 @@ interface Props {
   };
 }
 
-const UpdateCategoryPage: FC<Props> = async ({ params: { categoryId } }) => {
+const UpdateCategoryPage: FC<Props> = ({ params: { categoryId } }) => {
   // console.log(params);
 
   const {

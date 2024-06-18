@@ -1,17 +1,22 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
+import Logo from '@/components/Logo';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
+import Image from 'next/image';
 import { FC } from 'react';
 import errorImage from '@/assets/error.svg';
-import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   retry: () => void;
 }
 
-const NetworkError: FC<Props> = ({ retry }) => {
+const GlobalNetworkError: FC<Props> = ({ retry }) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-7 min-h-[calc(100vh-70px)] container mx-auto p-10">
+    <div className="fixed top-0 left-0 right-0 min-w-screen min-h-screen bg-background z-50 flex flex-col justify-center items-center gap-7 mx-auto py-10 px-7">
+      <div className="absolute top-6 container flex justify-between items-center">
+        <Logo />
+        <ThemeSwitcher />
+      </div>
+
       <div className="max-w-[300px] h-auto">
         <Image
           src={errorImage}
@@ -37,4 +42,4 @@ const NetworkError: FC<Props> = ({ retry }) => {
   );
 };
 
-export default NetworkError;
+export default GlobalNetworkError;

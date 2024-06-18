@@ -1,7 +1,7 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { useRouter } from 'next/navigation';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 
 const logoutAdmin = async () => {
   const response = await axios.get('/auth/admin/logout', {
@@ -14,6 +14,7 @@ const logoutAdmin = async () => {
 const useLogoutAdminOnClient = () => {
   const router = useRouter();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   return useQuery(
     {
@@ -22,11 +23,13 @@ const useLogoutAdminOnClient = () => {
       enabled: false,
       retry: false,
       onSuccess: (data) => {
-        router.replace('/auth/login');
+        queryClient.invalidateQueries('get current admin');
 
         toast({
           description: 'Logout Successful',
         });
+
+        router.replace('/auth/login');
       },
       onError: (error: any) => {
         console.log(error);

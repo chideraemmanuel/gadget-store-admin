@@ -1,7 +1,7 @@
 'use client';
 
 import Logo from '@/components/Logo';
-import { Menu, MenuIcon } from 'lucide-react';
+import { LogOut, Menu, MenuIcon } from 'lucide-react';
 import { FC } from 'react';
 import profileImage from '../../assets/profile.jpg';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -22,30 +22,36 @@ import MobileNavigationMenu from '../mobile-navigation-menu/MobileNavigationMenu
 import { Separator } from '@/components/ui/separator';
 import useLogoutAdminOnClient from '@/lib/hooks/auth/useLogoutAdminOnClient';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
+import useGetCurrentAdminOnClient from '@/lib/hooks/auth/useGetCurrentAdminOnClient';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Props {}
 
 const DashboardHeader: FC<Props> = () => {
-  const pathname = usePathname();
-  const { refetch: logout, isLoading } = useLogoutAdminOnClient();
+  // const pathname = usePathname();
 
-  const header = headers.find((header) => {
-    return `${header.href}` === pathname;
-  });
+  const { data: admin, isLoading: isGettingCurrentAdmin } =
+    useGetCurrentAdminOnClient();
+  const { refetch: logout, isLoading: isLoggingOut } = useLogoutAdminOnClient();
+
+  // const header = headers.find((header) => {
+  //   return `${header.href}` === pathname;
+  // });
 
   // console.log('header', header);
   // console.log('pathname', pathname);
 
-  // if (isLoading) {
-  //   return (
-  //     <>
-  //       <span>Is Logging Out...</span>
-  //     </>
-  //   );
-  // }
+  const getInitials = (firstName: string, lastName: string) => {
+    const firstNameInitial = firstName.charAt(0);
+    const lastNameInitial = lastName.charAt(0);
+
+    return `${firstNameInitial}${lastNameInitial}`;
+  };
 
   return (
     <>
+      {/* {isLoggingOut && <span>Logging out...</span>} */}
+
       <header className="sticky top-0 z-20 backdrop-blur-lg bg-background bg-opacity-80">
         <div className="h-[70px] flex items-center justify-between px-8">
           <MobileNavigationMenu />
@@ -58,21 +64,38 @@ const DashboardHeader: FC<Props> = () => {
             <ThemeSwitcher />
 
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
+              {isGettingCurrentAdmin && (
+                <Skeleton className="relative flex shrink-0 h-10 w-10 rounded-full" />
+              )}
+
+              {admin && (
+                <DropdownMenuTrigger>
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    {/* <AvatarFallback>CN</AvatarFallback> */}
+                    <AvatarFallback>
+                      {getInitials(admin?.first_name, admin?.last_name)}
+                    </AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+              )}
 
               <DropdownMenuContent className="mr-4">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                {/* <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem> */}
-                <DropdownMenuItem onClick={() => logout()}>
-                  Logout
+                <DropdownMenuItem
+                  className="flex items-center gap-2"
+                  // onClick={() => logout()}
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center gap-2"
+                  onClick={() => logout()}
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

@@ -40,7 +40,7 @@ const headers = ['brand logo', 'brand name'];
 //   },
 // ];
 
-const BrandsTable: FC<Props> = async ({ searchParams }) => {
+const BrandsTable: FC<Props> = ({ searchParams }) => {
   // const brandsReturn = await getBrandsOnServer(searchParams);
   // const brands = brandsReturn.data;
   // const brands: any[] = [];

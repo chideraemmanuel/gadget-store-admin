@@ -1,3 +1,5 @@
+'use client';
+
 import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
 import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
 import { getBrandsOnServer } from '@/lib/actions/brands';
@@ -14,7 +16,7 @@ interface Props {
   };
 }
 
-const UpdateProductPage: FC<Props> = async ({ params: { productId } }) => {
+const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
   // console.log(params);
 
   const {

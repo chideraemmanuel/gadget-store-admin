@@ -1,3 +1,12 @@
+export interface AdminInfoTypes {
+  first_name: string;
+  last_name: string;
+  verified: boolean;
+  auth_type: 'MANUAL_AUTH_SERVICE' | 'GOOGLE_AUTH_SERVICE';
+  role: string;
+  email: string;
+}
+
 export interface ProductTypes {
   _id: string;
   product_name: string;

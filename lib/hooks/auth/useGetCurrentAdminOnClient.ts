@@ -1,11 +1,14 @@
 import axios from '@/config/axios';
 import { setAdmin } from '@/redux/slices/authSlice';
+import { AdminInfoTypes } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 
 const getCurrentAdmin = async () => {
-  const response = await axios.get('/auth/admin', { withCredentials: true });
+  const response = await axios.get<AdminInfoTypes>('/auth/admin', {
+    withCredentials: true,
+  });
 
   return response.data;
 };

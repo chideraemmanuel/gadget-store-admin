@@ -42,7 +42,7 @@ const headers = ['billboard image', 'billboard name'];
 // ];
 // const billboards: any[] = [];
 
-const BillboardsTable: FC<Props> = async ({ searchParams }) => {
+const BillboardsTable: FC<Props> = ({ searchParams }) => {
   // const billboardsReturn = await getBillboardsOnServer(searchParams);
   // const billboards = billboardsReturn.data.data;
   // const billboards: any[] = [];

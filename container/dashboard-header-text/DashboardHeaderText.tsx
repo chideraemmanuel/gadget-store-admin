@@ -10,7 +10,7 @@ const DashboardHeaderText: FC<Props> = () => {
   const pathname = usePathname();
 
   const header = headers.find((header) => {
-    return `${header.href}` === pathname;
+    return `${header.href}` === pathname; // TODO: make work! (doesn't work for dymanic routes, refactor!)
   });
 
   return (
