@@ -86,7 +86,7 @@ const ProductsTableDropdown: FC<Props> = ({ id }) => {
 
             <AlertDialogTrigger asChild>
               {/* <DropdownMenuItem>Delete Product</DropdownMenuItem> */}
-              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-red-100 focus:bg-red-100 flex items-center gap-2">
+              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-destructive/30 focus:bg-destructive/hover:bg-destructive/30 flex items-center gap-2">
                 <Trash2 className="h-4 w-4" />
                 <span>Delete Product</span>
               </DropdownMenuItem>

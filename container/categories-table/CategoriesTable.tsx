@@ -111,7 +111,9 @@ const CategoriesTable: FC<Props> = ({ searchParams }) => {
                     </div>
                   </TableCell> */}
 
-                      <TableCell>{category.name}</TableCell>
+                      <TableCell className="capitalize">
+                        {category.name}
+                      </TableCell>
                       <TableCell>{category.billboard.name}</TableCell>
 
                       <TableCell>

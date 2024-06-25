@@ -6,7 +6,8 @@ import { FC } from 'react';
 
 const DashboardLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <AdminAuthProvider>
+    // <AdminAuthProvider>
+    <>
       <DashboardHeader />
 
       <div>
@@ -14,7 +15,8 @@ const DashboardLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
 
         <main className="ml-0 md:ml-[min(270px,_30vw)]">{children}</main>
       </div>
-    </AdminAuthProvider>
+    </>
+    // </AdminAuthProvider>
   );
 };
 

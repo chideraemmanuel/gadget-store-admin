@@ -1,7 +1,7 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
 import { useRouter } from 'next/navigation';
-import { useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 const logoutAdmin = async () => {
   const response = await axios.get('/auth/admin/logout', {
@@ -16,13 +16,11 @@ const useLogoutAdminOnClient = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  return useQuery(
+  return useMutation(
     {
-      queryKey: 'logout admin',
-      queryFn: logoutAdmin,
-      enabled: false,
-      retry: false,
-      onSuccess: (data) => {
+      mutationKey: ['logout admin'],
+      mutationFn: logoutAdmin,
+      onSuccess: () => {
         queryClient.invalidateQueries('get current admin');
 
         toast({
@@ -35,7 +33,9 @@ const useLogoutAdminOnClient = () => {
         console.log(error);
 
         toast({
-          description: 'Logout Failed',
+          description: `${
+            error?.response?.data?.error || error?.message || 'Logout Failed'
+          }`,
           variant: 'destructive',
         });
       },

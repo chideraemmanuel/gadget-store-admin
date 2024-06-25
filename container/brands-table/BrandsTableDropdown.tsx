@@ -22,7 +22,7 @@ import { useToast } from '@/components/ui/use-toast';
 import useDeleteBrandOnClient from '@/lib/hooks/brands/useDeleteBrandOnClient';
 import { Copy, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 interface Props {
   _id: string;
@@ -41,6 +41,13 @@ const BrandsTableDropdown: FC<Props> = ({ _id }) => {
     isSuccess,
     isError,
   } = useDeleteBrandOnClient();
+
+  // CLOSE DIALOG ONCE MUTATION IS COMPLETE
+  useEffect(() => {
+    if (isSuccess) {
+      setDialogOpen(false);
+    }
+  }, [isSuccess]);
 
   return (
     <>
@@ -78,7 +85,7 @@ const BrandsTableDropdown: FC<Props> = ({ _id }) => {
             <DropdownMenuSeparator />
 
             <AlertDialogTrigger asChild>
-              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-red-100 focus:bg-red-100 flex items-center gap-2">
+              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-destructive/30 focus:bg-destructive/30 flex items-center gap-2">
                 <Trash2 className="h-4 w-4" />
                 <span>Delete Brand</span>
               </DropdownMenuItem>
@@ -102,7 +109,7 @@ const BrandsTableDropdown: FC<Props> = ({ _id }) => {
               variant={'destructive'}
               onClick={() => {
                 deletaBrand(_id);
-                setDialogOpen(false);
+                // setDialogOpen(false);
               }}
             >
               Delete Brand

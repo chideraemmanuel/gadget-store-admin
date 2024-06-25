@@ -22,7 +22,7 @@ import { useToast } from '@/components/ui/use-toast';
 import useDeleteCategoryOnClient from '@/lib/hooks/categories/useDeleteCategoryOnClient';
 import { Copy, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 interface Props {
   id: string;
@@ -41,6 +41,13 @@ const CategoriesTableDropdown: FC<Props> = ({ id }) => {
     isSuccess,
     isError,
   } = useDeleteCategoryOnClient();
+
+  // CLOSE DIALOG ONCE MUTATION IS COMPLETE
+  useEffect(() => {
+    if (isSuccess) {
+      setDialogOpen(false);
+    }
+  }, [isSuccess]);
 
   return (
     <>
@@ -78,7 +85,7 @@ const CategoriesTableDropdown: FC<Props> = ({ id }) => {
             <DropdownMenuSeparator />
 
             <AlertDialogTrigger asChild>
-              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-red-100 focus:bg-red-100 flex items-center gap-2">
+              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-destructive/30 focus:bg-destructive/30 flex items-center gap-2">
                 <Trash2 className="h-4 w-4" />
                 <span>Delete Category</span>
               </DropdownMenuItem>
@@ -102,7 +109,7 @@ const CategoriesTableDropdown: FC<Props> = ({ id }) => {
               variant={'destructive'}
               onClick={() => {
                 deleteCategory(id);
-                setDialogOpen(false);
+                // setDialogOpen(false);
               }}
             >
               Delete Category

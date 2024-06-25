@@ -1,7 +1,7 @@
 'use client';
 
 import Logo from '@/components/Logo';
-import { LogOut, Menu, MenuIcon } from 'lucide-react';
+import { LogOut, Menu, MenuIcon, User2 } from 'lucide-react';
 import { FC } from 'react';
 import profileImage from '../../assets/profile.jpg';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -32,7 +32,7 @@ const DashboardHeader: FC<Props> = () => {
 
   const { data: admin, isLoading: isGettingCurrentAdmin } =
     useGetCurrentAdminOnClient();
-  const { refetch: logout, isLoading: isLoggingOut } = useLogoutAdminOnClient();
+  const { mutate: logout, isLoading: isLoggingOut } = useLogoutAdminOnClient();
 
   // const header = headers.find((header) => {
   //   return `${header.href}` === pathname;
@@ -71,7 +71,8 @@ const DashboardHeader: FC<Props> = () => {
               {admin && (
                 <DropdownMenuTrigger>
                   <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
+                    <AvatarImage src="" />
                     {/* <AvatarFallback>CN</AvatarFallback> */}
                     <AvatarFallback>
                       {getInitials(admin?.first_name, admin?.last_name)}
@@ -87,7 +88,7 @@ const DashboardHeader: FC<Props> = () => {
                   className="flex items-center gap-2"
                   // onClick={() => logout()}
                 >
-                  <LogOut className="h-4 w-4" />
+                  <User2 className="h-4 w-4" />
                   <span>Profile</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem

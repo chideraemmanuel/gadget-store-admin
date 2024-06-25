@@ -23,7 +23,7 @@ import { deleteBillboardOnServer } from '@/lib/actions/billboard-mutation';
 import useDeleteBillboardOnClient from '@/lib/hooks/billboards/useDeleteBillboardOnClient';
 import { Copy, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 
 interface Props {
@@ -44,6 +44,13 @@ const BillboardsTableDropdown: FC<Props> = ({ id }) => {
     isSuccess,
     isError,
   } = useDeleteBillboardOnClient();
+
+  // CLOSE DIALOG ONCE MUTATION IS COMPLETE
+  useEffect(() => {
+    if (isSuccess) {
+      setDialogOpen(false);
+    }
+  }, [isSuccess]);
 
   return (
     <>
@@ -81,7 +88,7 @@ const BillboardsTableDropdown: FC<Props> = ({ id }) => {
             <DropdownMenuSeparator />
 
             <AlertDialogTrigger asChild>
-              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-red-100 focus:bg-red-100 flex items-center gap-2">
+              <DropdownMenuItem className="text-destructive hover:text-destructive focus:text-destructive hover:bg-destructive/30 focus:bg-destructive/30 flex items-center gap-2">
                 <Trash2 className="h-4 w-4" />
                 <span>Delete Billboard</span>
               </DropdownMenuItem>
@@ -101,26 +108,27 @@ const BillboardsTableDropdown: FC<Props> = ({ id }) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
             <Button
-              disabled={isDeleting}
+              // disabled={isDeleting}
+              disabled={isDeletingBillboard}
               variant={'destructive'}
               onClick={async () => {
-                setIsDeleting(true);
-                // deleteBillboard(id);
-                const { data, error } = await deleteBillboardOnServer(id);
+                deleteBillboard(id);
+                // setIsDeleting(true);
+                // const { data, error } = await deleteBillboardOnServer(id);
 
-                if (error) {
-                  toast({
-                    description: error,
-                    variant: 'destructive',
-                  });
-                } else {
-                  toast({
-                    description: 'Billboard Deleted Successfully!',
-                  });
-                }
+                // if (error) {
+                //   toast({
+                //     description: error,
+                //     variant: 'destructive',
+                //   });
+                // } else {
+                //   toast({
+                //     description: 'Billboard Deleted Successfully!',
+                //   });
+                // }
 
-                setIsDeleting(false);
-                setDialogOpen(false);
+                // setIsDeleting(false);
+                // setDialogOpen(false);
               }}
             >
               Delete Billboard

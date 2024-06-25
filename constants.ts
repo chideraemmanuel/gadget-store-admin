@@ -1,15 +1,23 @@
-import { ActivityIcon, ShoppingBagIcon } from 'lucide-react';
+import {
+  ActivityIcon,
+  HomeIcon,
+  LineChartIcon,
+  Package2Icon,
+  PackageIcon,
+  ShoppingBagIcon,
+  UsersIcon,
+} from 'lucide-react';
 
 export const DASHBOARD_NAVIGATION_LINKS = [
   {
     title: 'Overview',
     href: '/dashboard',
-    icon: ActivityIcon,
+    icon: HomeIcon,
   },
   {
     title: 'Products',
     href: '/dashboard/products',
-    icon: ShoppingBagIcon,
+    icon: PackageIcon,
   },
   {
     title: 'Categories',
@@ -19,12 +27,17 @@ export const DASHBOARD_NAVIGATION_LINKS = [
   {
     title: 'Brands',
     href: '/dashboard/brands',
-    icon: ActivityIcon,
+    icon: Package2Icon,
   },
   {
     title: 'Billboards',
     href: '/dashboard/billboards',
-    icon: ActivityIcon,
+    icon: LineChartIcon,
+  },
+  {
+    title: 'Users',
+    href: '/dashboard/users',
+    icon: UsersIcon,
   },
   {
     title: 'Orders',
