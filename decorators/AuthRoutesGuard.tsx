@@ -1,7 +1,7 @@
 'use client';
 
 import { getCurrentAdminOnServer } from '@/lib/actions/auth';
-import useGetCurrentAdmin from '@/lib/hooks/auth/useGetCurrentAdmin ';
+import useGetCurrentAdmin from '@/lib/hooks/auth/useGetCurrentAdmin';
 import { redirect, useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 

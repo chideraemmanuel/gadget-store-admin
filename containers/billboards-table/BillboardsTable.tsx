@@ -18,8 +18,8 @@ import ResourcePagination from '@/components/ResourcePagination';
 import ResourceSearch from '@/components/ResourceSearch';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import useGetBillboards from '@/lib/hooks/billboards/useGetBillboards ';
 import TableSkeleton from '@/components/TableSkeleton';
+import useGetBillboards from '@/lib/hooks/billboards/useGetBillboards';
 
 interface Props {
   searchParams: SearchParams;
@@ -134,7 +134,7 @@ const BillboardsTable: FC<Props> = ({ searchParams }) => {
 
           {/* <ResourcePagination totalPages={billboards.pagination.totalPages} /> */}
           {/* <ResourcePagination totalPages={5} /> */}
-          {billboardsReturn?.pagination?.total_pages > 0 && (
+          {billboardsReturn?.pagination?.total_pages > 1 && (
             <ResourcePagination
               totalPages={billboardsReturn?.pagination?.total_pages}
             />

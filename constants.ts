@@ -34,11 +34,11 @@ export const DASHBOARD_NAVIGATION_LINKS = [
     href: '/dashboard/billboards',
     icon: LineChartIcon,
   },
-  {
-    title: 'Users',
-    href: '/dashboard/users',
-    icon: UsersIcon,
-  },
+  // {
+  //   title: 'Users',
+  //   href: '/dashboard/users',
+  //   icon: UsersIcon,
+  // },
   {
     title: 'Orders',
     href: '/dashboard/orders',

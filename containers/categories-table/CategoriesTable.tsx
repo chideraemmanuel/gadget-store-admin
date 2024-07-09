@@ -18,8 +18,8 @@ import ResourceSearch from '@/components/ResourceSearch';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import ResourcePagination from '@/components/ResourcePagination';
-import useGetCategories from '@/lib/hooks/categories/useGetCategories ';
 import TableSkeleton from '@/components/TableSkeleton';
+import useGetCategories from '@/lib/hooks/categories/useGetCategories';
 
 interface Props {
   searchParams: SearchParams;
@@ -137,7 +137,7 @@ const CategoriesTable: FC<Props> = ({ searchParams }) => {
 
           {/* <ResourcePagination totalPages={categories.pagination.totalPages} /> */}
           {/* <ResourcePagination totalPages={5} /> */}
-          {categoriesReturn.pagination.total_pages > 0 && (
+          {categoriesReturn.pagination.total_pages > 1 && (
             <ResourcePagination
               totalPages={categoriesReturn.pagination.total_pages}
             />

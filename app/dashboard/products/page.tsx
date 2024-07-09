@@ -2,7 +2,6 @@ import { FC, Suspense } from 'react';
 // import ProductsTable from '@/containers/tables/productsTable/ProductsTable';
 import ProductsTable from '@/containers/products-table/ProductsTable';
 import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
-import useGetProducts from '@/lib/hooks/products/useGetProducts ';
 import { SearchParams } from '@/types';
 import ResourceSearch from '@/components/ResourceSearch';
 import { Button } from '@/components/ui/button';

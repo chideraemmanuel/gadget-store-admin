@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useToast } from '@/components/ui/use-toast';
 import { deleteBillboardOnServer } from '@/lib/actions/billboard-mutation';
-import useDeleteBillboard from '@/lib/hooks/billboards/useDeleteBillboard ';
+import useDeleteBillboard from '@/lib/hooks/billboards/useDeleteBillboard';
 import { Copy, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';

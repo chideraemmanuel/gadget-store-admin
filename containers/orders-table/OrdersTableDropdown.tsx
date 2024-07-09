@@ -28,7 +28,7 @@ interface Props {
   _id: string;
 }
 
-const BrandsTableDropdown: FC<Props> = ({ _id }) => {
+const OrdersTableDropdown: FC<Props> = ({ _id }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
@@ -121,4 +121,4 @@ const BrandsTableDropdown: FC<Props> = ({ _id }) => {
   );
 };
 
-export default BrandsTableDropdown;
+export default OrdersTableDropdown;

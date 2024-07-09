@@ -151,7 +151,7 @@ const ProductsTable: FC<Props> = ({ searchParams }) => {
 
           {/* <ResourcePagination totalPages={products.pagination.totalPages} /> */}
           {/* <ResourcePagination totalPages={5} /> */}
-          {productsReturn?.pagination?.total_pages > 0 && (
+          {productsReturn?.pagination?.total_pages > 1 && (
             <ResourcePagination
               totalPages={productsReturn?.pagination?.total_pages}
             />

@@ -18,8 +18,8 @@ import ResourceSearch from '@/components/ResourceSearch';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import ResourcePagination from '@/components/ResourcePagination';
-import useGetBrands from '@/lib/hooks/brands/useGetBrands ';
 import TableSkeleton from '@/components/TableSkeleton';
+import useGetBrands from '@/lib/hooks/brands/useGetBrands';
 
 interface Props {
   searchParams: SearchParams;
@@ -129,7 +129,7 @@ const BrandsTable: FC<Props> = ({ searchParams }) => {
 
           {/* <ResourcePagination totalPages={brands.pagination.totalPages} /> */}
           {/* <ResourcePagination totalPages={5} /> */}
-          {brandsReturn?.pagination?.total_pages > 0 && (
+          {brandsReturn?.pagination?.total_pages > 1 && (
             <ResourcePagination
               totalPages={brandsReturn?.pagination?.total_pages}
             />
