@@ -1,8 +1,8 @@
 import { FC, Suspense } from 'react';
-// import ProductsTable from '@/container/tables/productsTable/ProductsTable';
-import ProductsTable from '@/container/products-table/ProductsTable';
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import useGetProductsOnClient from '@/lib/hooks/products/useGetProductsOnClient';
+// import ProductsTable from '@/containers/tables/productsTable/ProductsTable';
+import ProductsTable from '@/containers/products-table/ProductsTable';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import useGetProducts from '@/lib/hooks/products/useGetProducts ';
 import { SearchParams } from '@/types';
 import ResourceSearch from '@/components/ResourceSearch';
 import { Button } from '@/components/ui/button';

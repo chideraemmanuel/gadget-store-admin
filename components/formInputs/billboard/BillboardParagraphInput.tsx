@@ -2,7 +2,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { BillboardFormDataTypes } from '@/container/forms/billboards/addBillboardForm/AddBillboardForm';
+import { BillboardFormDataTypes } from '@/containers/forms/billboards/AddBillboardForm';
 
 interface Props {
   register: UseFormRegister<BillboardFormDataTypes>;

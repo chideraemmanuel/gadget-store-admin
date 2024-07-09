@@ -1,18 +1,70 @@
+'use client';
+
+import ComboBoxInput from '@/components/ComboBoxInput';
+import ImageInput from '@/components/ImageInput';
 import { Overview } from '@/components/Overview';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { headers } from '@/constants';
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
 import { usePathname } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 interface Props {}
 
+// const dum = [
+//   {
+//     id: 'Brand One Id',
+//     name: 'Brand Name One',
+//     value: 'Brand Value One',
+//   },
+//   {
+//     id: 'Brand Two Id',
+//     name: 'Brand Name Two',
+//     value: 'Brand Value Two',
+//   },
+//   {
+//     id: 'Brand Three Id',
+//     name: 'Brand Name Three',
+//     value: 'Brand Value Three',
+//   },
+//   {
+//     id: 'Brand Four Id',
+//     name: 'Brand Name Four',
+//     value: 'Brand Value Four',
+//   },
+//   {
+//     id: 'Brand Five Id',
+//     name: 'Brand Name Five',
+//     value: 'Brand Value Five',
+//   },
+// ];
+
 const AdminDashboard: FC<Props> = () => {
+  // const [cbOpen, setCbOpen] = useState(false);
+
   return (
     // <div className="">
 
     <div className="container mx-auto">
+      {/* <ComboBoxInput
+        comboboxItems={dum}
+        comboboxOpen={cbOpen}
+        setComboboxOpen={setCbOpen}
+        onItemSelect={(value) => console.log('selected item value:', value)}
+        defautlValue={{
+          id: 'Brand One Id',
+          name: 'Brand Name One',
+          value: 'Brand Value One',
+        }}
+      /> */}
+
       <DashboardHeaderText />
+
+      {/* <ImageInput
+        label="Product Image"
+        error="Error Message"
+      /> */}
+
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 pb-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

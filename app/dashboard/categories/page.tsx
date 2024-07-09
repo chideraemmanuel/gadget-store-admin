@@ -1,8 +1,8 @@
 import ResourceSearch from '@/components/ResourceSearch';
 import TableSkeleton from '@/components/TableSkeleton';
 import { Button } from '@/components/ui/button';
-import CategoriesTable from '@/container/categories-table/CategoriesTable';
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
+import CategoriesTable from '@/containers/categories-table/CategoriesTable';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
 import { SearchParams } from '@/types';
 import Link from 'next/link';
 import { FC, Suspense } from 'react';

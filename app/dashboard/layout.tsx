@@ -1,13 +1,13 @@
 import { Separator } from '@/components/ui/separator';
-import DashboardHeader from '@/container/dashboard-header/DashboardHeader';
-import Sidebar from '@/container/sidebar/Sidebar';
+import DashboardHeader from '@/containers/dashboard-header/DashboardHeader';
+import Sidebar from '@/containers/sidebar/Sidebar';
 import AdminAuthProvider from '@/decorators/AdminAuthProvider';
 import { FC } from 'react';
 
 const DashboardLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    // <AdminAuthProvider>
     <>
+      {/* <AdminAuthProvider> */}
       <DashboardHeader />
 
       <div>
@@ -15,8 +15,8 @@ const DashboardLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
 
         <main className="ml-0 md:ml-[min(270px,_30vw)]">{children}</main>
       </div>
+      {/* </AdminAuthProvider> */}
     </>
-    // </AdminAuthProvider>
   );
 };
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { getCurrentAdminOnServer } from '@/lib/actions/auth';
-import useGetCurrentAdminOnClient from '@/lib/hooks/auth/useGetCurrentAdminOnClient';
+import useGetCurrentAdmin from '@/lib/hooks/auth/useGetCurrentAdmin ';
 import { redirect, useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 
@@ -12,12 +12,7 @@ interface Props {
 const AuthRoutesGuard: FC<Props> = ({ children }) => {
   const router = useRouter();
 
-  const {
-    data: admin,
-    isLoading,
-    isError,
-    error,
-  } = useGetCurrentAdminOnClient();
+  const { data: admin, isLoading, isError, error } = useGetCurrentAdmin();
 
   // console.log('error:', error);
 

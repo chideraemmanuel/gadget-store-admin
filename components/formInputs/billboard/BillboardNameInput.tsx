@@ -2,7 +2,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { BillboardFormDataTypes } from '@/container/forms/billboards/addBillboardForm/AddBillboardForm';
+import { BillboardFormDataTypes } from '@/containers/forms/billboards/AddBillboardForm';
 
 interface Props {
   register: UseFormRegister<BillboardFormDataTypes>;

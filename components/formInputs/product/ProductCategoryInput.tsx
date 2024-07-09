@@ -9,7 +9,7 @@ import {
 import { cn } from '@/lib/utils';
 import { FC, useEffect } from 'react';
 import { FieldErrors, UseFormRegister, UseFormReturn } from 'react-hook-form';
-import { FormDataTypes } from '../../../container/forms/products/addProductForm/AddProductForm';
+import { FormDataTypes } from '@/containers/forms/products/AddProductForm';
 import { CategoryTypes } from '@/types';
 
 interface Props {

@@ -1,5 +1,5 @@
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import AddBillboardForm from '@/container/forms/billboards/addBillboardForm/AddBillboardForm';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import AddBillboardForm from '@/containers/forms/billboards/AddBillboardForm';
 import { FC } from 'react';
 
 interface Props {}

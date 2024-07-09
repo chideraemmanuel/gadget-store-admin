@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from 'react';
-import AdminLoginForm from '@/container/admin-login-form/AdminLoginForm';
+import AdminLoginForm from '@/containers/admin-login-form/AdminLoginForm';
 
 interface Props {}
 

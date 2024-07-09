@@ -1,6 +1,6 @@
 import { FC, Suspense } from 'react';
-import BillboardsTable from '@/container/billboards-table/BillboardsTable';
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
+import BillboardsTable from '@/containers/billboards-table/BillboardsTable';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
 import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
 import { SearchParams } from '@/types';
 import ResourceSearch from '@/components/ResourceSearch';

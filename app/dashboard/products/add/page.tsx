@@ -1,12 +1,13 @@
 'use client';
 
-// import AddProductForm from '@/container/add-product-form/AddProductForm';
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import AddProductForm from '@/container/forms/products/addProductForm/AddProductForm';
+import FullScreenLoader from '@/components/FullScreenLoader';
+// import AddProductForm from '@/containers/add-product-form/AddProductForm';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import AddProductForm from '@/containers/forms/products/AddProductForm';
 import { getBrandsOnServer } from '@/lib/actions/brands';
 import { getCategoriesOnServer } from '@/lib/actions/categories';
-import useGetBrandsOnClient from '@/lib/hooks/brands/useGetBrandsOnClient';
-import useGetCategoriesOnClient from '@/lib/hooks/categories/useGetCategoriesOnClient';
+import useGetBrands from '@/lib/hooks/brands/useGetBrands';
+import useGetCategories from '@/lib/hooks/categories/useGetCategories';
 import { FC, useEffect } from 'react';
 
 interface Props {}
@@ -17,14 +18,14 @@ const AddProductPage: FC<Props> = () => {
     isError: isErrorFetchingCategories,
     isLoading: isFetchingCategories,
     error: errorFetchingCategories,
-  } = useGetCategoriesOnClient({ paginated: false });
+  } = useGetCategories({ paginated: false });
 
   const {
     data: brands,
     isError: isErrorFetchingBrands,
     isLoading: isFetchingBrands,
     error: errorFetchingBrands,
-  } = useGetBrandsOnClient({ paginated: false });
+  } = useGetBrands({ paginated: false });
 
   // const fetchBrands = getBrandsOnServer();
   // const fetchCategories = getCategoriesOnServer();
@@ -60,7 +61,8 @@ const AddProductPage: FC<Props> = () => {
       </h3>
 
       {(isFetchingCategories ?? isFetchingBrands) && (
-        <span>Loading form...</span>
+        // <span>Loading form...</span>
+        <FullScreenLoader />
       )}
 
       {/* {(isErrorFetchingCategories ?? isErrorFetchingBrands) && (

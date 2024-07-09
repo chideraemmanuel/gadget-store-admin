@@ -1,9 +1,10 @@
 'use client';
 
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import UpdateBrandForm from '@/container/forms/brands/updateBrandForm/UpdateBrandForm';
+import FullScreenLoader from '@/components/FullScreenLoader';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import UpdateBrandForm from '@/containers/forms/brands/UpdateBrandForm';
 import { getBrandByIdOnServer } from '@/lib/actions/brands';
-import useGetBrandByIdOnClient from '@/lib/hooks/brands/useGetBrandByIdOnClient';
+import useGetBrandById from '@/lib/hooks/brands/useGetBrandById';
 import { FC, useEffect } from 'react';
 
 interface Props {
@@ -20,7 +21,7 @@ const UpdateBrandPage: FC<Props> = ({ params: { brandId } }) => {
     isLoading: isFetchingBrand,
     isError: isErrorFetchingBrand,
     error,
-  } = useGetBrandByIdOnClient(brandId);
+  } = useGetBrandById(brandId);
 
   // const brand = await getBrandByIdOnServer(brandId);
 
@@ -46,7 +47,10 @@ const UpdateBrandPage: FC<Props> = ({ params: { brandId } }) => {
         Modify Brand details
       </h3>
 
-      {isFetchingBrand && <span>Loading form...</span>}
+      {isFetchingBrand && (
+        // <span>Loading form...</span>
+        <FullScreenLoader />
+      )}
 
       {brand && <UpdateBrandForm brand={brand} />}
       {/* <UpdateBrandForm brand={brand} /> */}

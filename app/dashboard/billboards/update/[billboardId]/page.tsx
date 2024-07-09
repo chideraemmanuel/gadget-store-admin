@@ -1,9 +1,10 @@
 'use client';
 
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import UpdateBillboardForm from '@/container/forms/billboards/updateBillboardForm/UpdateBillboardForm';
+import FullScreenLoader from '@/components/FullScreenLoader';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import UpdateBillboardForm from '@/containers/forms/billboards/UpdateBillboardForm';
 import { getBillboardByIdOnServer } from '@/lib/actions/billboards-fetch';
-import useGetBillboardByIdOnClient from '@/lib/hooks/billboards/useGetBillboardByIdOnClient';
+import useGetBillboardById from '@/lib/hooks/billboards/useGetBillboardById';
 import { FC, useEffect } from 'react';
 
 interface Props {
@@ -20,7 +21,7 @@ const UpdateBillboardPage: FC<Props> = ({ params: { billboardId } }) => {
     isLoading: isFetchingBillboard,
     isError: isErrorFetchingBillboard,
     error,
-  } = useGetBillboardByIdOnClient(billboardId);
+  } = useGetBillboardById(billboardId);
 
   // const billboard = await getBillboardByIdOnServer(billboardId);
 
@@ -46,7 +47,10 @@ const UpdateBillboardPage: FC<Props> = ({ params: { billboardId } }) => {
         Modify Billboard details
       </h3>
 
-      {isFetchingBillboard && <span>Loading form...</span>}
+      {isFetchingBillboard && (
+        // <span>Loading form...</span>
+        <FullScreenLoader />
+      )}
 
       {billboard && <UpdateBillboardForm billboard={billboard} />}
       {/* <UpdateBillboardForm billboard={billboard} /> */}

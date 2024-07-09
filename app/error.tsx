@@ -1,10 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import GlobalNetworkError from '@/container/network-error/GlobalNetworkError';
-import NetworkError from '@/container/network-error/NetworkError';
-import GlobalServerError from '@/container/server-error/GlobalServerError';
-import ServerError from '@/container/server-error/ServerError';
+import GlobalNetworkError from '@/containers/network-error/GlobalNetworkError';
+import NetworkError from '@/containers/network-error/NetworkError';
+import GlobalServerError from '@/containers/server-error/GlobalServerError';
+import ServerError from '@/containers/server-error/ServerError';
 import { ErrorPageProps } from '@/types';
 import { redirect, useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';

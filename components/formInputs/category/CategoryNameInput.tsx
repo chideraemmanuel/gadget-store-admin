@@ -2,7 +2,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { CategoryFormDataTypes } from '../../../container/forms/categories/addCategoryForm/AddCategoryForm';
+import { CategoryFormDataTypes } from '@/containers/forms/categories/AddCategoryForm';
 
 interface Props {
   register: UseFormRegister<CategoryFormDataTypes>;

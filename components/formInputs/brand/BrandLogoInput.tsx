@@ -2,7 +2,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { FC } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { BrandFormDataTypes } from '@/container/forms/brands/addBrandForm/AddBrandForm';
+import { BrandFormDataTypes } from '@/containers/forms/brands/AddBrandForm';
 
 interface Props {
   register: UseFormRegister<BrandFormDataTypes>;

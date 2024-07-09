@@ -1,10 +1,11 @@
 'use client';
 
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import AddCategoryForm from '@/container/forms/categories/addCategoryForm/AddCategoryForm';
+import FullScreenLoader from '@/components/FullScreenLoader';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import AddCategoryForm from '@/containers/forms/categories/AddCategoryForm';
 import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
 import { getCategoryByIdOnServer } from '@/lib/actions/categories';
-import useGetBillboardsOnClient from '@/lib/hooks/billboards/useGetBillboardsOnClient';
+import useGetBillboards from '@/lib/hooks/billboards/useGetBillboards';
 import { FC, useEffect } from 'react';
 
 interface Props {}
@@ -17,7 +18,7 @@ const AddCategoryPage: FC<Props> = () => {
     isLoading,
     isError,
     error,
-  } = useGetBillboardsOnClient({ paginated: false });
+  } = useGetBillboards({ paginated: false });
 
   useEffect(() => {
     if (error) {
@@ -39,7 +40,10 @@ const AddCategoryPage: FC<Props> = () => {
         Fill in category details
       </h3>
 
-      {isLoading && <span>Loading form...</span>}
+      {isLoading && (
+        // <span>Loading form...</span>
+        <FullScreenLoader />
+      )}
 
       {billboards && (
         <AddCategoryForm billboards={billboards?.data || billboards} />

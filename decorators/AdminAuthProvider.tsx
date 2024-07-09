@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, useEffect } from 'react';
-import useGetCurrentAdminOnClient from '../lib/hooks/auth/useGetCurrentAdminOnClient';
+import useGetCurrentAdmin from '../lib/hooks/auth/useGetCurrentAdmin ';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreTypes } from '@/redux/store';
@@ -22,7 +22,7 @@ const AdminAuthProvider: FC<Props> = ({ children }) => {
     isError,
     isSuccess,
     refetch,
-  } = useGetCurrentAdminOnClient();
+  } = useGetCurrentAdmin();
 
   useEffect(() => {
     // IF ERROR IS A NETWORK ERROR, THROW ERROR (WILL BE CAUGHT BY ERROR.TSX IN ROOT)

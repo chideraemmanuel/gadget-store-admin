@@ -1,5 +1,5 @@
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import AddBrandForm from '@/container/forms/brands/addBrandForm/AddBrandForm';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import AddBrandForm from '@/containers/forms/brands/AddBrandForm';
 import { FC } from 'react';
 
 interface Props {}

@@ -45,7 +45,8 @@ export interface ProductUpdateTypes {
   description?: string;
   price?: number;
   category?: string;
-  product_image?: File;
+  // product_image?: File;
+  product_image?: FileList;
   count_in_stock?: number;
   featured?: boolean;
 }
@@ -56,10 +57,22 @@ export interface ProductFormDataTypes {
   description: string;
   price: number;
   category: string;
-  product_image: File;
+  // product_image: File;
+  product_image: FileList;
   count_in_stock: number;
   featured: boolean;
 }
+
+// export interface UpdateProductFormDataTypes {
+//   product_name: string;
+//   brand: string;
+//   description: string;
+//   price: number;
+//   category: string;
+//   product_image: FileList;
+//   count_in_stock: number;
+//   featured: boolean;
+// }
 
 export interface CategoryTypes {
   _id: string;
@@ -100,12 +113,14 @@ export interface BrandReturnTypes {
 
 export interface BrandFormDataTypes {
   name: string;
-  brand_logo: string;
+  // brand_logo: string;
+  brand_logo: FileList;
 }
 
 export interface BrandUpdateTypes {
   name?: string;
-  brand_logo?: string;
+  // brand_logo?: string;
+  brand_logo?: FileList;
 }
 
 export interface BillboardTypes {
@@ -125,13 +140,16 @@ export interface BillboardFormDataTypes {
   name: string;
   head_text: string;
   paragraph?: string;
-  billboard_image: File;
+  // billboard_image: File;
+  billboard_image: FileList;
 }
 
 export interface BillboardUpdateTypes {
   name?: string;
   head_text?: string;
   paragraph?: string;
+  // billboard_image: File;
+  billboard_image?: FileList;
 }
 
 export interface PaginationTypes {

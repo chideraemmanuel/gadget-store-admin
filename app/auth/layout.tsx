@@ -2,6 +2,7 @@ import Logo from '@/components/Logo';
 import Image from 'next/image';
 import { FC } from 'react';
 import image from '@/assets/phone.png';
+import p3 from '@/assets/p3.webp';
 import AuthRoutesGuard from '@/decorators/AuthRoutesGuard';
 
 interface Props {
@@ -40,7 +41,7 @@ const AuthLayout: FC<Props> = ({ children }) => {
         <section
           className="relative flex items-center justify-center py-7 min-h-screen after:content-[''] after:inset-0 after:bg-[hsl(210_40%_98%)] lg:after:bg-white dark:after:bg-slate-950 lg:dark:after:bg-slate-950 after:bg-opacity-95 dark:after:bg-opacity-95  after:absolute lg:ml-[50vw]"
           style={{
-            background: `url(${image.src}) no-repeat center center/cover`,
+            background: `url(${p3.src}) no-repeat center center/cover`,
           }}
         >
           {/* <div className="relative z-10 w-[min(90%,_600px)] pt-20"> */}

@@ -1,13 +1,14 @@
 'use client';
 
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import UpdateProductForm from '@/container/forms/products/updateProductForm/UpdateProductForm';
+import FullScreenLoader from '@/components/FullScreenLoader';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import UpdateProductForm from '@/containers/forms/products/UpdateProductForm';
 import { getBrandsOnServer } from '@/lib/actions/brands';
 import { getCategoriesOnServer } from '@/lib/actions/categories';
 import { getProductByIdOnServer } from '@/lib/actions/products';
-import useGetBrandsOnClient from '@/lib/hooks/brands/useGetBrandsOnClient';
-import useGetCategoriesOnClient from '@/lib/hooks/categories/useGetCategoriesOnClient';
-import useGetProductByIdOnClient from '@/lib/hooks/products/useGetProductByIdOnClient';
+import useGetBrands from '@/lib/hooks/brands/useGetBrands';
+import useGetCategories from '@/lib/hooks/categories/useGetCategories';
+import useGetProductById from '@/lib/hooks/products/useGetProductById';
 import { FC, useEffect } from 'react';
 
 interface Props {
@@ -24,21 +25,21 @@ const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
     isLoading: isFetchingProduct,
     isError: isErrorFetchingProduct,
     error: errorFetchingProduct,
-  } = useGetProductByIdOnClient(productId);
+  } = useGetProductById(productId);
 
   const {
     data: categories,
     isError: isErrorFetchingCategories,
     isLoading: isFetchingCategories,
     error: errorFetchingCategories,
-  } = useGetCategoriesOnClient({ paginated: false });
+  } = useGetCategories({ paginated: false });
 
   const {
     data: brands,
     isError: isErrorFetchingBrands,
     isLoading: isFetchingBrands,
     error: errorFetchingBrands,
-  } = useGetBrandsOnClient({ paginated: false });
+  } = useGetBrands({ paginated: false });
 
   useEffect(() => {
     if (
@@ -82,7 +83,8 @@ const UpdateProductPage: FC<Props> = ({ params: { productId } }) => {
       </h3>
 
       {(isFetchingProduct ?? isFetchingCategories ?? isFetchingBrands) && (
-        <span>Loading form...</span>
+        // <span>Loading form...</span>
+        <FullScreenLoader />
       )}
 
       {/* 

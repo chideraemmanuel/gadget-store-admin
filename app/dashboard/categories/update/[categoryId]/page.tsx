@@ -1,11 +1,12 @@
 'use client';
 
-import DashboardHeaderText from '@/container/dashboard-header-text/DashboardHeaderText';
-import UpdateCategoryForm from '@/container/forms/categories/updateCategoryForm/UpdateCategoryForm';
+import FullScreenLoader from '@/components/FullScreenLoader';
+import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
+import UpdateCategoryForm from '@/containers/forms/categories/UpdateCategoryForm';
 import { getBillboardsOnServer } from '@/lib/actions/billboards-fetch';
 import { getCategoryByIdOnServer } from '@/lib/actions/categories';
-import useGetBillboardsOnClient from '@/lib/hooks/billboards/useGetBillboardsOnClient';
-import useGetCategoryByIdOnClient from '@/lib/hooks/categories/useGetCategoryByIdOnClient';
+import useGetBillboards from '@/lib/hooks/billboards/useGetBillboards';
+import useGetCategoryById from '@/lib/hooks/categories/useGetCategoryById';
 import { FC, useEffect } from 'react';
 
 interface Props {
@@ -22,14 +23,14 @@ const UpdateCategoryPage: FC<Props> = ({ params: { categoryId } }) => {
     isLoading: isFetchingCategory,
     isError: isErrorFetchingCategory,
     error: errorFetchingCategory,
-  } = useGetCategoryByIdOnClient(categoryId);
+  } = useGetCategoryById(categoryId);
 
   const {
     data: billboards,
     isError: isErrorFetchingBillboards,
     isLoading: isFetchingBillboards,
     error: errorFetchingBillboards,
-  } = useGetBillboardsOnClient({ paginated: false });
+  } = useGetBillboards({ paginated: false });
 
   // console.log(isErrorFetchingCategories);
   // console.log(isErrorFetchingProduct);
@@ -66,7 +67,8 @@ const UpdateCategoryPage: FC<Props> = ({ params: { categoryId } }) => {
       </h3>
 
       {(isFetchingCategory ?? isFetchingBillboards) && (
-        <span>Loading form...</span>
+        // <span>Loading form...</span>
+        <FullScreenLoader />
       )}
 
       {category && billboards && (
