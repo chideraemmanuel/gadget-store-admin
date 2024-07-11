@@ -124,41 +124,54 @@ const ComboBoxInput = React.forwardRef<ComboBoxTriggerRef, ComboBoxInputProps>(
                 <CommandEmpty>{comboboxEmptyText}</CommandEmpty>
                 <CommandGroup className="w-full">
                   {comboboxItems &&
-                    comboboxItems.map((comboboxItem) => {
-                      //   const isCurrentItem = comboboxItems.find(
-                      //     (item) => comboboxItem.value === item.value
-                      //   );
-                      //   <CommandItem key={comboboxItem.id} {...comboboxItemProps}>
-                      return (
-                        // Each CommandItem must be wrapped in CommandList for the component to work properly. And the data-[disabled] in the CommandItem styling should be changed to data-[disabled='true'].
-                        <CommandList>
-                          <CommandItem
-                            key={comboboxItem.id}
-                            value={comboboxItem.value}
-                            onSelect={(value) => {
-                              setComboboxOpen(false);
-                              setComboboxValue({
-                                id: comboboxItem.id,
-                                value,
-                                name: comboboxItem.name,
-                              });
-                              onItemSelect(value);
-                            }}
-                            {...comboboxItemProps}
-                          >
-                            <Check
-                              className={cn(
-                                'mr-2 h-4 w-4',
-                                comboboxItem.value === comboboxValue?.value
-                                  ? 'opacity-100'
-                                  : 'opacity-0'
-                              )}
-                            />
-                            {comboboxItem.name}
-                          </CommandItem>
-                        </CommandList>
-                      );
-                    })}
+                    comboboxItems
+                      .sort((a, b) => {
+                        if (a.name < b.name) {
+                          return -1;
+                        }
+                        if (a.name > b.name) {
+                          return 1;
+                        }
+                        return 0;
+                      })
+                      .map((comboboxItem) => {
+                        //   const isCurrentItem = comboboxItems.find(
+                        //     (item) => comboboxItem.value === item.value
+                        //   );
+                        //   <CommandItem key={comboboxItem.id} {...comboboxItemProps}>
+                        return (
+                          // Each CommandItem must be wrapped in CommandList for the component to work properly. And the data-[disabled] in the CommandItem styling should be changed to data-[disabled='true'].
+                          <CommandList>
+                            <CommandItem
+                              key={comboboxItem.id}
+                              // value={comboboxItem.value}
+                              value={comboboxItem.name}
+                              onSelect={(value) => {
+                                setComboboxOpen(false);
+                                setComboboxValue({
+                                  id: comboboxItem.id,
+                                  // value,
+                                  value: comboboxItem.value,
+                                  name: comboboxItem.name,
+                                });
+                                // onItemSelect(value);
+                                onItemSelect(comboboxItem.value);
+                              }}
+                              {...comboboxItemProps}
+                            >
+                              <Check
+                                className={cn(
+                                  'mr-2 h-4 w-4',
+                                  comboboxItem.value === comboboxValue?.value
+                                    ? 'opacity-100'
+                                    : 'opacity-0'
+                                )}
+                              />
+                              {comboboxItem.name}
+                            </CommandItem>
+                          </CommandList>
+                        );
+                      })}
                 </CommandGroup>
               </Command>
             </PopoverContent>

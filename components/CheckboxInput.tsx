@@ -12,7 +12,7 @@ const CheckboxInput = React.forwardRef<CheckboxInputRef, CheckboxInputProps>(
   ({ label, ...props }, ref) => {
     return (
       <>
-        <div className="flex flex-row items-start self-start space-x-3 space-y-0 rounded-md border p-4">
+        <div className="w-full flex flex-row items-start self-start space-x-3 space-y-0 rounded-md border p-4">
           <Label htmlFor="">{label}</Label>
           <Checkbox {...props} ref={ref} />
         </div>

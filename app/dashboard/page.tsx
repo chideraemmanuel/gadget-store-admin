@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 
 import ComboBoxInput from '@/components/ComboBoxInput';
 import ImageInput from '@/components/ImageInput';
@@ -45,7 +45,7 @@ const AdminDashboard: FC<Props> = () => {
   return (
     // <div className="">
 
-    <div className="container mx-auto">
+    <div className="container mx-auto pb-7">
       {/* <ComboBoxInput
         comboboxItems={dum}
         comboboxOpen={cbOpen}
@@ -60,10 +60,7 @@ const AdminDashboard: FC<Props> = () => {
 
       <DashboardHeaderText />
 
-      {/* <ImageInput
-        label="Product Image"
-        error="Error Message"
-      /> */}
+      {/* <ImageInput label="Product Image" error="Error Message" /> */}
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 pb-4">
         <Card>

@@ -37,9 +37,12 @@ const useGetCategories = ({
     getCategories,
     {
       retry: false,
-      onError: (error: any) => {
-        console.log('error from get categories hook', error);
-      },
+      // retry: 3,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      // onError: (error: any) => {
+      //   console.log('error from get categories hook', error);
+      // },
     }
   );
 };

@@ -24,6 +24,10 @@ const useGetOrders = (searchParamsObject: SearchParams = {}) => {
   return useQuery({
     queryKey: ['get orders', searchParamsObject],
     queryFn: getOrders,
+    retry: false,
+    // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };
 

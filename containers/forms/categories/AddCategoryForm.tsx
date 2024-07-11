@@ -67,6 +67,16 @@ const AddCategoryForm: FC<Props> = ({ billboards }) => {
 
           <ComboBoxInput
             label="Category Billboard"
+            comboboxTriggerProps={{
+              ...register('billboard', {
+                required: {
+                  value: true,
+                  message: 'Billboard is required',
+                },
+              }),
+              className: 'capitalize',
+            }}
+            comboboxItemProps={{ className: 'capitalize' }}
             comboboxOpen={billboardsComboboxOpen}
             setComboboxOpen={setBillboardsComboboxOpen}
             error={errors.billboard?.message}

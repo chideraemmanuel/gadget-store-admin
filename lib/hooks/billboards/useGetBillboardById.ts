@@ -19,9 +19,12 @@ const getBillboard = async ({ queryKey }: { queryKey: any[] }) => {
 const useGetBillboardById = (billboardId: string) => {
   return useQuery(['get billboard', billboardId], getBillboard, {
     retry: false,
-    onError: (error: any) => {
-      console.log('error from get billboard hook', error);
-    },
+    // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    // onError: (error: any) => {
+    //   console.log('error from get billboard hook', error);
+    // },
   });
 };
 

@@ -42,14 +42,18 @@ const UpdateBrandForm: FC<Props> = ({ brand }) => {
   const watchedFormFields = watch();
 
   const trackFormChange = () => {
-    // console.log('comparison', {
-    //   name: `${watchedFormFields.name} - ${brand.name}`,
-    // });
+    console.log('comparison', {
+      name: `${watchedFormFields.name} - ${brand.name}`,
+      brand_logo: watchedFormFields.brand_logo,
+    });
     // console.log('type comparison', {
     //   name: `${typeof watchedFormFields.name} - ${typeof brand.name}`,
     // });
 
-    if (watchedFormFields.name !== brand.name || watchedFormFields.brand_logo) {
+    if (
+      watchedFormFields.name !== brand.name ||
+      watchedFormFields.brand_logo.length > 0
+    ) {
       console.log('form has changed');
       setFormChanged(true);
     } else {

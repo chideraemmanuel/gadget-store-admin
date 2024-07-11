@@ -1,4 +1,12 @@
-import { ComponentPropsWithoutRef, ElementRef, FC, forwardRef } from 'react';
+'use client';
+
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  FC,
+  forwardRef,
+  useState,
+} from 'react';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Card, CardContent } from './ui/card';
@@ -17,7 +25,14 @@ interface ImageInputProps extends ComponentPropsWithoutRef<typeof Input> {
 type ImageInputRef = ElementRef<typeof Input>;
 
 const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
-  ({ label, defaultImage, error, className, disabled, ...props }, ref) => {
+  (
+    { label, defaultImage, error, className, disabled, onChange, ...props },
+    ref
+  ) => {
+    const [selectedImage, setSelectedImage] = useState<undefined | string>(
+      undefined
+    );
+
     return (
       <>
         <div className="w-full">
@@ -32,6 +47,16 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
               className="hidden"
               ref={ref}
               disabled={disabled}
+              onChange={(e) => {
+                console.log('selected image File:', e.target.files);
+                console.log('selected image value:', e.target.value);
+
+                setSelectedImage(e.target.files?.[0].name);
+
+                if (onChange) {
+                  onChange(e);
+                }
+              }}
               {...props}
             />
 
@@ -44,7 +69,7 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
                 className
               )}
             >
-              {defaultImage && (
+              {defaultImage && !selectedImage && (
                 <Image
                   src={defaultImage}
                   // src={phone}
@@ -55,9 +80,16 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
                 />
               )}
 
-              <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 flex justify-center items-center">
+              <div className="flex flex-col justify-center items-center gap-2 absolute top-0 left-0 w-full h-full bg-accent/40">
+                {/* bg-accent/70 dark:bg-accent/40"> */}
                 <UploadIcon className="w-7 h-7" />
                 {/* <UploadIcon /> */}
+                <span className="text-xs max-w-[80%] text-center mx-auto">
+                  {/* {selectedImage || 'No Image Selected'} */}
+                  {defaultImage
+                    ? selectedImage || ''
+                    : selectedImage || 'No Image Selected'}
+                </span>
               </div>
             </Card>
           </Label>

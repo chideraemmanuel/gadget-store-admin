@@ -17,9 +17,12 @@ const getProduct = async ({ queryKey }: { queryKey: any[] }) => {
 const useGetProductById = (productId: string) => {
   return useQuery(['get product', productId], getProduct, {
     retry: false,
-    onError: (error: any) => {
-      console.log('error from get product hook', error);
-    },
+    // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    // onError: (error: any) => {
+    //   console.log('error from get product hook', error);
+    // },
   });
 };
 

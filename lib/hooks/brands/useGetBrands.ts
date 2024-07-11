@@ -35,6 +35,9 @@ const useGetBrands = ({
     queryKey: ['get brands', searchParamsObject, paginated],
     queryFn: getBrands,
     retry: false,
+    // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };
 

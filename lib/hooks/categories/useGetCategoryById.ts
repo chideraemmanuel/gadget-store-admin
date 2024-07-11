@@ -17,9 +17,12 @@ const getCategory = async ({ queryKey }: { queryKey: any[] }) => {
 const useGetCategoryById = (categoryId: string) => {
   return useQuery(['get category', categoryId], getCategory, {
     retry: false,
-    onError: (error: any) => {
-      console.log('error from get category hook', error);
-    },
+    // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    // onError: (error: any) => {
+    //   console.log('error from get category hook', error);
+    // },
   });
 };
 

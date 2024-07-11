@@ -94,6 +94,14 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
 
           <ComboBoxInput
             label="Brand"
+            comboboxTriggerProps={{
+              ...register('brand', {
+                required: {
+                  value: true,
+                  message: 'Product brand is required',
+                },
+              }),
+            }}
             comboboxOpen={brandsComboboxOpen}
             setComboboxOpen={setBrandsComboboxOpen}
             error={errors.brand?.message}
@@ -137,6 +145,14 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
 
           <ComboBoxInput
             label="Product Category"
+            comboboxTriggerProps={{
+              ...register('category', {
+                required: {
+                  value: true,
+                  message: 'Product category is required',
+                },
+              }),
+            }}
             comboboxOpen={categoriesComboboxOpen}
             setComboboxOpen={setCategoriesComboboxOpen}
             error={errors.brand?.message}

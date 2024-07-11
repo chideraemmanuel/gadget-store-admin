@@ -17,9 +17,12 @@ const getBrand = async ({ queryKey }: { queryKey: any[] }) => {
 const useGetBrandById = (brandId: string) => {
   return useQuery(['get brand', brandId], getBrand, {
     retry: false,
-    onError: (error: any) => {
-      console.log('error from get brand hook', error);
-    },
+    // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    // onError: (error: any) => {
+    //   console.log('error from get brand hook', error);
+    // },
   });
 };
 

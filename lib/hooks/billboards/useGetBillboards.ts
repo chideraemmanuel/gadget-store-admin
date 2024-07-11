@@ -52,6 +52,9 @@ const useGetBillboards = ({
     queryKey: ['get billboards', searchParamsObject, paginated],
     queryFn: getBillboards,
     retry: false,
+    // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     onSuccess: () => {},
     onError: (error: any) => {
       // WILL BE CAUGHT BY ERROR.TSX IN SEGMENT

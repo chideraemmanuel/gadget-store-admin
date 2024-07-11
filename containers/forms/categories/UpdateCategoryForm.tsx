@@ -53,10 +53,10 @@ const UpdateCategoryForm: FC<Props> = ({ category, billboards }) => {
   const watchedFormFields = watch();
 
   const trackFormChange = () => {
-    // console.log('comparison', {
-    //   name: `${watchedFormFields.name} - ${category.name}`,
-    //   billboard: `${watchedFormFields.billboard} - ${category.billboard._id}`,
-    // });
+    console.log('comparison', {
+      name: `${watchedFormFields.name} - ${category.name}`,
+      billboard: `${watchedFormFields.billboard} - ${category.billboard._id}`,
+    });
     // console.log('type comparison', {
     //   name: `${typeof watchedFormFields.name} - ${typeof category.name}`,
     //   billboard: `${typeof watchedFormFields.billboard} - ${typeof category
@@ -159,6 +159,16 @@ const UpdateCategoryForm: FC<Props> = ({ category, billboards }) => {
               value: category.billboard._id,
               name: category.billboard.name,
             }}
+            comboboxTriggerProps={{
+              ...register('billboard', {
+                required: {
+                  value: true,
+                  message: 'Billboard is required',
+                },
+              }),
+              className: 'capitalize',
+            }}
+            comboboxItemProps={{ className: 'capitalize' }}
             comboboxOpen={billboardsComboboxOpen}
             setComboboxOpen={setBillboardsComboboxOpen}
             error={errors.billboard?.message}

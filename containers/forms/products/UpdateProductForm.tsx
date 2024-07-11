@@ -99,15 +99,16 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
   const watchedFormFields = watch();
 
   const trackFormChange = () => {
-    // console.log('comparison', {
-    //   product_name: `${watchedFormFields.product_name} - ${product_name}`,
-    //   brand: `${watchedFormFields.brand} - ${brand}`,
-    //   description: `${watchedFormFields.description} - ${description}`,
-    //   price: `${watchedFormFields.price} - ${price}`,
-    //   count_in_stock: `${watchedFormFields.count_in_stock} - ${count_in_stock}`,
-    //   category: `${selectedCategory} - ${category._id}`,
-    //   featured: `${isProductFeatured} - ${featured}`,
-    // });
+    console.log('comparison', {
+      product_name: `${watchedFormFields.product_name} - ${product_name}`,
+      brand: `${watchedFormFields.brand} - ${brand._id}`,
+      description: `${watchedFormFields.description} - ${description}`,
+      price: `${watchedFormFields.price} - ${price}`,
+      count_in_stock: `${watchedFormFields.count_in_stock} - ${count_in_stock}`,
+      category: `${watchedFormFields.category} - ${category._id}`,
+      featured: `${watchedFormFields.featured} - ${featured}`,
+      product_image: watchedFormFields.product_image,
+    });
     // console.log('type comparison', {
     //   product_name: `${typeof watchedFormFields.product_name} - ${typeof product_name}`,
     //   brand: `${typeof watchedFormFields.brand} - ${typeof brand}`,
@@ -130,7 +131,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
       watchedFormFields.category !== category._id ||
       // isProductFeatured !== featured
       watchedFormFields.featured !== featured ||
-      watchedFormFields.product_image
+      watchedFormFields.product_image.length > 0
     ) {
       console.log('form has changed');
       setFormChanged(true);
@@ -253,6 +254,14 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
           <ComboBoxInput
             label="Brand"
             defautlValue={{ id: brand._id, value: brand._id, name: brand.name }}
+            comboboxTriggerProps={{
+              ...register('brand', {
+                required: {
+                  value: true,
+                  message: 'Product brand is required',
+                },
+              }),
+            }}
             comboboxOpen={brandsComboboxOpen}
             setComboboxOpen={setBrandsComboboxOpen}
             error={errors.brand?.message}
@@ -302,6 +311,14 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
               id: category._id,
               value: category._id,
               name: category.name,
+            }}
+            comboboxTriggerProps={{
+              ...register('category', {
+                required: {
+                  value: true,
+                  message: 'Product category is required',
+                },
+              }),
             }}
             comboboxOpen={categoriesComboboxOpen}
             setComboboxOpen={setCategoriesComboboxOpen}

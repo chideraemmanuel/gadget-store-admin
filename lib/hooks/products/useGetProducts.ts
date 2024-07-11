@@ -26,6 +26,8 @@ const useGetProducts = (searchParamsObject: SearchParams = {}) => {
     queryFn: getProducts,
     retry: false,
     // retry: 3,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 };
 
