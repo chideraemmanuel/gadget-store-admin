@@ -63,6 +63,7 @@ const AddCategoryForm: FC<Props> = ({ billboards }) => {
             })}
             disabled={isAddingCategory}
             error={errors.name?.message}
+            className="capitalize"
           />
 
           <ComboBoxInput
@@ -92,6 +93,7 @@ const AddCategoryForm: FC<Props> = ({ billboards }) => {
               setValue('billboard', value);
               console.log('selected billboard value:', value);
             }}
+            disabled={isAddingCategory}
           />
         </div>
 

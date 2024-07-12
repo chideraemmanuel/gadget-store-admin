@@ -1,8 +1,9 @@
-// 'use client';
+'use client';
 
 import ComboBoxInput from '@/components/ComboBoxInput';
 import ImageInput from '@/components/ImageInput';
 import { Overview } from '@/components/Overview';
+import SelectInput from '@/components/SelectInput';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { headers } from '@/constants';
 import DashboardHeaderText from '@/containers/dashboard-header-text/DashboardHeaderText';
@@ -11,36 +12,36 @@ import { FC, useState } from 'react';
 
 interface Props {}
 
-// const dum = [
-//   {
-//     id: 'Brand One Id',
-//     name: 'Brand Name One',
-//     value: 'Brand Value One',
-//   },
-//   {
-//     id: 'Brand Two Id',
-//     name: 'Brand Name Two',
-//     value: 'Brand Value Two',
-//   },
-//   {
-//     id: 'Brand Three Id',
-//     name: 'Brand Name Three',
-//     value: 'Brand Value Three',
-//   },
-//   {
-//     id: 'Brand Four Id',
-//     name: 'Brand Name Four',
-//     value: 'Brand Value Four',
-//   },
-//   {
-//     id: 'Brand Five Id',
-//     name: 'Brand Name Five',
-//     value: 'Brand Value Five',
-//   },
-// ];
+const dum = [
+  {
+    id: '34698987345343',
+    name: 'Brand Name One',
+    value: '34698987345343',
+  },
+  {
+    id: '02873200912892',
+    name: 'Brand Name Two',
+    value: '02873200912892',
+  },
+  {
+    id: '09373929823782',
+    name: 'Brand Name Three',
+    value: '09373929823782',
+  },
+  // {
+  //   id: 'Brand Four Id',
+  //   name: 'Brand Name Four',
+  //   value: 'Brand Value Four',
+  // },
+  // {
+  //   id: 'Brand Five Id',
+  //   name: 'Brand Name Five',
+  //   value: 'Brand Value Five',
+  // },
+];
 
 const AdminDashboard: FC<Props> = () => {
-  // const [cbOpen, setCbOpen] = useState(false);
+  const [cbOpen, setCbOpen] = useState(false);
 
   return (
     // <div className="">
@@ -58,9 +59,17 @@ const AdminDashboard: FC<Props> = () => {
         }}
       /> */}
 
-      <DashboardHeaderText />
-
       {/* <ImageInput label="Product Image" error="Error Message" /> */}
+
+      {/* <SelectInput
+        selectInputItems={dum}
+        onItemSelect={(value) => console.log('selected item value:', value)}
+        placeholder="Select Brand"
+        error="Error message"
+        defautlValue="Brand One Id"
+      /> */}
+
+      <DashboardHeaderText />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 pb-4">
         <Card>

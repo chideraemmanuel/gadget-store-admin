@@ -1,3 +1,5 @@
+'use client';
+
 import React, {
   ComponentPropsWithoutRef,
   Dispatch,
@@ -44,7 +46,10 @@ interface ComboBoxInputProps {
   comboboxOpen: boolean;
   setComboboxOpen: Dispatch<SetStateAction<boolean>>;
   comboboxItems: ComboboxItem[];
-  comboboxTriggerProps?: ComponentPropsWithoutRef<typeof PopoverTrigger>;
+  comboboxTriggerProps?: Omit<
+    ComponentPropsWithoutRef<typeof PopoverTrigger>,
+    'disabled'
+  >;
   //   comboboxItemProps: ComponentPropsWithoutRef<typeof CommandItem>;
   comboboxItemProps?: Omit<
     ComponentPropsWithoutRef<typeof CommandItem>,
@@ -89,7 +94,7 @@ const ComboBoxInput = React.forwardRef<ComboBoxTriggerRef, ComboBoxInputProps>(
     return (
       <>
         <div className="w-full">
-          <Label htmlFor={label}>{label}</Label>
+          <Label htmlFor={comboboxTriggerProps?.id}>{label}</Label>
           <Popover open={comboboxOpen} onOpenChange={setComboboxOpen}>
             <PopoverTrigger
               asChild
@@ -119,6 +124,8 @@ const ComboBoxInput = React.forwardRef<ComboBoxTriggerRef, ComboBoxInputProps>(
             <span className="text-xs text-destructive">{error}</span>
 
             <PopoverContent className="w-full p-0">
+              {/* uses .name instead if .value becaues 'value' attribute on CommandItem uses .name */}
+              {/* <Command className="w-full" defaultValue={defautlValue?.name}> */}
               <Command className="w-full" defaultValue={defautlValue?.value}>
                 <CommandInput placeholder={comboboxInputPlaceholder} />
                 <CommandEmpty>{comboboxEmptyText}</CommandEmpty>
@@ -145,6 +152,8 @@ const ComboBoxInput = React.forwardRef<ComboBoxTriggerRef, ComboBoxInputProps>(
                             <CommandItem
                               key={comboboxItem.id}
                               // value={comboboxItem.value}
+                              // uses .name instead of .value because search functionality searches whatever is used
+                              // this is corrected in onItemSelect where the value is set to .value (the actual value)
                               value={comboboxItem.name}
                               onSelect={(value) => {
                                 setComboboxOpen(false);

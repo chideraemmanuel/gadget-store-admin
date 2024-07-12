@@ -93,14 +93,19 @@ const OrdersTable: FC<Props> = ({ searchParams }) => {
                         ...
                       </TableCell>
 
-                      <TableCell>{order.status}</TableCell>
+                      <TableCell className="capitalize">
+                        {order.status}
+                      </TableCell>
 
                       <TableCell>{order.total_price}</TableCell>
 
                       <TableCell>{order.order_date.toString()}</TableCell>
 
                       <TableCell>
-                        <OrdersTableDropdown _id={order._id} />
+                        <OrdersTableDropdown
+                          _id={order._id}
+                          status={order.status}
+                        />
                       </TableCell>
                     </TableRow>
                   ))

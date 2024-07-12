@@ -113,6 +113,7 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
               setValue('brand', value);
               console.log('selected brand value:', value);
             }}
+            disabled={isAddingProduct}
           />
         </div>
 
@@ -168,10 +169,11 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
               setValue('category', value);
               console.log('selected category value:', value);
             }}
+            disabled={isAddingProduct}
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex items-end gap-2">
           {/* <FormInput
             label="Product Image"
             type="file"

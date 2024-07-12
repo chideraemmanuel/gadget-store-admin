@@ -36,18 +36,19 @@ const CategoriesTableDropdown: FC<Props> = ({ id }) => {
   const { toast } = useToast();
 
   const {
-    mutate: deleteCategory,
+    // mutate: deleteCategory,
+    mutateAsync: deleteCategory,
     isLoading: isDeletingCategory,
     isSuccess,
     isError,
   } = useDeleteCategory();
 
   // CLOSE DIALOG ONCE MUTATION IS COMPLETE
-  useEffect(() => {
-    if (isSuccess) {
-      setDialogOpen(false);
-    }
-  }, [isSuccess]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setDialogOpen(false);
+  //   }
+  // }, [isSuccess]);
 
   return (
     <>
@@ -107,9 +108,9 @@ const CategoriesTableDropdown: FC<Props> = ({ id }) => {
             <Button
               disabled={isDeletingCategory}
               variant={'destructive'}
-              onClick={() => {
-                deleteCategory(id);
-                // setDialogOpen(false);
+              onClick={async () => {
+                await deleteCategory(id);
+                setDialogOpen(false);
               }}
             >
               Delete Category

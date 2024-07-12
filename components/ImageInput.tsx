@@ -63,7 +63,7 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
             <Card
               // className="w-full h-40 cursor-pointer relative flex justify-center items-center p-5"
               className={cn(
-                'w-full h-40 cursor-pointer relative flex justify-center items-center p-5',
+                'w-full h-40 cursor-pointer relative flex justify-center items-center p-5 border-dashed overflow-hidden',
                 error && 'border-destructive',
                 disabled && 'cursor-not-allowed',
                 className

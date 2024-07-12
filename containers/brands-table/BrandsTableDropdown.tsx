@@ -36,18 +36,19 @@ const BrandsTableDropdown: FC<Props> = ({ _id }) => {
   const { toast } = useToast();
 
   const {
-    mutate: deletaBrand,
+    // mutate: deletaBrand,
+    mutateAsync: deletaBrand,
     isLoading: isDeletingBrand,
     isSuccess,
     isError,
   } = useDeleteBrand();
 
   // CLOSE DIALOG ONCE MUTATION IS COMPLETE
-  useEffect(() => {
-    if (isSuccess) {
-      setDialogOpen(false);
-    }
-  }, [isSuccess]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setDialogOpen(false);
+  //   }
+  // }, [isSuccess]);
 
   return (
     <>
@@ -104,15 +105,28 @@ const BrandsTableDropdown: FC<Props> = ({ _id }) => {
             {/* <AlertDialogCancel disabled={isDeletingProduct}> */}
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-            <Button
+            {/* <Button
               disabled={isDeletingBrand}
               variant={'destructive'}
-              onClick={() => {
-                deletaBrand(_id);
-                // setDialogOpen(false);
+              onClick={async () => {
+                await deletaBrand(_id);
+                setDialogOpen(false);
               }}
             >
               Delete Brand
+            </Button> */}
+
+            <Button
+              className="w-full flex items-center gap-2"
+              disabled={isDeletingBrand}
+              variant={'destructive'}
+              onClick={async () => {
+                await deletaBrand(_id);
+                setDialogOpen(false);
+              }}
+            >
+              {isDeletingBrand && <div className="spinner"></div>}
+              <span>Delete Brand</span>
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

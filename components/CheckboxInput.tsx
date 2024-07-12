@@ -9,12 +9,12 @@ interface CheckboxInputProps extends ComponentPropsWithoutRef<typeof Checkbox> {
 type CheckboxInputRef = ElementRef<typeof Checkbox>;
 
 const CheckboxInput = React.forwardRef<CheckboxInputRef, CheckboxInputProps>(
-  ({ label, ...props }, ref) => {
+  ({ label, id, ...props }, ref) => {
     return (
       <>
         <div className="w-full flex flex-row items-start self-start space-x-3 space-y-0 rounded-md border p-4">
-          <Label htmlFor="">{label}</Label>
-          <Checkbox {...props} ref={ref} />
+          <Label htmlFor={id}>{label}</Label>
+          <Checkbox id={id} ref={ref} {...props} />
         </div>
       </>
     );

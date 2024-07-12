@@ -166,12 +166,15 @@ export interface BillingAddressTypes {
   country: string;
 }
 
+export type OrderStatus = 'pending' | 'shipped' | 'delivered';
+
 export interface OrderTypes {
   _id: string;
   user: string;
   order_items: OrderItemTypes[];
   billing_address: BillingAddressTypes;
-  status: 'pending' | 'shipped' | 'delivered';
+  // status: 'pending' | 'shipped' | 'delivered';
+  status: OrderStatus;
   order_date: Date;
   total_price: number;
 }

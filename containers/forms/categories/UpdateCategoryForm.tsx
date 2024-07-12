@@ -150,6 +150,7 @@ const UpdateCategoryForm: FC<Props> = ({ category, billboards }) => {
             })}
             disabled={isUpdatingCategory}
             error={errors.name?.message}
+            className="capitalize"
           />
 
           <ComboBoxInput
@@ -184,6 +185,7 @@ const UpdateCategoryForm: FC<Props> = ({ category, billboards }) => {
               setValue('billboard', value);
               console.log('selected billboard value:', value);
             }}
+            disabled={isUpdatingCategory}
           />
         </div>
 

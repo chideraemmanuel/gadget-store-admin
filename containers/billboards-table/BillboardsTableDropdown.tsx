@@ -39,18 +39,19 @@ const BillboardsTableDropdown: FC<Props> = ({ id }) => {
   const { toast } = useToast();
 
   const {
-    mutate: deleteBillboard,
+    // mutate: deleteBillboard,
+    mutateAsync: deleteBillboard,
     isLoading: isDeletingBillboard,
     isSuccess,
     isError,
   } = useDeleteBillboard();
 
   // CLOSE DIALOG ONCE MUTATION IS COMPLETE
-  useEffect(() => {
-    if (isSuccess) {
-      setDialogOpen(false);
-    }
-  }, [isSuccess]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setDialogOpen(false);
+  //   }
+  // }, [isSuccess]);
 
   return (
     <>
@@ -108,11 +109,12 @@ const BillboardsTableDropdown: FC<Props> = ({ id }) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
             <Button
-              // disabled={isDeleting}
+              className="w-full flex items-center gap-2"
               disabled={isDeletingBillboard}
               variant={'destructive'}
               onClick={async () => {
-                deleteBillboard(id);
+                await deleteBillboard(id);
+                setDialogOpen(false);
                 // setIsDeleting(true);
                 // const { data, error } = await deleteBillboardOnServer(id);
 
@@ -131,7 +133,8 @@ const BillboardsTableDropdown: FC<Props> = ({ id }) => {
                 // setDialogOpen(false);
               }}
             >
-              Delete Billboard
+              {isDeletingBillboard && <div className="spinner"></div>}
+              <span>Delete Billboard</span>
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

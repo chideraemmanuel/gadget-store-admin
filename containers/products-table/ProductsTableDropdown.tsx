@@ -36,18 +36,19 @@ const ProductsTableDropdown: FC<Props> = ({ id }) => {
   const { toast } = useToast();
 
   const {
-    mutate: deleteProduct,
+    // mutate: deleteProduct,
+    mutateAsync: deleteProduct,
     isLoading: isDeletingProduct,
     isSuccess,
     isError,
   } = useDeleteProduct();
 
   // CLOSE DIALOG ONCE MUTATION IS COMPLETE
-  useEffect(() => {
-    if (isSuccess) {
-      setDialogOpen(false);
-    }
-  }, [isSuccess]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setDialogOpen(false);
+  //   }
+  // }, [isSuccess]);
 
   return (
     <>
@@ -105,14 +106,28 @@ const ProductsTableDropdown: FC<Props> = ({ id }) => {
             {/* <AlertDialogCancel disabled={isDeletingProduct}> */}
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-            <Button
+            {/* <Button
               disabled={isDeletingProduct}
               variant={'destructive'}
-              onClick={() => {
-                deleteProduct(id);
+              onClick={async () => {
+                await deleteProduct(id);
+                setDialogOpen(false);
               }}
             >
               Delete Product
+            </Button> */}
+
+            <Button
+              className="w-full flex items-center gap-2"
+              disabled={isDeletingProduct}
+              variant={'destructive'}
+              onClick={async () => {
+                await deleteProduct(id);
+                setDialogOpen(false);
+              }}
+            >
+              {isDeletingProduct && <div className="spinner"></div>}
+              <span>Delete Product</span>
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

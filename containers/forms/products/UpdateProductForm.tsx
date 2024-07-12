@@ -161,6 +161,14 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
   //   console.log('set to false');
   // }, [trackFormChange]);
 
+  // this sets the default value of the combobox inputs for useForm to properly manage
+  // this is necessary because, on page load, the defaultValue set on the combobox inputs only shows the proper value in the ui, but doesn't have it's state managed by react hook form
+  useEffect(() => {
+    console.log('initial load form data:', getValues());
+    // setValue('brand', brand._id);
+    // setValue('category', category._id);
+  }, []);
+
   const onSubmit: SubmitHandler<ProductFormDataTypes> = async (data, e) => {
     // IN CASE USER USES ENTER KEY TO SUBMIT
     if (!formChanged) {
@@ -273,6 +281,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
               setValue('brand', value);
               console.log('selected brand value:', value);
             }}
+            disabled={isUpdatingProduct}
           />
         </div>
 
@@ -335,10 +344,11 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
               setValue('category', value);
               console.log('selected category value:', value);
             }}
+            disabled={isUpdatingProduct}
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex items-end gap-2">
           {/* <FormInput
             label="Product Image"
             type="file"
@@ -373,6 +383,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
             onCheckedChange={(checked) =>
               setValue('featured', checked as boolean)
             }
+            disabled={isUpdatingProduct}
             // checked={isProductFeatured}
           />
         </div>
