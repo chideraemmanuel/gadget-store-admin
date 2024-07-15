@@ -179,6 +179,17 @@ export interface OrderTypes {
   total_price: number;
 }
 
+export interface PopulatedOrderTypes {
+  _id: string;
+  user: AuthReturnTypes;
+  order_items: OrderItemTypes[];
+  billing_address: BillingAddressTypes;
+  // status: 'pending' | 'shipped' | 'delivered';
+  status: OrderStatus;
+  order_date: Date;
+  total_price: number;
+}
+
 export interface OrderReturnTypes {
   data: OrderTypes[];
   pagination: PaginationTypes;

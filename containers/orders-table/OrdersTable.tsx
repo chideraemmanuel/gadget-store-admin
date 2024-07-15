@@ -15,12 +15,13 @@ import OrdersTableDropdown from './OrdersTableDropdown';
 import ResourcePagination from '@/components/ResourcePagination';
 import useGetOrders from '@/lib/hooks/orders/useGetOrders';
 import moment from 'moment';
+import Link from 'next/link';
 
 interface Props {
   searchParams: SearchParams;
 }
 
-const headers = ['items', 'status', 'total price', 'date'];
+const headers = ['items', 'status', 'total price (₦)', 'date'];
 
 const OrdersTable: FC<Props> = ({ searchParams }) => {
   // const orders = ordersReturn.data;
@@ -56,7 +57,7 @@ const OrdersTable: FC<Props> = ({ searchParams }) => {
       {ordersReturn && (
         <>
           <div className="rounded-md border">
-            <Table>
+            <Table className="scrollbar-rounded">
               <TableHeader>
                 <TableRow>
                   {headers.map((header, index) => (
@@ -71,49 +72,45 @@ const OrdersTable: FC<Props> = ({ searchParams }) => {
                 {/* CELLS MUST BE IN THE SAME ORDER AS HEADERS ARRAY */}
                 {ordersReturn?.data?.length > 0 ? (
                   orders?.map((order) => (
-                    <TableRow key={order._id}>
-                      {/* <TableCell></TableCell> */}
-                      {/* 
-                      <TableCell>
-                        {order.order_items[0].product.product_name},{' '}
-                        {order.order_items?.[1].product.product_name}
-                      </TableCell> */}
-                      {/* 
-                      <TableCell>
-                        {order.order_items.map(
-                          (order_item, index) =>
-                            `${order_item.product.product_name}${index > 0 && ','}`
-                        )}
-                      </TableCell> */}
+                    <Link href={`/dashboard/orders/${order._id}`}>
+                      <TableRow key={order._id}>
+                        <TableCell
+                          title={order.order_items
+                            .map(
+                              (order_item) => order_item.product.product_name
+                            )
+                            .join()}
+                        >
+                          {order.order_items
+                            .map(
+                              (order_item) => order_item.product.product_name
+                            )
+                            .join()
+                            .slice(0, 20)}
+                          ...
+                        </TableCell>
 
-                      <TableCell>
-                        {order.order_items
-                          .map((order_item) => order_item.product.product_name)
-                          .join()
-                          .slice(0, 20)}
-                        ...
-                      </TableCell>
+                        <TableCell className="capitalize">
+                          {order.status}
+                        </TableCell>
 
-                      <TableCell className="capitalize">
-                        {order.status}
-                      </TableCell>
+                        <TableCell>{order.total_price}</TableCell>
 
-                      <TableCell>{order.total_price}</TableCell>
+                        {/* <TableCell>{order.order_date.toString()}</TableCell> */}
+                        <TableCell>
+                          {moment(order.order_date.toString()).format(
+                            'YYYY-MM-DD'
+                          )}
+                        </TableCell>
 
-                      {/* <TableCell>{order.order_date.toString()}</TableCell> */}
-                      <TableCell>
-                        {moment(order.order_date.toString()).format(
-                          'YYYY-MM-DD'
-                        )}
-                      </TableCell>
-
-                      <TableCell>
-                        <OrdersTableDropdown
-                          _id={order._id}
-                          status={order.status}
-                        />
-                      </TableCell>
-                    </TableRow>
+                        <TableCell>
+                          <OrdersTableDropdown
+                            _id={order._id}
+                            status={order.status}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    </Link>
                   ))
                 ) : (
                   <TableRow>

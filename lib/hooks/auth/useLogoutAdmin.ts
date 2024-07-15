@@ -1,5 +1,6 @@
 import { useToast } from '@/components/ui/use-toast';
 import axios from '@/config/axios';
+import { AdminInfoTypes, AuthReturnTypes } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
@@ -21,13 +22,21 @@ const useLogoutAdmin = () => {
       mutationKey: ['logout admin'],
       mutationFn: logoutAdmin,
       onSuccess: () => {
+        queryClient.setQueryData(
+          'get current admin',
+          // @ts-ignore
+          (oldAdminData: AdminInfoTypes) => {
+            return null;
+          }
+        );
+
         queryClient.invalidateQueries('get current admin');
 
         toast({
           description: 'Logout Successful',
         });
 
-        router.replace('/auth/login');
+        // router.replace('/auth/login');
       },
       onError: (error: any) => {
         console.log(error);

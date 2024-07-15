@@ -24,6 +24,7 @@ import ThemeSwitcher from '@/components/ThemeSwitcher';
 import { Skeleton } from '@/components/ui/skeleton';
 import useGetCurrentAdmin from '@/lib/hooks/auth/useGetCurrentAdmin';
 import useLogoutAdmin from '@/lib/hooks/auth/useLogoutAdmin';
+import FullScreenLoader from '@/components/FullScreenLoader';
 
 interface Props {}
 
@@ -48,9 +49,13 @@ const DashboardHeader: FC<Props> = () => {
     return `${firstNameInitial}${lastNameInitial}`;
   };
 
+  // if (isLoggingOut) {
+  //   return <FullScreenLoader />
+  // }
+
   return (
     <>
-      {/* {isLoggingOut && <span>Logging out...</span>} */}
+      {isLoggingOut && <FullScreenLoader />}
 
       <header className="sticky top-0 z-20 backdrop-blur-lg bg-background bg-opacity-80">
         <div className="h-[70px] flex items-center justify-between px-8">

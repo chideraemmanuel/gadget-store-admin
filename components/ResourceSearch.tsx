@@ -21,9 +21,9 @@ const ResourceSearch: FC<Props> = (props) => {
   const updateSearchParam = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newParams = new URLSearchParams(searchParams.toString());
+    // const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.set('search_query', searchString);
+    // newParams.set('search_query', searchString);
 
     // return `${searchParamKey}=${searchString}`
     const newSearchParams = new URLSearchParams(searchParams.toString());

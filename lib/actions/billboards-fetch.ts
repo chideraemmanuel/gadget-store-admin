@@ -1,5 +1,5 @@
 import { BillboardReturnTypes, BillboardTypes, SearchParams } from '@/types';
-import createSearchParams from '../createSearchParam';
+import createSearchParams from '../helpers/createSearchParam';
 import { revalidatePath } from 'next/cache';
 import axios from '@/config/axios';
 

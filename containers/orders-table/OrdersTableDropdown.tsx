@@ -133,6 +133,8 @@ const OrdersTableDropdown: FC<Props> = ({ _id, status }) => {
           <SelectInput
             label="Order Status"
             selectInputItems={orderStatuses}
+            selectInputItemProps={{ className: 'capitalize' }}
+            selectInputTriggerProps={{ className: 'capitalize' }}
             defautlValue={status}
             onItemSelect={(value) => {
               console.log({ value });

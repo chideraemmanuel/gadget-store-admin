@@ -25,7 +25,13 @@ interface Props {
   searchParams: SearchParams;
 }
 
-const headers = ['product image', 'product name', 'price', 'count', 'featured'];
+const headers = [
+  'product image',
+  'product name',
+  'price (₦)',
+  'count',
+  'featured',
+];
 
 // const products = [
 //   {
@@ -97,7 +103,7 @@ const ProductsTable: FC<Props> = ({ searchParams }) => {
       {productsReturn && (
         <>
           <div className="rounded-md border">
-            <Table>
+            <Table className="scrollbar-rounded">
               <TableHeader>
                 <TableRow>
                   {headers.map((header, index) => (

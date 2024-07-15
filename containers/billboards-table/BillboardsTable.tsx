@@ -83,7 +83,7 @@ const BillboardsTable: FC<Props> = ({ searchParams }) => {
       {billboardsReturn && (
         <>
           <div className="rounded-md border">
-            <Table>
+            <Table className="scrollbar-rounded">
               <TableHeader>
                 <TableRow>
                   {headers.map((header, index) => (

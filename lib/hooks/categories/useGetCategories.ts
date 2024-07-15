@@ -1,5 +1,5 @@
 import axios from '@/config/axios';
-import createSearchParams from '@/lib/createSearchParam';
+import createSearchParams from '@/lib/helpers/createSearchParam';
 import { CategoryReturnTypes, CategoryTypes, SearchParams } from '@/types';
 import { useQuery } from 'react-query';
 

@@ -39,7 +39,7 @@ interface SelectInputProps {
   //   onItemSelect: (selectedItem: SelectInputItem) => void;
   selectInputItemProps?: Omit<
     ComponentPropsWithoutRef<typeof SelectItem>,
-    'onSelect'
+    'onSelect' | 'value'
   >;
 }
 
@@ -85,6 +85,7 @@ const SelectInput = React.forwardRef<SelectInputRef, SelectInputProps>(
             )}
             disabled={disabled}
             {...selectInputTriggerProps}
+            ref={ref}
           >
             <SelectValue placeholder={placeholder || 'Select item'} />
           </SelectTrigger>

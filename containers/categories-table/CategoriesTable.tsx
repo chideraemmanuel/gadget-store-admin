@@ -83,7 +83,7 @@ const CategoriesTable: FC<Props> = ({ searchParams }) => {
       {categoriesReturn && (
         <>
           <div className="rounded-md border">
-            <Table>
+            <Table className="scrollbar-rounded">
               <TableHeader>
                 <TableRow>
                   {headers.map((header, index) => (

@@ -1,5 +1,5 @@
 import { ProductTypes, ProductsReturnTypes, SearchParams } from '@/types';
-import createSearchParams from '../createSearchParam';
+import createSearchParams from '../helpers/createSearchParam';
 
 export const getProductsOnServer = async (
   searchParamsObject: SearchParams = {}

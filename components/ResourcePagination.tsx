@@ -46,9 +46,9 @@ const ResourcePagination: FC<Props> = ({
   const currentPage = getCurrentPage();
 
   const updateSearchParam = (value: string) => {
-    const newParams = new URLSearchParams(searchParams.toString());
+    // const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.set('page', value);
+    // newParams.set('page', value);
 
     // return `${searchParamKey}=${value}`
     const newSearchParams = new URLSearchParams(searchParams.toString());

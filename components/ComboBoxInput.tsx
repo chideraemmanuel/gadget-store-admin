@@ -109,6 +109,7 @@ const ComboBoxInput = React.forwardRef<ComboBoxTriggerRef, ComboBoxInputProps>(
               //   {...triggerProps}
               disabled={disabled}
               {...comboboxTriggerProps}
+              ref={ref}
             >
               {comboboxTriggerButton || (
                 <Button
@@ -123,7 +124,7 @@ const ComboBoxInput = React.forwardRef<ComboBoxTriggerRef, ComboBoxInputProps>(
 
             <span className="text-xs text-destructive">{error}</span>
 
-            <PopoverContent className="w-full p-0">
+            <PopoverContent className="w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height] p-0">
               {/* uses .name instead if .value becaues 'value' attribute on CommandItem uses .name */}
               {/* <Command className="w-full" defaultValue={defautlValue?.name}> */}
               <Command className="w-full" defaultValue={defautlValue?.value}>

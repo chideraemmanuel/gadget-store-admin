@@ -387,6 +387,7 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
               setValue('featured', checked as boolean)
             }
             disabled={isUpdatingProduct}
+            description="This item will be featured"
             // checked={isProductFeatured}
           />
         </div>

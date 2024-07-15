@@ -78,7 +78,7 @@ const BrandsTable: FC<Props> = ({ searchParams }) => {
       {brandsReturn && (
         <>
           <div className="rounded-md border">
-            <Table>
+            <Table className="scrollbar-rounded">
               <TableHeader>
                 <TableRow>
                   {headers.map((header, index) => (

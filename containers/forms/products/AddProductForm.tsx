@@ -173,7 +173,7 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
           />
         </div>
 
-        <div className="flex items-end gap-2">
+        <div className="flex gap-2">
           {/* <FormInput
             label="Product Image"
             type="file"
@@ -215,6 +215,7 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
             onCheckedChange={(checked) =>
               setValue('featured', checked as boolean)
             }
+            description="This item will be featured"
             // checked={isProductFeatured}
           />
         </div>

@@ -52,16 +52,18 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
               disabled={disabled}
               onChange={(e) => {
                 console.log('selected image File:', e.target.files);
-                console.log('selected image value:', e.target.value);
+                // console.log('selected image value:', e.target.value);
 
-                const reader = new FileReader();
-                reader.readAsDataURL(e.target.files?.[0]!);
-                reader.onload = () => {
-                  setSelectedImage({
-                    name: e.target.files?.[0].name!,
-                    src: reader.result,
-                  });
-                };
+                if (e.target.files?.[0]) {
+                  const reader = new FileReader();
+                  reader.readAsDataURL(e.target.files?.[0]);
+                  reader.onload = () => {
+                    setSelectedImage({
+                      name: e.target.files?.[0].name!,
+                      src: reader.result,
+                    });
+                  };
+                }
 
                 // setSelectedImage(e.target.files?.[0].name);
 
@@ -81,7 +83,7 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
                 className
               )}
             >
-              {(defaultImage ?? selectedImage?.src) && (
+              {(selectedImage?.src ?? defaultImage) && (
                 <Image
                   // src={defaultImage}
                   src={selectedImage?.src || defaultImage}
@@ -98,18 +100,12 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
                 <UploadIcon className="w-7 h-7" />
                 {/* <UploadIcon /> */}
                 <span className="text-xs max-w-[80%] text-center mx-auto">
-                  {/* {selectedImage || 'No Image Selected'} */}
-                  {/* {defaultImage
-                    ? selectedImage || ''
-                    : selectedImage || 'No Image Selected'} */}
-                  {defaultImage
-                    ? // ? ''
-                      defaultImage
-                    : selectedImage?.src
-                      ? selectedImage.name
+                  {selectedImage?.src
+                    ? selectedImage.name
+                    : defaultImage
+                      ? // ? ''
+                        defaultImage
                       : 'No Image Selected'}
-                  {/* ? selectedImage || ''
-                    : selectedImage || 'No Image Selected'} */}
                 </span>
               </div>
             </Card>
