@@ -29,9 +29,12 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
     { label, defaultImage, error, className, disabled, onChange, ...props },
     ref
   ) => {
-    const [selectedImage, setSelectedImage] = useState<undefined | string>(
-      undefined
-    );
+    // const [selectedImage, setSelectedImage] = useState<undefined | string>(
+    //   undefined
+    // );
+    const [selectedImage, setSelectedImage] = useState<
+      undefined | { name: string; src: string | ArrayBuffer | null }
+    >(undefined);
 
     return (
       <>
@@ -51,7 +54,16 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
                 console.log('selected image File:', e.target.files);
                 console.log('selected image value:', e.target.value);
 
-                setSelectedImage(e.target.files?.[0].name);
+                const reader = new FileReader();
+                reader.readAsDataURL(e.target.files?.[0]!);
+                reader.onload = () => {
+                  setSelectedImage({
+                    name: e.target.files?.[0].name!,
+                    src: reader.result,
+                  });
+                };
+
+                // setSelectedImage(e.target.files?.[0].name);
 
                 if (onChange) {
                   onChange(e);
@@ -69,9 +81,10 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
                 className
               )}
             >
-              {defaultImage && !selectedImage && (
+              {(defaultImage ?? selectedImage?.src) && (
                 <Image
-                  src={defaultImage}
+                  // src={defaultImage}
+                  src={selectedImage?.src || defaultImage}
                   // src={phone}
                   alt={label || ''}
                   width={1000}
@@ -86,9 +99,17 @@ const ImageInput = forwardRef<ImageInputRef, ImageInputProps>(
                 {/* <UploadIcon /> */}
                 <span className="text-xs max-w-[80%] text-center mx-auto">
                   {/* {selectedImage || 'No Image Selected'} */}
-                  {defaultImage
+                  {/* {defaultImage
                     ? selectedImage || ''
-                    : selectedImage || 'No Image Selected'}
+                    : selectedImage || 'No Image Selected'} */}
+                  {defaultImage
+                    ? // ? ''
+                      defaultImage
+                    : selectedImage?.src
+                      ? selectedImage.name
+                      : 'No Image Selected'}
+                  {/* ? selectedImage || ''
+                    : selectedImage || 'No Image Selected'} */}
                 </span>
               </div>
             </Card>

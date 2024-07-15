@@ -1,12 +1,12 @@
 'use client';
 
 import { FC, useEffect } from 'react';
-import useGetCurrentAdmin from '../lib/hooks/auth/useGetCurrentAdmin ';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreTypes } from '@/redux/store';
 import { setAdmin } from '@/redux/slices/authSlice';
 import { getCurrentAdminOnServer } from '@/lib/actions/auth';
+import useGetCurrentAdmin from '@/lib/hooks/auth/useGetCurrentAdmin';
 
 interface Props {
   children: React.ReactNode;

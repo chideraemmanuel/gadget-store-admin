@@ -161,12 +161,13 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
   //   console.log('set to false');
   // }, [trackFormChange]);
 
-  // this sets the default value of the combobox inputs for useForm to properly manage
-  // this is necessary because, on page load, the defaultValue set on the combobox inputs only shows the proper value in the ui, but doesn't have it's state managed by react hook form
+  // this sets the default value of the combobox and checkbox inputs and checkbox for useForm to properly manage
+  // this is necessary because, on page load, the defaultValue set on the combobox and checkbox inputs only shows the proper value in the ui, but doesn't have it's state managed by react hook form
   useEffect(() => {
     console.log('initial load form data:', getValues());
-    // setValue('brand', brand._id);
-    // setValue('category', category._id);
+    setValue('brand', brand._id);
+    setValue('category', category._id);
+    setValue('featured', featured);
   }, []);
 
   const onSubmit: SubmitHandler<ProductFormDataTypes> = async (data, e) => {
@@ -328,7 +329,9 @@ const UpdateProductForm: FC<Props> = ({ product, categories, brands }) => {
                   message: 'Product category is required',
                 },
               }),
+              className: 'capitalize',
             }}
+            comboboxItemProps={{ className: 'capitalize' }}
             comboboxOpen={categoriesComboboxOpen}
             setComboboxOpen={setCategoriesComboboxOpen}
             error={errors.brand?.message}

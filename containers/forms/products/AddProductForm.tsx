@@ -156,7 +156,7 @@ const AddProductForm: FC<Props> = ({ categories, brands }) => {
             }}
             comboboxOpen={categoriesComboboxOpen}
             setComboboxOpen={setCategoriesComboboxOpen}
-            error={errors.brand?.message}
+            error={errors.category?.message}
             comboboxItems={categories.map((category) => {
               return {
                 id: category._id,

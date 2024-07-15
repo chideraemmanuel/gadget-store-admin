@@ -21,6 +21,7 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.1.5",
     "@reduxjs/toolkit": "^1.9.7",
     "@tanstack/react-table": "^8.16.0",
@@ -54,6 +55,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
