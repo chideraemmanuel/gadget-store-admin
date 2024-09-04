@@ -1,6 +1,6 @@
 # Gadget Store Admin Dashboard
 
-Gadget Store is a fake e-commerce site built for demonstration purposes. It allows administrators of the [Gadget Store E-commerce Website](https://github.com/chideraemmanuel/gadget-store-ecommerce) to manage products, orders, and user data.
+Gadget Store Admin Dashboard is a fake e-commerce site admin dashboard built for demonstration purposes. It allows administrators of the [Gadget Store E-commerce Website](https://github.com/chideraemmanuel/gadget-store-ecommerce) to manage products, orders, and user data.
 
 ## Overview
 
